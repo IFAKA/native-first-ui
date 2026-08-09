@@ -6,12 +6,12 @@ const requiredFiles = [
   "package.json",
   "README.md",
   "AGENTS.md",
+  "INTEGRATION-RULES.md",
   "src/core.css",
   "src/tokens.css",
   "src/elements.css",
   "src/patterns.css",
   "src/components.css",
-  "src/behavior.js",
   "examples/index.html",
   ".agents/skills/native-first-ui/SKILL.md",
   ".agents/skills/emil-design-eng/SKILL.md",
@@ -32,7 +32,7 @@ for (const field of ["name", "version", "description", "license", "keywords", "e
 if (packageJson.license !== "MIT") throw new Error("Package license must remain MIT");
 if (!packageJson.engines?.node) throw new Error("Package must declare a supported Node.js engine");
 
-for (const required of ["<main", "<form", "<table", "<details", "<dialog", "aria-label", "aria-live", "data-nf-dialog-open"]) {
+for (const required of ["<main", "<form", "<table", "<details", "<dialog", "<progress", "aria-label", "aria-live", "commandfor"]) {
   if (!html.includes(required) && !css.includes(required)) {
     throw new Error(`Missing conformance marker: ${required}`);
   }
@@ -42,7 +42,7 @@ for (const requiredImport of ["./tokens.css", "./elements.css", "./patterns.css"
   if (!css.includes(`@import \"${requiredImport}\"`)) throw new Error(`core.css does not import ${requiredImport}`);
 }
 
-for (const exportPath of ["./core.css", "./tokens.css", "./elements.css", "./patterns.css", "./components.css", "./behavior.js"]) {
+for (const exportPath of [".", "./core.css", "./tokens.css", "./elements.css", "./patterns.css", "./components.css"]) {
   if (!packageJson.exports[exportPath]) throw new Error(`Missing public export: ${exportPath}`);
 }
 
@@ -51,11 +51,6 @@ const source = await Promise.all(["src/patterns.css", "src/components.css"].map(
 for (const className of new Set(documentedClasses)) {
   if (className.includes("$") || className.includes("{")) continue;
   if (!source.some((file) => file.includes(`.${className}`))) throw new Error(`Fixture uses undocumented class: ${className}`);
-}
-
-const behavior = await readFile(new URL("src/behavior.js", root), "utf8");
-for (const marker of ["showModal", "Escape", "lastFocused", "data-nf-dialog-open"]) {
-  if (!behavior.includes(marker)) throw new Error(`Missing dialog behavior marker: ${marker}`);
 }
 
 console.log(`Validated native-first-ui package (${requiredFiles.length} required files)`);

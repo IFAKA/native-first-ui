@@ -16,3 +16,8 @@ and releases use semantic versioning.
 
 - Prevented the local example server from serving files outside the project.
 
+### Changed
+
+- Removed catalog-only CSS contracts from the public package.
+- Removed the custom dialog behavior module; use native `<dialog>` forms and modern `commandfor`/`command` invokers.
+- Removed the redundant `nf-disclosure` and `nf-meter` contracts; use `<details>`/`<summary>` and `<progress>` directly.

@@ -1,4 +1,10 @@
 @layer components {
+  .nf-navigation :where(button) { display: inline-flex; align-items: baseline; justify-content: space-between; gap: var(--nf-space-2); min-height: var(--nf-control-height); padding: var(--nf-space-2) var(--nf-space-3); border: 0; border-radius: var(--nf-radius-sm); background: transparent; color: var(--nf-color-muted); text-align: start; cursor: pointer; }
+  .nf-navigation :where(button):hover, .nf-navigation :where(button)[aria-current="page"] { background: var(--nf-color-surface); color: var(--nf-color-text); box-shadow: var(--nf-shadow-sm); }
+  .nf-navigation :where(button)[aria-current="page"] { font-weight: 700; }
+  .nf-navigation :where(button) small { color: var(--nf-color-muted); font-size: var(--nf-text-sm); }
+  .nf-skeleton[data-size="short"] { width: 42%; }
+  .nf-skeleton[data-size="long"] { width: 78%; }
   .nf-navigation { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nf-space-1); }
   .nf-navigation :where(a, summary) { display: inline-flex; align-items: center; min-height: var(--nf-control-height); padding: var(--nf-space-2) var(--nf-space-3); border-radius: var(--nf-radius-sm); }
   .nf-navigation :where(a, summary):hover { background: color-mix(in srgb, var(--nf-color-accent) 10%, transparent); }
@@ -9,12 +15,17 @@
   .nf-navigation > details > .nf-navigation-children { position: absolute; top: calc(100% + var(--nf-space-1)); z-index: 1; width: max-content; max-width: min(22rem, calc(100vw - 2rem)); padding: var(--nf-space-2); border: var(--nf-border-width) solid var(--nf-color-border); border-radius: var(--nf-radius-md); background: var(--nf-color-surface-raised); box-shadow: var(--nf-shadow-md); }
   .nf-navigation-children details > .nf-navigation-children { margin-block-start: var(--nf-space-1); padding-inline-start: var(--nf-space-3); }
 
-  .nf-button, .nf-button-primary, .nf-button-danger { display: inline-flex; align-items: center; justify-content: center; min-height: var(--nf-control-height); max-width: 100%; padding: var(--nf-space-2) var(--nf-space-4); border: var(--nf-border-width) solid var(--nf-color-border-strong); border-radius: var(--nf-radius-sm); background: var(--nf-color-surface); color: var(--nf-color-text); font-weight: 650; text-align: center; overflow-wrap: anywhere; transition: border-color var(--nf-duration-fast) var(--nf-ease-out), background-color var(--nf-duration-fast) var(--nf-ease-out), transform var(--nf-duration-fast) var(--nf-ease-out); }
+  .nf-link { font-weight: 650; text-underline-offset: 0.18em; }
+  .nf-link-muted { color: var(--nf-color-muted); }
+
+  .nf-button, .nf-button-primary, .nf-button-danger { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; padding: var(--nf-space-2) var(--nf-space-4); border: var(--nf-border-width) solid var(--nf-color-border-strong); border-radius: var(--nf-radius-sm); background: var(--nf-color-surface); color: var(--nf-color-text); font-weight: 650; text-align: center; overflow-wrap: anywhere; }
   .nf-button:hover { border-color: var(--nf-color-accent); }
-  .nf-button:active, .nf-button-primary:active, .nf-button-danger:active { transform: scale(0.98); }
   .nf-button-primary { border-color: var(--nf-color-accent); background: var(--nf-color-accent); color: var(--nf-color-accent-ink); }
   .nf-button-primary:hover { background: var(--nf-color-accent-strong); }
   .nf-button-danger { border-color: var(--nf-color-danger); background: var(--nf-color-danger); color: var(--nf-color-on-danger); }
+  .nf-button-primary:hover, .nf-button-danger:hover { filter: brightness(0.94); }
+  .nf-button-quiet { border-color: transparent; background: transparent; color: var(--nf-color-accent-strong); }
+  .nf-button-quiet:hover { background: color-mix(in srgb, var(--nf-color-accent) 10%, transparent); }
   .nf-card { padding: var(--nf-space-5); border: var(--nf-border-width) solid var(--nf-color-border); border-radius: var(--nf-radius-md); background: var(--nf-color-surface); box-shadow: var(--nf-shadow-sm); }
   .nf-badge { display: inline-flex; align-items: center; min-height: 1.75rem; max-width: 100%; padding: var(--nf-space-1) var(--nf-space-2); border-radius: var(--nf-radius-pill); background: color-mix(in srgb, var(--nf-color-accent) 14%, transparent); color: var(--nf-color-accent-strong); font-size: var(--nf-text-sm); font-weight: 650; overflow-wrap: anywhere; }
   .nf-badge[data-tone="success"] { background: color-mix(in srgb, var(--nf-color-success) 14%, transparent); color: var(--nf-color-success); }
@@ -37,9 +48,10 @@
   .nf-table tbody tr:last-child td { border-block-end: 0; }
   .nf-dialog { width: min(calc(100% - 2rem), 32rem); margin: auto; padding: var(--nf-space-6); border: var(--nf-border-width) solid var(--nf-color-border); border-radius: var(--nf-radius-lg); background: var(--nf-color-surface-raised); color: var(--nf-color-text); box-shadow: var(--nf-shadow-md); }
   .nf-dialog::backdrop { background: rgb(15 23 42 / 0.56); }
+  .nf-pagination { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nf-space-2); }
+  .nf-pagination :where(a, button) { min-width: var(--nf-control-height); }
+  .nf-pagination [aria-current="page"] { border-color: var(--nf-color-accent); background: color-mix(in srgb, var(--nf-color-accent) 12%, var(--nf-color-surface)); color: var(--nf-color-accent-strong); }
   .nf-loading { color: var(--nf-color-muted); }
-  .nf-loading::after { display: inline-block; width: 0.8em; aspect-ratio: 1; margin-inline-start: var(--nf-space-2); border: 2px solid currentColor; border-inline-end-color: transparent; border-radius: 50%; animation: nf-spin 700ms linear infinite; content: ""; vertical-align: -0.1em; }
   .nf-empty { display: grid; min-height: 14rem; place-items: center; padding: var(--nf-space-8); border: var(--nf-border-width) dashed var(--nf-color-border-strong); border-radius: var(--nf-radius-md); text-align: center; }
-  @keyframes nf-spin { to { transform: rotate(360deg); } }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; } }
+  .nf-skeleton { display: block; min-height: 1em; border-radius: var(--nf-radius-sm); background: color-mix(in srgb, var(--nf-color-muted) 12%, transparent); }
 }
