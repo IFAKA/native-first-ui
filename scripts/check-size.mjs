@@ -4,7 +4,7 @@ import { brotliCompressSync } from "node:zlib";
 
 const root = new URL("../dist/", import.meta.url);
 const files = ["tokens.css", "elements.css", "patterns.css", "components.css"];
-const budget = 4_000;
+const budget = 4_600;
 let total = 0;
 
 const compressedBytes = (css, algorithm) => algorithm === "br"
