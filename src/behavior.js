@@ -57,6 +57,7 @@ export function enhanceNativeInteractions(root = document) {
       const invoker = target.closest("[interestfor]");
       if (summary) closeOpenMenus(root, summary.closest("details"));
       if (invoker) closeOpenMenus(root, invoker);
+      if (!summary && !invoker && !target.closest("[popover]")) closeOpenMenus(root);
     } else {
       closeOpenMenus(root);
     }
@@ -78,15 +79,20 @@ export function enhanceNativeInteractions(root = document) {
       const popover = showInterestPopover(root, invoker);
       if (!popover) return;
       closeOpenMenus(root, popover);
+    } else if (!target?.closest("[popover]")) {
+      closeOpenMenus(root);
     }
   });
 
   root.addEventListener("focusin", (event) => {
     const target = event.target instanceof Element ? event.target : null;
     const invoker = target?.closest(".nf-navigation [interestfor]");
-    if (!invoker) return;
-    const popover = showInterestPopover(root, invoker);
-    if (popover) closeOpenMenus(root, popover);
+    if (invoker) {
+      const popover = showInterestPopover(root, invoker);
+      if (popover) closeOpenMenus(root, popover);
+    } else if (!target?.closest("[popover]")) {
+      closeOpenMenus(root);
+    }
   });
 
   root.addEventListener("pointerout", (event) => {
@@ -94,7 +100,7 @@ export function enhanceNativeInteractions(root = document) {
     const target = event.target instanceof Element ? event.target : null;
     const navigation = target?.closest(".nf-navigation");
     const next = event.relatedTarget instanceof Node ? event.relatedTarget : null;
-    const insidePopover = next && navigation?.querySelector("[popover]")?.contains(next);
+    const insidePopover = next && [...navigation?.querySelectorAll("[popover]") ?? []].some((popover) => popover.contains(next));
     if (navigation && (!next || (!navigation.contains(next) && !insidePopover))) closeOpenMenus(root);
   });
 
