@@ -110,6 +110,16 @@ The package root exports only `core.css`. Optional contracts are available expli
 
 The dependency-free `behavior.js` module is available for recipes that need progressive enhancement. Native controls remain usable without it.
 
+## Install the project skills for Codex
+
+The repository includes its own `$native-first-ui` skill in [`.agents/skills/native-first-ui/`](.agents/skills/native-first-ui/). Install it into the current Codex skills directory with:
+
+```bash
+npm run install:skills
+```
+
+`npm run setup:skills` remains available as an alias. The command copies the repository-owned `$native-first-ui` skill into `${CODEX_HOME:-~/.codex}/skills` without replacing the original `$emil-design-eng` skill installed from `emilkowalski/skill`. Start a new agent session after installing so the skill catalog is refreshed.
+
 ## Public API
 
 Native HTML remains the identity of the system:

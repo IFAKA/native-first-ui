@@ -59,7 +59,8 @@
     "pages:build": "npm run build:css && node scripts/build-pages.mjs",
     "prepack": "npm run build:css",
     "serve": "node scripts/serve-example.mjs",
-    "setup:skills": "node scripts/install-skills.mjs"
+    "setup:skills": "node scripts/install-skills.mjs",
+    "install:skills": "node scripts/install-skills.mjs"
   },
   "devDependencies": {
     "lightningcss": "^1.33.0"
