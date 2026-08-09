@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 
 const root = new URL("..", import.meta.url);
 const layers = ["tokens", "elements", "patterns", "components"];
@@ -58,6 +58,7 @@ function minifyCss(css) {
 }
 
 await mkdir(new URL("dist/", root), { recursive: true });
+await copyFile(new URL("src/behavior.js", root), new URL("dist/behavior.js", root));
 const source = {};
 for (const layer of layers) source[layer] = await readFile(new URL(`src/${layer}.css`, root), "utf8");
 

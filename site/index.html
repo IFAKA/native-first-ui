@@ -169,8 +169,8 @@
                 <h3 id="dialog-card-title">Delete confirmation</h3>
                 <p class="nf-help">A native dialog keeps Escape and form closing behavior.</p>
               </header>
-              <button class="nf-button-danger" type="button" onclick="document.querySelector('#delete-dialog').showModal()">Delete Beacon</button>
-              <dialog id="delete-dialog" class="nf-dialog" aria-labelledby="delete-dialog-title">
+              <button class="nf-button-danger" type="button" commandfor="delete-dialog" command="show-modal">Delete Beacon</button>
+              <dialog id="delete-dialog" class="nf-dialog" closedby="any" aria-labelledby="delete-dialog-title">
                 <form method="dialog" class="nf-stack">
                   <h3 id="delete-dialog-title">Delete Beacon?</h3>
                   <p>This removes the project and its activity history. This action cannot be undone.</p>
@@ -197,5 +197,9 @@
         </section>
       </div>
     </main>
+    <script type="module">
+      import { enhanceNativeInteractions } from './behavior.js';
+      enhanceNativeInteractions();
+    </script>
   </body>
 </html>

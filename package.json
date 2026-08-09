@@ -32,7 +32,8 @@
     "./tokens.css": "./dist/tokens.css",
     "./elements.css": "./dist/elements.css",
     "./patterns.css": "./dist/patterns.css",
-    "./components.css": "./dist/components.css"
+    "./components.css": "./dist/components.css",
+    "./behavior.js": "./dist/behavior.js"
   },
   "scripts": {
     "build:css": "node scripts/build-css.mjs",

@@ -29,7 +29,7 @@ npm install native-first-ui
 @import "native-first-ui/core.css";
 ```
 
-The package also exports `tokens.css`, `elements.css`, `patterns.css`, and `components.css`.
+The package also exports `tokens.css`, `elements.css`, `patterns.css`, `components.css`, and the optional `behavior.js` enhancement module.
 
 Use `core.css` for the complete contract, or import only the layers your page needs:
 
@@ -125,6 +125,18 @@ Keep code semantics native and add `nf-code` to the block-level `<pre>`:
 The `tabindex` makes wide code reachable by keyboard users; long lines scroll inside the code block instead of widening the page.
 
 For non-modal menus, hints, and anchored transient UI, use the native Popover API with `popover`, `popovertarget`, and `popovertargetaction`. Use `details`/`summary` when a disclosure is sufficient.
+
+### Optional native behavior enhancements
+
+CSS cannot close a `<details>` menu on outside click or Escape. Keep the semantic `<nav>` and `<details>` markup, then opt into the dependency-free behavior module when that contract is needed:
+
+```js
+import { enhanceNativeInteractions } from "native-first-ui/behavior.js";
+
+enhanceNativeInteractions();
+```
+
+The module light-dismisses `.nf-navigation` disclosures, closes the deepest nested disclosure on Escape, and provides backdrop dismissal for `.nf-dialog`. Add `closedby="any"` to dialogs so browsers with native light-dismiss can handle it without JavaScript; the module remains the compatibility path.
 
 ## Recipes
 

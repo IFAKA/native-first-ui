@@ -12,6 +12,7 @@ const requiredFiles = [
   "src/elements.css",
   "src/patterns.css",
   "src/components.css",
+  "src/behavior.js",
   "examples/index.html",
   ".agents/skills/native-first-ui/SKILL.md",
   ".agents/skills/emil-design-eng/SKILL.md",
@@ -46,7 +47,7 @@ for (const requiredImport of ["./tokens.css", "./elements.css", "./patterns.css"
   if (!css.includes(`@import \"${requiredImport}\"`)) throw new Error(`core.css does not import ${requiredImport}`);
 }
 
-for (const exportPath of [".", "./core.css", "./tokens.css", "./elements.css", "./patterns.css", "./components.css"]) {
+for (const exportPath of [".", "./core.css", "./tokens.css", "./elements.css", "./patterns.css", "./components.css", "./behavior.js"]) {
   if (!packageJson.exports[exportPath]) throw new Error(`Missing public export: ${exportPath}`);
 }
 

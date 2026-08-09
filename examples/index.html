@@ -69,7 +69,10 @@
       </div>
     </main>
 
-    <script>
+    <script type="module">
+      import { enhanceNativeInteractions } from "../dist/behavior.js";
+      enhanceNativeInteractions();
+
       const examples = {
         actions: { label: "Actions", contract: "buttons + cluster", when: "Use native buttons for actions and links for navigation. Keep labels visible and distinguish risk with text, not color alone.", a11y: ["Use type=button unless a button submits a form.", "Keep disabled actions explainable with nearby text.", "Do not use an icon as the only label."], html: `<div class="nf-cluster">
   <button class="nf-button" type="button">Cancel</button>
@@ -102,7 +105,7 @@
     <section class="nf-grid">...</section>
   </div>
 </main>`, render: () => `<section class="nf-stack"><header class="nf-page-header"><div class="nf-stack" data-gap="sm"><p class="nf-help">Overview</p><h3>Team workspace</h3></div><button class="nf-button-primary" type="button">Invite member</button></header><div class="nf-grid"><article class="nf-card"><h3>Active members</h3><p>24 people</p></article><article class="nf-card"><h3>Open projects</h3><p>8 projects</p></article><article class="nf-card"><h3>Storage</h3><p>64% used</p></article></div></section>` },
-        navigation: { label: "Navigation", contract: "nav + links + details", when: "Use nav with real links for movement between pages, and details for nested links without JavaScript.", a11y: ["Use a labelled nav landmark.", "Mark the current page with aria-current.", "Keep nested links reachable by keyboard."], html: `<nav class="nf-navigation" aria-label="Workspace navigation">
+        navigation: { label: "Navigation", contract: "nav + links + details + behavior", when: "Use nav with real links and details for nested links. Import the optional behavior module when menus should light-dismiss and close on Escape.", a11y: ["Use a labelled nav landmark.", "Mark the current page with aria-current.", "Keep nested links reachable by keyboard."], html: `<nav class="nf-navigation" aria-label="Workspace navigation">
   <a href="/projects" aria-current="page">Projects</a>
   <a href="/activity">Activity</a>
   <details>...</details>
@@ -112,10 +115,10 @@
   <progress value="64" max="100">64%</progress>
   <div class="nf-empty">...</div>
 </section>`, render: () => `<section class="nf-stack" aria-live="polite"><p class="nf-loading">Syncing workspace</p><progress value="64" max="100">64%</progress><aside class="nf-alert" data-tone="warning"><strong>Needs attention</strong><span>One project is missing an owner.</span></aside><div class="nf-empty"><div class="nf-stack"><strong>No archived projects</strong><span class="nf-help">Archived projects will appear here.</span><button class="nf-button" type="button">View active projects</button></div></div><div class="nf-card nf-stack"><span class="nf-skeleton" data-size="short" aria-hidden="true"></span><span class="nf-skeleton" data-size="long" aria-hidden="true"></span></div></section>` },
-        dialogs: { label: "Dialogs", contract: "dialog + command", when: "Use a native dialog for a focused confirmation. Current browsers can open and close it declaratively.", a11y: ["Give the dialog an accessible name.", "Keep Escape closing available with the default dialog behavior.", "Use form method=dialog for a native close action."], html: `<button class="nf-button-danger" commandfor="delete-dialog" command="show-modal">Delete project</button>
-<dialog id="delete-dialog" class="nf-dialog" aria-labelledby="dialog-title">
+        dialogs: { label: "Dialogs", contract: "dialog + command + behavior", when: "Use a native dialog for a focused confirmation. closedby=any provides native light-dismiss where supported; the optional behavior module supplies the fallback.", a11y: ["Give the dialog an accessible name.", "Keep Escape closing available with the default dialog behavior.", "Use form method=dialog for a native close action."], html: `<button class="nf-button-danger" commandfor="delete-dialog" command="show-modal">Delete project</button>
+<dialog id="delete-dialog" class="nf-dialog" closedby="any" aria-labelledby="dialog-title">
   <form method="dialog" class="nf-stack">...</form>
-</dialog>`, render: () => `<div class="nf-stack"><button class="nf-button-danger" commandfor="demo-dialog" command="show-modal" type="button">Delete project</button><dialog id="demo-dialog" class="nf-dialog" aria-labelledby="dialog-title"><form method="dialog" class="nf-stack"><h3 id="dialog-title">Delete project?</h3><p>This action cannot be undone.</p><div class="nf-cluster"><button class="nf-button" value="cancel">Cancel</button><button class="nf-button-danger" value="confirm">Delete project</button></div></form></dialog></div>` },
+</dialog>`, render: () => `<div class="nf-stack"><button class="nf-button-danger" commandfor="demo-dialog" command="show-modal" type="button">Delete project</button><dialog id="demo-dialog" class="nf-dialog" closedby="any" aria-labelledby="dialog-title"><form method="dialog" class="nf-stack"><h3 id="dialog-title">Delete project?</h3><p>This action cannot be undone.</p><div class="nf-cluster"><button class="nf-button" value="cancel">Cancel</button><button class="nf-button-danger" value="confirm">Delete project</button></div></form></dialog></div>` },
         code: { label: "Code blocks", contract: "pre + code", when: "Use a code block for copyable or inspectable snippets. Keep the native pre/code semantics and let long lines scroll within the block.", a11y: ["Use pre and code for preserved whitespace and source text.", "Add tabindex=0 when the block may scroll horizontally.", "Keep syntax meaning in the text; color is optional."], html: `<pre class="nf-code" tabindex="0"><code>const ready = true;
 console.log(ready);</code></pre>`, render: () => `<pre class="nf-code" tabindex="0"><code>const workspace = {
   status: "ready",
