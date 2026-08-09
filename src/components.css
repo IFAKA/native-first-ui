@@ -44,8 +44,8 @@
   .nf-form > fieldset.nf-field > label:hover { background: color-mix(in srgb, var(--nf-color-accent) 7%, transparent); }
   .nf-form > fieldset.nf-field input[type="radio"] { flex: 0 0 auto; inline-size: 1.25rem; block-size: 1.25rem; margin: 0; accent-color: var(--nf-color-accent); }
   .nf-form > label { display: flex; align-items: center; gap: var(--nf-space-3); min-block-size: var(--nf-control-height); }
-  .nf-toggle { display: inline-flex; align-items: center; gap: var(--nf-space-3); min-block-size: var(--nf-control-height); max-width: 100%; padding-block: var(--nf-space-1); cursor: pointer; }
-  .nf-toggle input[type="checkbox"] { flex: 0 0 auto; inline-size: 3rem; block-size: 1.75rem; margin: 0; padding: 0; border: var(--nf-border-width) solid var(--nf-color-border-strong); border-radius: var(--nf-radius-pill); background: radial-gradient(circle at 0.8rem center, var(--nf-color-border-strong) 0 0.5rem, transparent 0.54rem), var(--nf-color-surface); appearance: none; cursor: pointer; transition: background 160ms ease-out, border-color 160ms ease-out; }
+  .nf-toggle { display: inline-flex; align-items: center; gap: var(--nf-space-3); min-block-size: var(--nf-control-height); max-width: 100%; cursor: pointer; }
+  .nf-toggle input[type="checkbox"] { flex: 0 0 auto; inline-size: 3rem; block-size: 1.75rem; margin: 0; padding: 0; border: var(--nf-border-width) solid var(--nf-color-border-strong); border-radius: var(--nf-radius-pill); background: radial-gradient(circle at 0.8rem center, var(--nf-color-border-strong) 0 0.5rem, transparent 0.54rem), var(--nf-color-surface); appearance: none; transition: background 160ms ease-out, border-color 160ms ease-out; }
   .nf-toggle input[type="checkbox"]:checked { border-color: var(--nf-color-accent); background: radial-gradient(circle at calc(100% - 0.8rem) center, var(--nf-color-accent-ink) 0 0.5rem, transparent 0.54rem), var(--nf-color-accent); }
   @media (forced-colors: active) { .nf-toggle input[type="checkbox"] { appearance: auto; inline-size: 1.25rem; block-size: 1.25rem; background: transparent; } }
   .nf-help { color: var(--nf-color-muted); font-size: var(--nf-text-sm); }

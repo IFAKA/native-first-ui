@@ -65,6 +65,7 @@ The repository includes [AGENTS.md](./AGENTS.md) and [INTEGRATION-RULES.md](./IN
 | `nf-navigation` | `nav` | Links with native `popover` sub-navigation | Links wrap; menus stay within viewport |
 | `nf-link`, `nf-link-muted` | `<a>` | Consistent text-link emphasis | Labels wrap and remain keyboard reachable |
 | `nf-button`, `nf-button-primary`, `nf-button-danger`, `nf-button-quiet` | `<button>` or `<a>` | Default, primary, destructive, or quiet actions | At least 44px tall and labels wrap |
+| `nf-toggle` | `<label>` containing a checkbox | Immediate on/off preferences with a visible label | Keeps the native checkbox semantics and touch target |
 | `nf-card` | `article`, `section` | Bounded surface containing related content | Width is intrinsic |
 | `nf-badge` | `span` | Compact status or category label | Long values wrap |
 | `nf-alert` | `aside`, `div` | Persistent info, success, warning, or error message | Content reflows |

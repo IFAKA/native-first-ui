@@ -132,6 +132,16 @@
   <div class="nf-cluster"><button class="nf-button-primary" type="submit">Create workspace</button><button class="nf-button" type="reset">Reset</button></div>
   <p class="nf-help" role="status" aria-live="polite">Ready to create a workspace.</p>
 </form>`;
+      const toggleMarkup = `<div class="nf-stack">
+  <label class="nf-toggle">
+    <input type="checkbox" name="activity-notifications" checked />
+    <span>Activity notifications</span>
+  </label>
+  <label class="nf-toggle">
+    <input type="checkbox" name="weekly-summary" />
+    <span>Weekly summary</span>
+  </label>
+</div>`;
 
       const examples = {
         actions: { label: "Actions", contract: "buttons + cluster", when: "Use native buttons for actions and links for navigation. Keep labels visible and distinguish risk with text, not color alone.", a11y: ["Use type=button unless a button submits a form.", "Keep disabled actions explainable with nearby text.", "Do not use an icon as the only label."], html: `<div class="nf-cluster">
@@ -139,6 +149,7 @@
   <button class="nf-button-primary" type="button">Save changes</button>
   <button class="nf-button-danger" type="button">Delete</button>
 </div>`, render: () => `<div class="nf-cluster"><button class="nf-button" type="button">Cancel</button><button class="nf-button-primary" type="button">Save changes</button><button class="nf-button-danger" type="button">Delete</button></div>` },
+        toggles: { label: "Toggles", contract: "label + checkbox", when: "Use a toggle for an immediate on/off preference. Keep the visible label next to the control and use a native checkbox so forms, keyboard input, and screen readers retain their expected behavior.", a11y: ["Use a visible label for every toggle.", "Keep the checkbox native so checked and disabled states are announced.", "Use nearby help text when the setting's effect needs explanation."], html: toggleMarkup, render: () => toggleMarkup },
         surfaces: { label: "Surfaces and messages", contract: "card + alert", when: "Use a card to group related content and an alert for a persistent message that belongs in the reading flow.", a11y: ["Use a heading inside meaningful cards.", "Use role=status or aria-live for changing messages.", "Explain meaning in text, never color alone."], html: `<div class="nf-stack">
   <article class="nf-card">
     <h2>Workspace health</h2>
