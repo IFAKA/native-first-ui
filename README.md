@@ -1,7 +1,6 @@
 # Native-First UI
 
 [![CI](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/native-first-ui)](https://www.npmjs.com/package/native-first-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **[Open the live showcase →](https://ifaka.github.io/native-first-ui/)**

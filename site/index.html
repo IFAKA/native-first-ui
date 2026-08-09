@@ -25,13 +25,14 @@
         <section class="nf-card nf-stack" aria-labelledby="hero-title">
           <p class="nf-badge" data-tone="success">HTML first · CSS only · 0 runtime dependencies</p>
           <h2 id="hero-title">The browser already knows how to build a good interface.</h2>
-          <p class="nf-readable">Native-First UI adds a small, serious layer of contracts around the elements you already trust: forms, dialogs, navigation, tables, and responsive layout.</p>
-          <div class="nf-cluster"><a class="nf-button-primary" href="https://www.npmjs.com/package/native-first-ui">Install from npm</a><a class="nf-button" href="https://github.com/IFAKA/native-first-ui">Read the source</a></div>
-          <div class="nf-grid">
-            <article class="nf-card"><strong>3,020 B</strong><p class="nf-help">complete bundled CSS · gzip</p></article>
-            <article class="nf-card"><strong>2,618 B</strong><p class="nf-help">complete bundled CSS · Brotli</p></article>
+          <p class="nf-readable">Native-First UI adds a small, serious layer of contracts around the elements you already trust—so accessible forms, dialogs, navigation, tables, and responsive layouts ship with less code.</p>
+          <div class="nf-cluster"><a class="nf-button-primary" href="https://github.com/IFAKA/native-first-ui">Read the source</a><a class="nf-button" href="#proof">See it in action</a></div>
+          <div class="nf-grid" aria-label="Library at a glance">
+            <article class="nf-card"><strong>2.6 KB</strong><p class="nf-help">complete CSS · Brotli<br />3.0 KB gzip</p></article>
+            <article class="nf-card"><strong>5 contracts</strong><p class="nf-help">forms · dialogs · nav · tables · layout</p></article>
             <article class="nf-card"><strong>0</strong><p class="nf-help">runtime dependencies</p></article>
           </div>
+          <p class="nf-help">Built for real product surfaces, not just screenshots.</p>
         </section>
 
         <section class="nf-card nf-stack" id="proof" aria-labelledby="proof-title">
@@ -60,16 +61,14 @@
           <div class="nf-grid"><article class="nf-card"><h3>Layout</h3><p>Container, stack, cluster, grid, sidebar, split.</p><code>.nf-grid</code></article><article class="nf-card"><h3>Elements</h3><p>Readable defaults for controls, focus, media, and tables.</p><code>:focus-visible</code></article><article class="nf-card"><h3>States</h3><p>Alerts, badges, loading, empty, pagination, dialogs.</p><code>data-tone</code></article><article class="nf-card"><h3>Modes</h3><p>Light, dark, forced colors, narrow screens, long labels.</p><code>--nf-*</code></article></div>
         </section>
 
-        <section class="nf-card nf-stack" aria-labelledby="install-title"><p class="nf-help">Start with one line</p><h2 id="install-title">Bring your own HTML.</h2><p>Install the package, import the complete contract, and keep your application markup semantic.</p><pre tabindex="0"><code>npm install native-first-ui
-
-/* app.css */
-@import "native-first-ui/core.css";
+        <section class="nf-card nf-stack" aria-labelledby="source-title"><p class="nf-help">Start with the source</p><h2 id="source-title">Bring your own HTML.</h2><p>Read the contracts, copy the layer you need, and keep your application markup semantic.</p><pre tabindex="0"><code>/* app.css */
+@import "./src/core.css";
 
 /* Or choose only what you need. */
-@import "native-first-ui/elements.css";</code></pre><div class="nf-cluster"><a class="nf-button-primary" href="https://www.npmjs.com/package/native-first-ui">View on npm</a><a class="nf-link" href="https://github.com/IFAKA/native-first-ui/blob/main/INTEGRATION-RULES.md">Integration rules</a></div></section>
+@import "./src/elements.css";</code></pre><div class="nf-cluster"><a class="nf-button-primary" href="https://github.com/IFAKA/native-first-ui">Browse on GitHub</a><a class="nf-link" href="https://github.com/IFAKA/native-first-ui/blob/main/INTEGRATION-RULES.md">Integration rules</a></div></section>
       </div>
     </main>
 
-    <footer class="nf-container nf-split"><span>Native-First UI · MIT licensed</span><span><a href="https://github.com/IFAKA/native-first-ui">GitHub</a> · <a href="https://www.npmjs.com/package/native-first-ui">npm</a></span></footer>
+    <footer class="nf-container nf-split"><span>Native-First UI · MIT licensed</span><span><a href="https://github.com/IFAKA/native-first-ui">GitHub</a></span></footer>
   </body>
 </html>
