@@ -46,7 +46,13 @@
               </div>
               <button class="nf-button" id="copy-code" type="button">Copy HTML</button>
             </header>
-            <div id="preview" class="nf-stack"></div>
+            <div class="nf-stack">
+              <aside class="nf-alert" data-tone="info">
+                <strong>Try it</strong>
+                <span id="example-test"></span>
+              </aside>
+              <div id="preview" class="nf-stack"></div>
+            </div>
             <details>
               <summary>View HTML</summary>
               <pre id="code" class="nf-code" tabindex="0"><code></code></pre>
@@ -73,6 +79,62 @@
       import { enhanceNativeInteractions } from "../dist/behavior.js";
       enhanceNativeInteractions();
 
+      const workspaceNavigationMarkup = `<nav class="nf-navigation" aria-label="Workspace navigation">
+  <a href="#projects" aria-current="page">Projects</a>
+  <a href="#activity">Activity</a>
+  <details open>
+    <summary>Projects</summary>
+    <div class="nf-navigation-children">
+      <a href="#projects">All projects</a>
+      <a href="#activity">Roadmap</a>
+      <details>
+        <summary>Reports</summary>
+        <div class="nf-navigation-children">
+          <a href="#activity">Weekly report</a>
+          <a href="#activity">Quarterly report</a>
+        </div>
+      </details>
+    </div>
+  </details>
+  <details>
+    <summary>Workspace</summary>
+    <div class="nf-navigation-children">
+      <a href="#members">Members</a>
+      <details>
+        <summary>Settings</summary>
+        <div class="nf-navigation-children">
+          <a href="#settings">General</a>
+          <a href="#settings">Notifications</a>
+        </div>
+      </details>
+    </div>
+  </details>
+</nav>`;
+      const workspaceFormMarkup = `<form class="nf-form">
+  <div class="nf-field">
+    <label for="workspace-name">Workspace name</label>
+    <input id="workspace-name" name="workspace-name" value="Northstar" required aria-describedby="workspace-name-help" />
+    <span class="nf-help" id="workspace-name-help">Use the name your team sees in navigation.</span>
+  </div>
+  <div class="nf-field">
+    <label for="workspace-plan">Plan</label>
+    <select id="workspace-plan" name="workspace-plan"><option>Starter</option><option selected>Growth</option><option>Scale</option></select>
+  </div>
+  <fieldset class="nf-field">
+    <legend>Workspace access</legend>
+    <label><input type="radio" name="access" value="private" checked /> Private to invited members</label>
+    <label><input type="radio" name="access" value="team" /> Anyone in the organisation</label>
+  </fieldset>
+  <div class="nf-field">
+    <label for="workspace-region">Primary region</label>
+    <select id="workspace-region" name="workspace-region"><option selected>Europe</option><option>North America</option><option>Asia Pacific</option></select>
+    <span class="nf-help">This controls where new project data is stored.</span>
+  </div>
+  <label><input type="checkbox" name="workspace-updates" checked /> Send me weekly workspace updates</label>
+  <div class="nf-cluster"><button class="nf-button-primary" type="submit">Create workspace</button><button class="nf-button" type="reset">Reset</button></div>
+  <p class="nf-help" role="status" aria-live="polite">Ready to create a workspace.</p>
+</form>`;
+
       const examples = {
         actions: { label: "Actions", contract: "buttons + cluster", when: "Use native buttons for actions and links for navigation. Keep labels visible and distinguish risk with text, not color alone.", a11y: ["Use type=button unless a button submits a form.", "Keep disabled actions explainable with nearby text.", "Do not use an icon as the only label."], html: `<div class="nf-cluster">
   <button class="nf-button" type="button">Cancel</button>
@@ -86,13 +148,7 @@
   </article>
   <aside class="nf-alert" data-tone="success" role="status">Changes saved successfully.</aside>
 </div>`, render: () => `<div class="nf-stack"><article class="nf-card"><h3>Workspace health</h3><p>All systems are operational.</p></article><aside class="nf-alert" data-tone="success" role="status">Changes saved successfully.</aside></div>` },
-        forms: { label: "Forms", contract: "form + field", when: "Use explicit labels and native controls. Connect help and error copy with aria-describedby.", a11y: ["Every control has an explicit label.", "Invalid fields expose aria-invalid and linked error text.", "Native validation remains available."], html: `<form class="nf-form">
-  <div class="nf-field">
-    <label for="email">Email address</label>
-    <input id="email" type="email" aria-describedby="email-help" required />
-    <span class="nf-help" id="email-help">We will never share it.</span>
-  </div>
-</form>`, render: () => `<form class="nf-form" onsubmit="event.preventDefault()"><div class="nf-field"><label for="demo-email">Email address</label><input id="demo-email" type="email" placeholder="you@example.com" aria-describedby="demo-email-help" required><span class="nf-help" id="demo-email-help">We will never share it.</span></div><div class="nf-field"><label for="demo-notes">Notes</label><textarea id="demo-notes" placeholder="Add context"></textarea></div><div class="nf-cluster"><button class="nf-button-primary" type="submit">Save settings</button><button class="nf-button" type="reset">Reset</button></div></form>` },
+        forms: { label: "Forms", contract: "form + fieldset + status", test: "Resize to a narrow width, tab through every labelled control, select each radio option, then submit and reset the form.", when: "Use explicit labels and native controls. Group related choices with fieldset and legend, and connect help or status copy with IDs.", a11y: ["Every control has an explicit label.", "Related choices use fieldset and legend.", "Native validation and the live status remain available."], html: workspaceFormMarkup, render: () => workspaceFormMarkup },
         tables: { label: "Tables", contract: "table + scroll region", when: "Use a table for relational data. Put wide tables inside a labelled, focusable scroll region.", a11y: ["Use a caption, th elements, and scope attributes.", "Give the scroll wrapper an accessible label and tabindex.", "Keep columns readable at 200% zoom."], html: `<div class="nf-table-scroll" tabindex="0" aria-label="Recent orders">
   <table class="nf-table">
     <caption>Recent orders</caption>
@@ -105,11 +161,7 @@
     <section class="nf-grid">...</section>
   </div>
 </main>`, render: () => `<section class="nf-stack"><header class="nf-page-header"><div class="nf-stack" data-gap="sm"><p class="nf-help">Overview</p><h3>Team workspace</h3></div><button class="nf-button-primary" type="button">Invite member</button></header><div class="nf-grid"><article class="nf-card"><h3>Active members</h3><p>24 people</p></article><article class="nf-card"><h3>Open projects</h3><p>8 projects</p></article><article class="nf-card"><h3>Storage</h3><p>64% used</p></article></div></section>` },
-        navigation: { label: "Navigation", contract: "nav + links + details + behavior", when: "Use nav with real links and details for nested links. Import the optional behavior module when menus should light-dismiss and close on Escape.", a11y: ["Use a labelled nav landmark.", "Mark the current page with aria-current.", "Keep nested links reachable by keyboard."], html: `<nav class="nf-navigation" aria-label="Workspace navigation">
-  <a href="/projects" aria-current="page">Projects</a>
-  <a href="/activity">Activity</a>
-  <details>...</details>
-</nav>`, render: () => `<nav class="nf-navigation" aria-label="Workspace navigation"><a href="#projects" aria-current="page">Projects</a><a href="#activity">Activity</a><details><summary>More</summary><div class="nf-navigation-children"><a href="#settings">Settings</a><a href="#members">Members</a></div></details></nav>` },
+        navigation: { label: "Navigation", contract: "nav + nested details + behavior", test: "Open Projects and Workspace, then Reports or Settings. Click outside to light-dismiss; press Escape to close the deepest branch and return focus to its trigger.", when: "Use nav with real links and details for nested routes. Import the optional behavior module when menus should light-dismiss and close on Escape.", a11y: ["Use a labelled nav landmark.", "Mark the current page with aria-current.", "Keep every nested route reachable by keyboard."], html: workspaceNavigationMarkup, render: () => workspaceNavigationMarkup },
         states: { label: "Loading and empty states", contract: "status + progress + alert", when: "Use text, progress, alerts, and an explicit next action to make async and no-result states understandable.", a11y: ["Announce changing status with aria-live.", "Explain what the user can do next.", "Use progress for measurable work."], html: `<section class="nf-stack" aria-live="polite">
   <p class="nf-loading">Loading projects</p>
   <progress value="64" max="100">64%</progress>
@@ -133,9 +185,16 @@ console.log(ready);</code></pre>`, render: () => `<pre class="nf-code" tabindex=
         current = name;
         const item = examples[name];
         preview.innerHTML = item.render();
+        const form = preview.querySelector("form");
+        form?.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const status = form.querySelector('[role="status"]');
+          if (status) status.textContent = "Workspace created. Invite your team to get started.";
+        });
         code.textContent = item.html;
         document.querySelector("#example-title").textContent = item.label;
         document.querySelector("#example-contract").textContent = item.contract;
+        document.querySelector("#example-test").textContent = item.test || "Resize it, use the keyboard, and inspect the native semantics in View HTML.";
         document.querySelector("#when-to-use").textContent = item.when;
         document.querySelector("#a11y-notes").innerHTML = item.a11y.map((note) => `<li>${note}</li>`).join("");
         document.querySelectorAll("#catalog button").forEach((button) => button.setAttribute("aria-current", button.dataset.component === name ? "page" : "false"));

@@ -60,11 +60,31 @@
               <nav class="nf-navigation" aria-label="Workspace navigation">
                 <a href="#components" aria-current="page">Projects</a>
                 <a href="#activity">Activity</a>
-                <details>
-                  <summary>More</summary>
+                <details open>
+                  <summary>Projects</summary>
                   <div class="nf-navigation-children">
-                    <a href="#settings">Settings</a>
-                    <a href="#members">Members</a>
+                    <a href="#components">All projects</a>
+                    <a href="#activity">Roadmap</a>
+                    <details>
+                      <summary>Reports</summary>
+                      <div class="nf-navigation-children">
+                        <a href="#activity">Weekly report</a>
+                        <a href="#activity">Quarterly report</a>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+                <details>
+                  <summary>Workspace</summary>
+                  <div class="nf-navigation-children">
+                    <a href="#components">Members</a>
+                    <details>
+                      <summary>Settings</summary>
+                      <div class="nf-navigation-children">
+                        <a href="#components">General</a>
+                        <a href="#components">Notifications</a>
+                      </div>
+                    </details>
                   </div>
                 </details>
               </nav>
@@ -95,6 +115,16 @@
                 <label><input type="radio" name="access" value="private" checked /> Private to invited members</label>
                 <label><input type="radio" name="access" value="team" /> Anyone in the organisation</label>
               </fieldset>
+              <div class="nf-field">
+                <label for="workspace-region">Primary region</label>
+                <select id="workspace-region" name="workspace-region">
+                  <option selected>Europe</option>
+                  <option>North America</option>
+                  <option>Asia Pacific</option>
+                </select>
+                <span class="nf-help">This controls where new project data is stored.</span>
+              </div>
+              <label><input type="checkbox" name="workspace-updates" checked /> Send me weekly workspace updates</label>
               <div class="nf-cluster">
                 <button class="nf-button-primary" type="submit">Create workspace</button>
                 <button class="nf-button" type="reset">Reset</button>
