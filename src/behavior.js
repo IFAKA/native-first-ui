@@ -202,6 +202,36 @@ function enhanceDialogs(root) {
   });
 }
 
+function enhanceLightDismiss(root) {
+  if (root !== document || document.documentElement.dataset.nfDismissReady) return;
+  document.documentElement.dataset.nfDismissReady = "true";
+  const outside = (event) => {
+    const dialog = [...document.querySelectorAll("dialog[open]")].at(-1);
+    if (dialog && (event.target === dialog || !dialog.contains(event.target))) {
+      event.preventDefault();
+      event.stopPropagation();
+      dialog.close();
+      return;
+    }
+    const popover = [...document.querySelectorAll("[popover]:popover-open")].at(-1);
+    const invoker = popover?.id && document.querySelector(`[popovertarget="${CSS.escape(popover.id)}"]`);
+    if (popover && !popover.contains(event.target) && !invoker?.contains(event.target)) {
+      event.preventDefault();
+      event.stopPropagation();
+      popover.hidePopover?.();
+      return;
+    }
+    const disclosure = [...document.querySelectorAll("details[data-nf-dismiss][open]")].at(-1);
+    if (disclosure && !disclosure.contains(event.target)) {
+      event.preventDefault();
+      event.stopPropagation();
+      disclosure.removeAttribute("open");
+    }
+  };
+  document.addEventListener("pointerdown", outside, true);
+  document.addEventListener("click", outside, true);
+}
+
 /** Optional, dependency-free progressive enhancement for explicitly marked recipes. */
 export function enhanceNativeInteractions(root = document) {
   initializedRoots.add(root);
@@ -215,6 +245,7 @@ export function enhanceNativeInteractions(root = document) {
   enhanceThemeToggle(root);
   enhanceDeclarativeInvokers(root);
   enhanceDialogs(root);
+  enhanceLightDismiss(root);
 }
 
 if (typeof document !== "undefined") enhanceNativeInteractions();
