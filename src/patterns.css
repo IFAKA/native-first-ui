@@ -5,7 +5,7 @@
   .nf-stack[data-gap="sm"] { gap: var(--nf-space-2); }
   .nf-stack[data-gap="lg"] { gap: var(--nf-space-8); }
   .nf-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nf-space-3); }
-  .nf-grid { display: grid; gap: var(--nf-space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+  .nf-grid { display: grid; align-items: start; gap: var(--nf-space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
   .nf-page { min-height: 100vh; }
   .nf-page-header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--nf-space-4); padding-block: var(--nf-space-8) var(--nf-space-6); }
   .nf-page-header > :first-child { min-width: min(100%, 20rem); }
