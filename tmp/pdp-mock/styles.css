@@ -1,0 +1,346 @@
+@layer reset, primitives, components, layout;
+
+@layer reset {
+  :root {
+    --text: #17202a;
+    --muted: #667085;
+    --border: #d9dde3;
+    --surface: #ffffff;
+    --surface-subtle: #f6f8fa;
+    --accent: #5b21b6;
+    --accent-strong: #43158d;
+    --radius: 0.5rem;
+    --shadow: 0 1px 2px rgb(16 24 40 / 0.06);
+    --space-1: 0.5rem;
+    --space-2: 0.75rem;
+    --space-3: 1rem;
+    --space-4: 1.25rem;
+    --space-5: 2rem;
+    --space-6: 3rem;
+    --space: clamp(var(--space-1), 1.5vw, var(--space-2));
+    --section-space: clamp(var(--space-4), 3vw, var(--space-5));
+    --section-margin: clamp(var(--space-5), 5vw, var(--space-6));
+    --layout-space: clamp(var(--space-4), 3vw, 1.75rem);
+    --content-max: 64rem;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    max-inline-size: var(--content-max);
+    margin: 0 auto;
+    padding-inline: var(--space-3);
+    color: var(--text);
+    background: var(--surface-subtle);
+    font-family: system-ui, sans-serif;
+    line-height: 1.45;
+  }
+
+  :where(a) {
+    color: inherit;
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 0.08em;
+  }
+
+  :where(a:hover) {
+    color: var(--accent-strong);
+  }
+
+  :where(h1, h2, h3) {
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  :where(h1, h2, h3, p, figure, figcaption, ul, ol) {
+    margin: 0;
+  }
+  :where(ul, ol) {
+    padding-inline-start: 1.25rem;
+  }
+  :where(img) {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  :where(button, input, select, textarea) {
+    min-block-size: 44px;
+    max-inline-size: 100%;
+    margin: 0;
+    padding: 0.35rem 0.6rem;
+    font: inherit;
+  }
+
+  :where(button, summary) {
+    cursor: pointer;
+  }
+  :where(input, select, textarea) {
+    color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  :where(textarea) {
+    resize: vertical;
+  }
+
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+  [hidden] {
+    display: none !important;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}
+
+@layer primitives {
+  .flow {
+    display: grid;
+    gap: var(--flow-space, var(--space));
+    align-content: start;
+  }
+
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--cluster-space, var(--space));
+  }
+
+  .grid {
+    --grid-min: 14rem;
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, var(--grid-min)), 1fr)
+    );
+    gap: var(--grid-space, var(--space));
+  }
+
+  .grid--compact {
+    --grid-min: 6rem;
+  }
+  .grid--four {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .section {
+    display: grid;
+    gap: var(--section-space);
+    margin-block: var(--section-margin);
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 27rem), 1fr));
+    gap: var(--layout-space);
+  }
+
+  .scroll-row {
+    overflow-x: auto;
+    padding-block-end: var(--space-3);
+    white-space: nowrap;
+  }
+
+  .scroll-row a {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 550;
+    text-decoration: none;
+  }
+
+  .scroll-row a:hover,
+  .scroll-row a:focus-visible {
+    color: var(--accent-strong);
+    text-decoration: underline;
+  }
+
+  .media {
+    inline-size: 100%;
+    aspect-ratio: var(--media-ratio, 1);
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  .media--wide {
+    --media-ratio: 1.15 / 1;
+  }
+
+  .divider {
+    border-block-start: 1px solid;
+    padding-block-start: var(--space-3);
+  }
+  .centered {
+    text-align: center;
+  }
+  .inset {
+    padding: var(--space-3);
+  }
+
+  .surface {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .muted {
+    color: var(--muted);
+  }
+
+  .breadcrumbs {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .breadcrumbs a,
+  .section-heading a {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .brand {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+
+  .brand:hover {
+    color: var(--accent-strong);
+  }
+}
+
+@layer components {
+  .button {
+    color: Canvas;
+    background: CanvasText;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition:
+      background-color 140ms ease-out,
+      border-color 140ms ease-out,
+      transform 140ms ease-out;
+  }
+
+  .button:hover {
+    background: var(--accent-strong);
+  }
+  .button:active {
+    transform: scale(0.98);
+  }
+
+  .button--secondary,
+  .button--utility {
+    color: CanvasText;
+    background: Canvas;
+    border-color: var(--border);
+  }
+
+  .button--secondary:hover,
+  .button--utility:hover {
+    color: var(--text);
+    background: var(--surface-subtle);
+    border-color: var(--text);
+  }
+  .button--primary {
+    font-weight: 600;
+  }
+  .button:disabled,
+  input:disabled {
+    cursor: not-allowed;
+  }
+
+  .disclosure-list {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .disclosure-list summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    list-style: none;
+  }
+
+  .disclosure-list summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .disclosure-list summary::before {
+    content: "▸";
+    font-size: 1.35em;
+    line-height: 1;
+  }
+
+  .disclosure-list details[open] summary::before {
+    content: "▾";
+  }
+
+  .disclosure-list details + details {
+    padding-block-start: var(--space-2);
+    border-block-start: 1px solid;
+  }
+
+  .disclosure-list details > :where(p, ul, ol) {
+    margin-block-start: var(--space-1);
+  }
+
+  dialog {
+    max-inline-size: min(calc(100% - 2rem), 30rem);
+  }
+  dialog form {
+    display: grid;
+    gap: var(--space-3);
+  }
+  dialog::backdrop {
+    background: rgb(0 0 0 / 0.2);
+  }
+}
+
+@layer layout {
+  .page-header {
+    padding-block: var(--space-3);
+  }
+  .search {
+    flex: 1 1 16rem;
+  }
+  .search input {
+    min-inline-size: 0;
+    flex: 1;
+  }
+  .form-actions {
+    align-items: end;
+  }
+  .form-actions label {
+    flex-basis: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .button {
+    transition: none;
+  }
+}
