@@ -3,7 +3,7 @@
  <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Native-First UI is a native-first, framework-agnostic CSS layer for accessible, responsive interfaces built with real HTML, zero runtime dependencies, and optional recipes." />
+  <meta name="description" content="Native-First UI is a native-first, framework-agnostic CSS layer with generated project CSS as small as 396 B gzip, zero runtime dependencies, and optional recipes for accessible responsive HTML." />
   <link rel="stylesheet" href="./native-first-ui.css" />
   <title>Native-First UI — semantic HTML, polished defaults</title>
  </head>
@@ -34,9 +34,10 @@
       <article class="nf-card nf-stack"><h3><a href="https://newcss.net/">New.css</a> + <a href="https://milligram.io/">Milligram</a></h3><p>Classless semantic defaults plus practical controls and forms.</p></article>
       <article class="nf-card nf-stack"><h3><a href="https://pure-css.github.io/">Pure.css</a> + <a href="https://ui.shadcn.com/">shadcn/ui</a></h3><p>Modular CSS and local, editable recipe ownership.</p></article>
      </div>
-     <div class="nf-card nf-table-scroll" tabindex="0" aria-label="Current Native-First UI benchmark">
-      <table><caption>Current measured distribution</caption><thead><tr><th scope="col">Artifact</th><th scope="col">Gzip</th><th scope="col">Brotli</th><th scope="col">What it means</th></tr></thead><tbody><tr><th scope="row"><code>core.css</code></th><td>1,821 B</td><td>1,549 B</td><td>Native defaults, five layout primitives, and mobile action layout.</td></tr><tr><th scope="row"><code>generated project.css</code></th><td>396 B</td><td>308 B</td><td>Only referenced patterns after Lightning CSS.</td></tr><tr><th scope="row">Optional modules</th><td>302–547 B</td><td>239–463 B</td><td>Forms, navigation, data, overlays, and layout stay opt-in.</td></tr></tbody></table>
+     <div class="nf-card nf-table-scroll" tabindex="0" aria-label="CSS gzip size comparison">
+      <table><caption>Comparable CSS gzip sizes</caption><thead><tr><th scope="col">Project</th><th scope="col">Gzip</th><th scope="col">README</th></tr></thead><tbody><tr><th scope="row"><a href="https://ifaka.github.io/native-first-ui/">Native-First UI</a></th><td><strong>396 B</strong></td><td><a href="https://github.com/IFAKA/native-first-ui#readme">Readme</a></td></tr><tr><th scope="row"><a href="https://milligram.io/">Milligram</a></th><td>≈2 KB</td><td><a href="https://github.com/milligram/milligram#readme">Readme</a></td></tr><tr><th scope="row"><a href="https://pure-css.github.io/">Pure.css</a></th><td>≈3.5 KB</td><td><a href="https://github.com/pure-css/pure#readme">Readme</a></td></tr><tr><th scope="row"><a href="https://getbootstrap.com/">Bootstrap</a></th><td>≈28 KB</td><td><a href="https://github.com/twbs/bootstrap#readme">Readme</a></td></tr><tr><th scope="row"><a href="https://bulma.io/">Bulma</a></th><td>77.8 KB</td><td><a href="https://github.com/jgthms/bulma#readme">Readme</a></td></tr></tbody></table>
      </div>
+     <p class="nf-help">Gzip figures compare CSS artifacts where available. Native-First UI is the generated project output; framework figures are full or default CSS distributions. <a href="https://bundlephobia.com/">Bundlephobia</a> provides the Bulma package measurement.</p>
      <aside class="nf-alert nf-stack" data-tone="info"><strong>Our advantage is the combination</strong><span>Native semantics, safe inference, tiny generated output, local recipes, and product-grade accessibility live in one workflow.</span></aside>
     </section>
 

@@ -3,7 +3,7 @@
 [![CI](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Native-First UI is a native-first, framework-agnostic CSS layer for accessible, responsive interfaces built with real HTML, zero runtime dependencies, and optional recipes. It starts with the browser’s component model—links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—then adds safe inference, responsive layout, accessible states, and locally owned recipes.
+Native-First UI is a native-first, framework-agnostic CSS layer with generated project CSS as small as **396 B gzip**. It has zero runtime dependencies and optional recipes for accessible, responsive interfaces built with real HTML. It starts with the browser’s component model—links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—then adds safe inference, responsive layout, accessible states, and locally owned recipes.
 
 ```text
 semantic HTML → safe inference → tiny generated CSS → local recipes
