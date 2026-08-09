@@ -47,8 +47,9 @@ function minifyCss(css) {
     }
 
     const previous = output.at(-1) ?? "";
-    const punctuation = /[{}:;,>+~]/;
-    if (pendingSpace && output && !punctuation.test(character) && !punctuation.test(previous)) output += " ";
+    const punctuationBefore = /[{};,>+~]/;
+    const punctuationAfter = /[{}:;,>+~]/;
+    if (pendingSpace && output && !punctuationBefore.test(character) && !punctuationAfter.test(previous)) output += " ";
     pendingSpace = false;
     output += character;
   }
