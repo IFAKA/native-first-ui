@@ -1,0 +1,8 @@
+@layer overlays {
+  :where(dialog) { width: min(calc(100% - 2rem), 32rem); max-width: calc(100% - 2rem); margin: auto; padding: var(--nf-space-6); border: var(--nf-border-width) solid var(--nf-color-border); border-radius: var(--nf-radius-lg); background: var(--nf-color-surface-raised); color: var(--nf-color-text); box-shadow: var(--nf-shadow-md); }
+  :where(dialog)::backdrop { background: rgb(15 23 42 / 0.56); }
+  :where(dialog[open]) { opacity: 1; transform: none; }
+  @starting-style { :where(dialog[open]) { opacity: 0; transform: scale(.97); } }
+  @media (prefers-reduced-motion: no-preference) { :where(dialog) { transition: opacity 180ms ease-out, transform 180ms ease-out; } }
+  @media (prefers-reduced-motion: reduce) { :where(dialog) { transition-duration: 0ms; } }
+}

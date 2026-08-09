@@ -1,72 +1,26 @@
-import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { brotliCompressSync, gzipSync } from "node:zlib";
+import { transform } from "lightningcss";
 
 const root = new URL("..", import.meta.url);
-const layers = ["tokens", "elements", "patterns", "components"];
-
-function minifyCss(css) {
-  let output = "";
-  let quote = "";
-  let inComment = false;
-  let pendingSpace = false;
-
-  for (let index = 0; index < css.length; index += 1) {
-    const character = css[index];
-    const next = css[index + 1];
-
-    if (inComment) {
-      if (character === "*" && next === "/") {
-        inComment = false;
-        index += 1;
-      }
-      continue;
-    }
-    if (!quote && character === "/" && next === "*") {
-      inComment = true;
-      index += 1;
-      continue;
-    }
-    if (quote) {
-      output += character;
-      if (character === "\\") {
-        output += next ?? "";
-        index += 1;
-      } else if (character === quote) {
-        quote = "";
-      }
-      continue;
-    }
-    if (character === '"' || character === "'") {
-      quote = character;
-      output += character;
-      pendingSpace = false;
-      continue;
-    }
-    if (/\s/.test(character)) {
-      pendingSpace = true;
-      continue;
-    }
-
-    const previous = output.at(-1) ?? "";
-    const punctuationBefore = /[{};,>+~]/;
-    const punctuationAfter = /[{}:;,>+~]/;
-    if (pendingSpace && output && !punctuationBefore.test(character) && !punctuationAfter.test(previous)) output += " ";
-    pendingSpace = false;
-    output += character;
-  }
-
-  return `${output.trim().replace(/;}/g, "}").replace(/#ffffff\b/gi, "#fff")}\n`;
-}
+const layers = ["tokens", "elements", "layout", "forms", "navigation", "data", "overlays"];
+const targets = { chrome: 110 << 16, firefox: 110 << 16, safari: 16 << 16 };
+const source = Object.fromEntries(await Promise.all(layers.map(async (name) => [name, await readFile(new URL(`src/${name}.css`, root), "utf8")] )));
+const compile = (name, css) => transform({ filename: `${name}.css`, code: Buffer.from(css), minify: true, drafts: { nesting: true }, targets }).code;
+const compressed = (bytes) => ({ raw: bytes.byteLength, gzip: gzipSync(bytes, { level: 9 }).byteLength, brotli: brotliCompressSync(bytes, { params: { [Symbol.for("BROTLI_PARAM_QUALITY")]: 11 } }).byteLength });
 
 await mkdir(new URL("dist/", root), { recursive: true });
-await copyFile(new URL("src/behavior.js", root), new URL("dist/behavior.js", root));
-const source = {};
-for (const layer of layers) source[layer] = await readFile(new URL(`src/${layer}.css`, root), "utf8");
-
-for (const layer of layers) {
-  await writeFile(new URL(`dist/${layer}.css`, root), minifyCss(source[layer]));
+for (const stale of ["base.css", "tokens.css", "elements.css", "patterns.css", "components.css", "workbench.css"]) {
+  await rm(new URL(`dist/${stale}`, root), { force: true });
 }
-
-const core = `@layer reset,tokens,elements,patterns,components,utilities;\n${layers.map((layer) => minifyCss(source[layer])).join("\n")}`;
-await writeFile(new URL("dist/core.css", root), minifyCss(core));
-
-console.log("Built minified CSS distribution in dist/");
+await writeFile(new URL("dist/behavior.js", root), await readFile(new URL("src/behavior.js", root)));
+const core = compile("core", `@layer reset,tokens,elements,layout,utilities;${source.tokens}${source.elements}${source.layout}`);
+await writeFile(new URL("dist/core.css", root), core);
+const report = { core: compressed(core) };
+for (const name of layers.slice(2)) {
+  const bytes = compile(name, source[name]);
+  await writeFile(new URL(`dist/${name}.css`, root), bytes);
+  report[name] = compressed(bytes);
+}
+await writeFile(new URL("dist/size-report.json", root), `${JSON.stringify(report, null, 2)}\n`);
+console.log(`Built native-first-ui CSS: core ${report.core.gzip} B gzip / ${report.core.brotli} B Brotli`);

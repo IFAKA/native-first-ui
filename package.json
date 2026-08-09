@@ -25,24 +25,43 @@
     "framework-agnostic",
     "native-first"
   ],
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "recipes",
+    "README.md",
+    "INTEGRATION-RULES.md",
+    "docs",
+    "LICENSE"
+  ],
   "exports": {
     ".": "./dist/core.css",
     "./core.css": "./dist/core.css",
-    "./tokens.css": "./dist/tokens.css",
-    "./elements.css": "./dist/elements.css",
-    "./patterns.css": "./dist/patterns.css",
-    "./components.css": "./dist/components.css",
-    "./behavior.js": "./dist/behavior.js"
+    "./layout.css": "./dist/layout.css",
+    "./forms.css": "./dist/forms.css",
+    "./navigation.css": "./dist/navigation.css",
+    "./data.css": "./dist/data.css",
+    "./overlays.css": "./dist/overlays.css",
+    "./behavior.js": "./dist/behavior.js",
+    "./class-manifest.json": "./class-manifest.json"
   },
   "scripts": {
     "build:css": "node scripts/build-css.mjs",
-    "test": "npm run build:css && node scripts/validate-package.mjs && npm run size:check",
+    "nfi": "node scripts/nfi.mjs",
+    "nfi:build": "node scripts/nfi.mjs build",
+    "nfi:validate": "node scripts/nfi.mjs validate",
+    "nfi:manifest": "node scripts/nfi.mjs manifest",
+    "nfi:add": "node scripts/nfi.mjs add",
+    "test": "npm run nfi:build && npm run build:css && node scripts/audit-public-api.mjs && node scripts/validate-package.mjs && npm run size:check && npm run css:audit",
+    "css:audit": "node scripts/audit-css-minimality.mjs",
+    "transpile:all": "node scripts/transpile-all.mjs",
     "size:check": "node scripts/check-size.mjs",
     "pack:check": "npm pack --dry-run",
     "pages:build": "npm run build:css && node scripts/build-pages.mjs",
     "prepack": "npm run build:css",
     "serve": "node scripts/serve-example.mjs",
     "setup:skills": "node scripts/install-skills.mjs"
+  },
+  "devDependencies": {
+    "lightningcss": "^1.33.0"
   }
 }

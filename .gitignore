@@ -1,13 +1,12 @@
+.nfi/
+dist/
 node_modules/
 coverage/
-dist/
-*.tgz
+test-results/
+.pages/
 .DS_Store
+*.tgz
 .env
 .env.*
 !.env.example
-
-# Local browser and test artifacts
 .tmp-browser-check/
-test-results/
-.pages/

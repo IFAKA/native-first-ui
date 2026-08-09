@@ -6,6 +6,7 @@ Use these rules when adding interface code to a project that uses Native-First U
 
 - Use semantic native HTML before custom components or ARIA.
 - Use the existing `nf-*` contract before writing a new UI rule.
+- Prefer plain native elements and use `data-variant="primary|danger|quiet"` for action variants. Role-named classes are not part of the public API.
 - Import `native-first-ui/core.css` once, unless using the individual layer exports intentionally.
 - Keep the DOM and data model the same on mobile and desktop.
 - Start mobile-first and preserve visible `:focus-visible` styles.
@@ -13,6 +14,7 @@ Use these rules when adding interface code to a project that uses Native-First U
 - Label every form control and connect help or error text with `aria-describedby`.
 - Use `aria-live` for asynchronous status updates.
 - Add a growth case to the examples or tests when adding a reusable pattern.
+- Recipes are copyable HTML source in `recipes/`; do not couple application markup to workbench-only selectors.
 
 ## Do not
 
@@ -23,6 +25,7 @@ Use these rules when adding interface code to a project that uses Native-First U
 - Do not remove focus outlines, keyboard behavior, or forced-colors support. If you add motion, provide a reduced-motion path.
 - Do not add an icon as the only label for an action.
 - Do not add animation without a clear purpose.
+- Import `behavior.js` only for explicitly marked progressive enhancements; it is optional and dependency-free.
 
 ## Custom CSS boundary
 

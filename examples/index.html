@@ -1,236 +1,320 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Reusable native HTML interface patterns built with Native-First UI." />
-    <title>Native-First UI — reusable HTML patterns</title>
-    <link rel="stylesheet" href="../src/core.css" />
-  </head>
-  <body>
-    <header class="nf-container nf-page-header">
-      <div class="nf-stack" data-gap="sm">
-        <p class="nf-help">Native-First UI</p>
-        <h1>Reusable HTML patterns</h1>
-        <p class="nf-readable">Semantic elements do the work. Small CSS contracts add consistent layout, states, and responsive behavior.</p>
-      </div>
-      <div class="nf-cluster">
-        <label class="nf-sr-only" for="component-search">Filter patterns</label>
-        <input id="component-search" type="search" placeholder="Filter patterns…" autocomplete="off" />
-        <button class="nf-button" id="theme-toggle" type="button">Dark mode</button>
-      </div>
-    </header>
+ <head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <meta name="description" content="Reusable native HTML interface patterns built with Native-First UI." />
+ <title>Native-First UI — reusable HTML patterns</title>
+ <link rel="stylesheet" href="../dist/core.css" />
+ </head>
+ <body>
+ <header class="nf-container nf-page-header">
+ <a href="/">Native-First UI</a>
+ <div class="nf-cluster nf-header-actions">
+ <button class="nf-command-trigger" type="button" commandfor="component-command" command="show-modal" aria-haspopup="dialog">
+ <span>Find a component</span>
+ <kbd aria-label="Command K">⌘ K</kbd>
+ </button>
+ <label class="nf-toggle">
+ <input type="checkbox" data-nf-theme-toggle />
+ <span class="nf-toggle-control" aria-hidden="true"></span>
+ <span>Dark mode</span>
+ </label>
+ </div>
+ </header>
 
-    <main class="nf-page">
-      <div class="nf-container nf-sidebar">
-        <nav aria-label="Reusable HTML patterns">
-          <h2>Patterns</h2>
-          <div class="nf-navigation" id="catalog"></div>
-        </nav>
+ <main class="nf-page">
+ <dialog id="component-command" class="nf-command-dialog" aria-labelledby="component-command-title">
+ <form method="dialog" class="nf-stack" data-nf-command-palette>
+ <div class="nf-split">
+ <h2 id="component-command-title">Find a component</h2>
+ <button type="submit" data-variant="quiet">Close</button>
+ </div>
+ <label class="nf-sr-only" for="component-search">Search components</label>
+ <input id="component-search" type="search" placeholder="Search components…" autocomplete="off" data-nf-command-input />
+ <div id="component-command-results" class="nf-command-results" role="listbox" aria-label="Components"></div>
+ <p class="nf-help">Use ↑ ↓ to move, Enter to open, Esc to close.</p>
+ </form>
+ </dialog>
 
-        <section class="nf-content nf-stack" aria-labelledby="example-title">
-          <section class="nf-card nf-stack" aria-labelledby="intro-title">
-            <h2 id="intro-title">Compose, don’t recreate</h2>
-            <p>Choose the native element first, then add only the smallest useful contract. The examples below use the same markup you would ship in an application.</p>
-            <details>
-              <summary>What remains native?</summary>
-              <p>Buttons, links, forms, tables, disclosure, progress, and dialogs keep their browser semantics and keyboard behavior.</p>
-            </details>
-          </section>
+ <div class="nf-container nf-sidebar">
+ <nav aria-label="Components">
+ <h2>Components</h2>
+ <div class="nf-navigation nf-component-index" id="component-index" aria-label="All components"></div>
+ <p class="nf-help" id="catalog-empty" hidden>No matching components.</p>
+ </nav>
 
-          <section class="nf-card nf-stack">
-            <header class="nf-split">
-              <div class="nf-stack" data-gap="sm">
-                <h2 id="example-title">Actions</h2>
-                <p class="nf-help" id="example-contract">components</p>
-              </div>
-              <button class="nf-button" id="copy-code" type="button">Copy HTML</button>
-            </header>
-            <div class="nf-stack">
-              <aside class="nf-alert" data-tone="info">
-                <strong>Try it</strong>
-                <span id="example-test"></span>
-              </aside>
-              <div id="preview" class="nf-stack"></div>
-            </div>
-            <details>
-              <summary>View HTML</summary>
-              <pre id="code" class="nf-code" tabindex="0"><code></code></pre>
-            </details>
-          </section>
+ <section class="nf-content nf-stack" aria-labelledby="example-title">
+ <section class="nf-card nf-stack">
+ <header class="nf-split">
+ <div class="nf-stack" data-gap="sm">
+ <h2 id="example-title">Actions</h2>
+ <p class="nf-help" id="example-contract">components</p>
+ </div>
+ <button id="copy-code" type="button">Copy HTML</button>
+ </header>
+ <div id="preview" class="nf-stack"></div>
+ <details>
+ <summary>View HTML</summary>
+ <pre id="code"  tabindex="0"><code></code></pre>
+ </details>
+ </section>
 
-          <section class="nf-grid">
-            <article class="nf-card nf-stack" data-gap="sm">
-              <h2>When to use it</h2>
-              <p id="when-to-use"></p>
-            </article>
-            <article class="nf-card nf-stack" data-gap="sm">
-              <h2>Accessibility contract</h2>
-              <ul id="a11y-notes"></ul>
-            </article>
-          </section>
+ <section class="nf-grid">
+ <article class="nf-card nf-stack" data-gap="sm">
+ <h2>When to use it</h2>
+ <p id="when-to-use"></p>
+ </article>
+ <article class="nf-card nf-stack" data-gap="sm">
+ <h2>Accessibility contract</h2>
+ <ul id="a11y-notes"></ul>
+ </article>
+ </section>
 
-          <p id="status" role="status" aria-live="polite">Ready. Select a pattern.</p>
-        </section>
-      </div>
-    </main>
+ <p id="status" role="status" aria-live="polite"></p>
+ </section>
+ </div>
+ </main>
 
-    <script type="module">
-      import { enhanceNativeInteractions } from "../dist/behavior.js";
+ <script type="module">
+ import { enhanceNativeInteractions } from "../dist/behavior.js";
 
-      const workspaceNavigationMarkup = `<nav class="nf-navigation" aria-label="Workspace navigation">
-  <a href="#activity">Activity</a>
-  <div data-menu>
-    <button type="button" data-menu-trigger aria-expanded="false" aria-controls="demo-projects-menu">Projects</button>
-    <div id="demo-projects-menu" data-menu-content hidden>
-      <a href="#projects" aria-current="page">Projects overview</a>
-      <a href="#activity">Roadmap</a>
-      <div data-menu>
-        <button type="button" data-menu-trigger aria-expanded="false" aria-controls="demo-reports-menu">Reports</button>
-        <div id="demo-reports-menu" data-menu-content hidden>
-          <a href="#activity">Weekly report</a>
-          <a href="#activity">Quarterly report</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div data-menu>
-    <button type="button" data-menu-trigger aria-expanded="false" aria-controls="demo-workspace-menu">Workspace</button>
-    <div id="demo-workspace-menu" data-menu-content hidden>
-      <a href="#members">Members</a>
-      <div data-menu>
-        <button type="button" data-menu-trigger aria-expanded="false" aria-controls="demo-settings-menu">Settings</button>
-        <div id="demo-settings-menu" data-menu-content hidden>
-          <a href="#settings">General</a>
-          <a href="#settings">Notifications</a>
-        </div>
-      </div>
-    </div>
-  </div>
+ const workspaceNavigationMarkup = `<nav class="nf-navigation" aria-label="Workspace navigation">
+ <a href="#activity">Activity</a>
+ <details><summary>Projects</summary><div class="nf-stack" data-gap="sm"><a href="#projects" aria-current="page">Projects overview</a><a href="#activity">Roadmap</a><a href="#activity">Reports</a></div></details>
+ <details><summary>Workspace</summary><div class="nf-stack" data-gap="sm"><a href="#members">Members</a><a href="#settings">Settings</a></div></details>
 </nav>`;
-      const workspaceFormMarkup = `<form class="nf-form">
-  <div class="nf-field">
-    <label for="workspace-name">Workspace name</label>
-    <input id="workspace-name" name="workspace-name" value="Northstar" required aria-describedby="workspace-name-help" />
-    <span class="nf-help" id="workspace-name-help">Use the name your team sees in navigation.</span>
-  </div>
-  <div class="nf-field">
-    <label for="workspace-plan">Plan</label>
-    <select id="workspace-plan" name="workspace-plan"><option>Starter</option><option selected>Growth</option><option>Scale</option></select>
-  </div>
-  <fieldset class="nf-field">
-    <legend>Workspace access</legend>
-    <label><input type="radio" name="access" value="private" checked /> Private to invited members</label>
-    <label><input type="radio" name="access" value="team" /> Anyone in the organisation</label>
-  </fieldset>
-  <div class="nf-field">
-    <label for="workspace-region">Primary region</label>
-    <select id="workspace-region" name="workspace-region"><option selected>Europe</option><option>North America</option><option>Asia Pacific</option></select>
-    <span class="nf-help">This controls where new project data is stored.</span>
-  </div>
-  <label><input type="checkbox" name="workspace-updates" checked /> Send me weekly workspace updates</label>
-  <div class="nf-cluster"><button class="nf-button-primary" type="submit">Create workspace</button><button class="nf-button" type="reset">Reset</button></div>
-  <p class="nf-help" role="status" aria-live="polite">Ready to create a workspace.</p>
+ const workspaceFormMarkup = `<form class="nf-form">
+ <div class="nf-field">
+ <label for="workspace-name">Workspace name</label>
+ <input id="workspace-name" name="workspace-name" value="Northstar" required aria-describedby="workspace-name-help" />
+ <span class="nf-help" id="workspace-name-help">Use the name your team sees in navigation.</span>
+ </div>
+ <div class="nf-field">
+ <label for="workspace-plan">Plan</label>
+ <select id="workspace-plan" name="workspace-plan"><option>Starter</option><option selected>Growth</option><option>Scale</option></select>
+ </div>
+ <fieldset class="nf-field">
+ <legend>Workspace access</legend>
+ <label><input type="radio" name="access" value="private" checked /> Private to invited members</label>
+ <label><input type="radio" name="access" value="team" /> Anyone in the organisation</label>
+ </fieldset>
+ <div class="nf-field">
+ <label for="workspace-region">Primary region</label>
+ <select id="workspace-region" name="workspace-region"><option selected>Europe</option><option>North America</option><option>Asia Pacific</option></select>
+ <span class="nf-help">This controls where new project data is stored.</span>
+ </div>
+ <label><input type="checkbox" name="workspace-updates" checked /> Send me weekly workspace updates</label>
+ <div class="nf-cluster"><button data-variant="primary" type="submit">Create workspace</button><button type="reset">Reset</button></div>
+ <p class="nf-help" role="status" aria-live="polite">Ready to create a workspace.</p>
 </form>`;
-      const toggleMarkup = `<div class="nf-stack">
-  <label class="nf-toggle">
-    <input type="checkbox" name="activity-notifications" checked />
-    <span class="nf-toggle-control" aria-hidden="true"></span>
-    <span>Activity notifications</span>
-  </label>
-  <label class="nf-toggle">
-    <input type="checkbox" name="weekly-summary" />
-    <span class="nf-toggle-control" aria-hidden="true"></span>
-    <span>Weekly summary</span>
-  </label>
+ const toggleMarkup = `<div class="nf-stack">
+ <label class="nf-toggle">
+ <input type="checkbox" name="activity-notifications" checked />
+ <span class="nf-toggle-control" aria-hidden="true"></span>
+ <span>Activity notifications</span>
+ </label>
+ <label class="nf-toggle">
+ <input type="checkbox" name="weekly-summary" />
+ <span class="nf-toggle-control" aria-hidden="true"></span>
+ <span>Weekly summary</span>
+ </label>
 </div>`;
 
-      const examples = {
-        actions: { label: "Actions", contract: "buttons + cluster", when: "Use native buttons for actions and links for navigation. Keep labels visible and distinguish risk with text, not color alone.", a11y: ["Use type=button unless a button submits a form.", "Keep disabled actions explainable with nearby text.", "Do not use an icon as the only label."], html: `<div class="nf-cluster">
-  <button class="nf-button" type="button">Cancel</button>
-  <button class="nf-button-primary" type="button">Save changes</button>
-  <button class="nf-button-danger" type="button">Delete</button>
-</div>`, render: () => `<div class="nf-cluster"><button class="nf-button" type="button">Cancel</button><button class="nf-button-primary" type="button">Save changes</button><button class="nf-button-danger" type="button">Delete</button></div>` },
-        toggles: { label: "Toggles", contract: "label + checkbox", when: "Use a toggle for an immediate on/off preference. Keep the visible label next to the control and use a native checkbox so forms, keyboard input, and screen readers retain their expected behavior.", a11y: ["Use a visible label for every toggle.", "Keep the checkbox native so checked and disabled states are announced.", "Use nearby help text when the setting's effect needs explanation."], html: toggleMarkup, render: () => toggleMarkup },
-        surfaces: { label: "Surfaces and messages", contract: "card + alert", when: "Use a card to group related content and an alert for a persistent message that belongs in the reading flow.", a11y: ["Use a heading inside meaningful cards.", "Use role=status or aria-live for changing messages.", "Explain meaning in text, never color alone."], html: `<div class="nf-stack">
-  <article class="nf-card">
-    <h2>Workspace health</h2>
-    <p>All systems are operational.</p>
-  </article>
-  <aside class="nf-alert" data-tone="success" role="status">Changes saved successfully.</aside>
+ const examples = {
+ actions: { label: "Actions", contract: "buttons + cluster", when: "Use native buttons for actions and links for navigation. Keep labels visible and distinguish risk with text, not color alone.", a11y: ["Use type=button unless a button submits a form.", "Keep disabled actions explainable with nearby text.", "Do not use an icon as the only label."], html: `<div class="nf-cluster">
+ <button type="button">Cancel</button>
+ <button type="button" data-variant="primary">Save changes</button>
+ <button type="button" data-variant="danger">Delete</button>
+</div>`, render: () => `<div class="nf-cluster"><button type="button">Cancel</button><button type="button" data-variant="primary">Save changes</button><button type="button" data-variant="danger">Delete</button></div>` },
+ toggles: { label: "Toggles", contract: "label + checkbox", when: "Use a toggle for an immediate on/off preference. Keep the visible label next to the control and use a native checkbox so forms, keyboard input, and screen readers retain their expected behavior.", a11y: ["Use a visible label for every toggle.", "Keep the checkbox native so checked and disabled states are announced.", "Use nearby help text when the setting's effect needs explanation."], html: toggleMarkup, render: () => toggleMarkup },
+ surfaces: { label: "Surfaces and messages", contract: "card + alert", when: "Use a card to group related content and an alert for a persistent message that belongs in the reading flow.", a11y: ["Use a heading inside meaningful cards.", "Use role=status or aria-live for changing messages.", "Explain meaning in text, never color alone."], html: `<div class="nf-stack">
+ <article class="nf-card">
+ <h2>Workspace health</h2>
+ <p>All systems are operational.</p>
+ </article>
+ <aside class="nf-alert" data-tone="success" role="status">Changes saved successfully.</aside>
 </div>`, render: () => `<div class="nf-stack"><article class="nf-card"><h3>Workspace health</h3><p>All systems are operational.</p></article><aside class="nf-alert" data-tone="success" role="status">Changes saved successfully.</aside></div>` },
-        forms: { label: "Forms", contract: "form + fieldset + status", test: "Resize to a narrow width, tab through every labelled control, select each radio option, then submit and reset the form.", when: "Use explicit labels and native controls. Group related choices with fieldset and legend, and connect help or status copy with IDs.", a11y: ["Every control has an explicit label.", "Related choices use fieldset and legend.", "Native validation and the live status remain available."], html: workspaceFormMarkup, render: () => workspaceFormMarkup },
-        tables: { label: "Tables", contract: "table + scroll region", when: "Use a table for relational data. Put wide tables inside a labelled, focusable scroll region.", a11y: ["Use a caption, th elements, and scope attributes.", "Give the scroll wrapper an accessible label and tabindex.", "Keep columns readable at 200% zoom."], html: `<div class="nf-table-scroll" tabindex="0" aria-label="Recent orders">
-  <table class="nf-table">
-    <caption>Recent orders</caption>
-    ...
-  </table>
-</div>`, render: () => `<div class="nf-table-scroll" tabindex="0" aria-label="Recent orders"><table class="nf-table"><caption>Recent orders</caption><thead><tr><th scope="col">Order</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col">Total</th></tr></thead><tbody><tr><td>#1042</td><td>Alex Morgan</td><td><span class="nf-badge" data-tone="success">Paid</span></td><td>$128.00</td></tr><tr><td>#1041</td><td>Samira Khan</td><td><span class="nf-badge" data-tone="warning">Review</span></td><td>$84.50</td></tr></tbody></table></div>` },
-        layouts: { label: "Layouts", contract: "container + stack + grid", when: "Compose page structure from container, stack, cluster, grid, sidebar, and page-header. Keep one DOM at every viewport.", a11y: ["Use landmarks for page regions.", "Keep heading order meaningful.", "Let layout wrap before introducing horizontal scrolling."], html: `<main class="nf-page">
-  <div class="nf-container nf-stack">
-    <header class="nf-page-header">...</header>
-    <section class="nf-grid">...</section>
-  </div>
-</main>`, render: () => `<section class="nf-stack"><header class="nf-page-header"><div class="nf-stack" data-gap="sm"><p class="nf-help">Overview</p><h3>Team workspace</h3></div><button class="nf-button-primary" type="button">Invite member</button></header><div class="nf-grid"><article class="nf-card"><h3>Active members</h3><p>24 people</p></article><article class="nf-card"><h3>Open projects</h3><p>8 projects</p></article><article class="nf-card"><h3>Storage</h3><p>64% used</p></article></div></section>` },
-        navigation: { label: "Navigation", contract: "nav + triggers + nested content", test: "Hover or focus Projects, move into Reports, then back to Projects. Use Escape or click outside to dismiss the open submenu.", when: "Use shadcn-style triggers for nested route groups and keep each destination as a real link inside the controlled content.", a11y: ["Use a labelled nav landmark.", "Keep every destination a real link.", "Expose each controlled submenu with aria-controls and aria-expanded."], html: workspaceNavigationMarkup, render: () => workspaceNavigationMarkup },
-        states: { label: "Loading and empty states", contract: "status + progress + alert", when: "Use text, progress, alerts, and an explicit next action to make async and no-result states understandable.", a11y: ["Announce changing status with aria-live.", "Explain what the user can do next.", "Use progress for measurable work."], html: `<section class="nf-stack" aria-live="polite">
-  <p class="nf-loading">Loading projects</p>
-  <progress value="64" max="100">64%</progress>
-  <div class="nf-empty">...</div>
-</section>`, render: () => `<section class="nf-stack" aria-live="polite"><p class="nf-loading">Syncing workspace</p><progress value="64" max="100">64%</progress><aside class="nf-alert" data-tone="warning"><strong>Needs attention</strong><span>One project is missing an owner.</span></aside><div class="nf-empty"><div class="nf-stack"><strong>No archived projects</strong><span class="nf-help">Archived projects will appear here.</span><button class="nf-button" type="button">View active projects</button></div></div><div class="nf-card nf-stack"><span class="nf-skeleton" data-size="short" aria-hidden="true"></span><span class="nf-skeleton" data-size="long" aria-hidden="true"></span></div></section>` },
-        dialogs: { label: "Dialogs", contract: "dialog + command + behavior", when: "Use a native dialog for a focused confirmation. closedby=any provides native light-dismiss where supported; the optional behavior module supplies the fallback.", a11y: ["Give the dialog an accessible name.", "Keep Escape closing available with the default dialog behavior.", "Use form method=dialog for a native close action."], html: `<button class="nf-button-danger" commandfor="delete-dialog" command="show-modal">Delete project</button>
-<dialog id="delete-dialog" class="nf-dialog" closedby="any" aria-labelledby="dialog-title">
-  <form method="dialog" class="nf-stack">...</form>
-</dialog>`, render: () => `<div class="nf-stack"><button class="nf-button-danger" commandfor="demo-dialog" command="show-modal" type="button">Delete project</button><dialog id="demo-dialog" class="nf-dialog" closedby="any" aria-labelledby="dialog-title"><form method="dialog" class="nf-stack"><h3 id="dialog-title">Delete project?</h3><p>This action cannot be undone.</p><div class="nf-cluster"><button class="nf-button" value="cancel">Cancel</button><button class="nf-button-danger" value="confirm">Delete project</button></div></form></dialog></div>` },
-        code: { label: "Code blocks", contract: "pre + code", when: "Use a code block for copyable or inspectable snippets. Keep the native pre/code semantics and let long lines scroll within the block.", a11y: ["Use pre and code for preserved whitespace and source text.", "Add tabindex=0 when the block may scroll horizontally.", "Keep syntax meaning in the text; color is optional."], html: `<pre class="nf-code" tabindex="0"><code>const ready = true;
-console.log(ready);</code></pre>`, render: () => `<pre class="nf-code" tabindex="0"><code>const workspace = {
-  status: "ready",
-  projects: 24
+ forms: { label: "Forms", contract: "form + fieldset + status", test: "Resize to a narrow width, tab through every labelled control, select each radio option, then submit and reset the form.", when: "Use explicit labels and native controls. Group related choices with fieldset and legend, and connect help or status copy with IDs.", a11y: ["Every control has an explicit label.", "Related choices use fieldset and legend.", "Native validation and the live status remain available."], html: workspaceFormMarkup, render: () => workspaceFormMarkup },
+ tables: { label: "Tables", contract: "table + scroll region", when: "Use a table for relational data. Put wide tables inside a labelled, focusable scroll region.", a11y: ["Use a caption, th elements, and scope attributes.", "Give the scroll wrapper an accessible label and tabindex.", "Keep columns readable at 200% zoom."], html: `<div class="nf-table-scroll" tabindex="0" aria-label="Recent orders">
+ <table >
+ <caption>Recent orders</caption>
+ ...
+ </table>
+</div>`, render: () => `<div class="nf-table-scroll" tabindex="0" aria-label="Recent orders"><table ><caption>Recent orders</caption><thead><tr><th scope="col">Order</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col">Total</th></tr></thead><tbody><tr><td>#1042</td><td>Alex Morgan</td><td><span class="nf-badge" data-tone="success">Paid</span></td><td>$128.00</td></tr><tr><td>#1041</td><td>Samira Khan</td><td><span class="nf-badge" data-tone="warning">Review</span></td><td>$84.50</td></tr></tbody></table></div>` },
+ layouts: { label: "Layouts", contract: "container + stack + grid", when: "Compose page structure from container, stack, cluster, grid, sidebar, and page-header. Keep one DOM at every viewport.", a11y: ["Use landmarks for page regions.", "Keep heading order meaningful.", "Let layout wrap before introducing horizontal scrolling."], html: `<main class="nf-page">
+ <div class="nf-container nf-stack">
+ <header class="nf-page-header">...</header>
+ <section class="nf-grid">...</section>
+ </div>
+</main>`, render: () => `<section class="nf-stack"><header class="nf-page-header"><div class="nf-stack" data-gap="sm"><p class="nf-help">Overview</p><h3>Team workspace</h3></div><button data-variant="primary" type="button">Invite member</button></header><div class="nf-grid"><article class="nf-card"><h3>Active members</h3><p>24 people</p></article><article class="nf-card"><h3>Open projects</h3><p>8 projects</p></article><article class="nf-card"><h3>Storage</h3><p>64% used</p></article></div></section>` },
+ navigation: { label: "Navigation", contract: "nav + links + disclosure", test: "Tab through the links, open Projects with Enter or Space, and use the real destinations inside the disclosure.", when: "Use navigation for moving between locations. Use native details for small nested route groups; use the Menus recipe for contextual actions.", a11y: ["Use a labelled nav landmark.", "Keep every destination a real link.", "Use details and summary when a nested group needs disclosure."], html: workspaceNavigationMarkup, render: () => workspaceNavigationMarkup },
+ states: { label: "Loading and empty states", contract: "status + progress + alert", when: "Use text, progress, alerts, and an explicit next action to make async and no-result states understandable.", a11y: ["Announce changing status with aria-live.", "Explain what the user can do next.", "Use progress for measurable work."], html: `<section class="nf-stack" aria-live="polite">
+ <p class="nf-loading">Loading projects</p>
+ <progress value="64" max="100">64%</progress>
+ <div class="nf-empty">...</div>
+</section>`, render: () => `<section class="nf-stack" aria-live="polite"><p class="nf-loading">Syncing workspace</p><progress value="64" max="100">64%</progress><aside class="nf-alert" data-tone="warning"><strong>Needs attention</strong><span>One project is missing an owner.</span></aside><div class="nf-empty"><div class="nf-stack"><strong>No archived projects</strong><span class="nf-help">Archived projects will appear here.</span><button type="button">View active projects</button></div></div><div class="nf-card nf-stack"><span class="nf-skeleton" data-size="short" aria-hidden="true"></span><span class="nf-skeleton" data-size="long" aria-hidden="true"></span></div></section>` },
+ dialogs: { label: "Dialogs", contract: "dialog + command + behavior", when: "Use a native dialog for a focused confirmation. closedby=any provides native light-dismiss where supported; the optional behavior module supplies the fallback.", a11y: ["Give the dialog an accessible name.", "Keep Escape closing available with the default dialog behavior.", "Use form method=dialog for a native close action."], html: `<button data-variant="danger" commandfor="delete-dialog" command="show-modal">Delete project</button>
+<dialog id="delete-dialog" closedby="any" aria-labelledby="dialog-title">
+ <form method="dialog" class="nf-stack">...</form>
+</dialog>`, render: () => `<div class="nf-stack"><button data-variant="danger" commandfor="demo-dialog" command="show-modal" type="button">Delete project</button><dialog id="demo-dialog" closedby="any" aria-labelledby="dialog-title"><form method="dialog" class="nf-stack"><h3 id="dialog-title">Delete project?</h3><p>This action cannot be undone.</p><div class="nf-cluster"><button value="cancel">Cancel</button><button data-variant="danger" value="confirm">Delete project</button></div></form></dialog></div>` },
+ menus: { label: "Menus", contract: "popover + real links", when: "Use the Popover API for contextual actions and keep important destinations as real links or buttons.", a11y: ["Use popovertarget so the browser owns Escape and outside dismissal.", "Keep every destination keyboard reachable.", "Do not put critical information only inside the menu."], html: `<button type="button" popovertarget="actions-menu">Actions</button>
+<div id="actions-menu" popover><a href="/rename">Rename</a><button type="button">Archive</button></div>`, render: () => `<div class="nf-cluster"><button type="button" popovertarget="demo-actions-menu">Project actions</button><div id="demo-actions-menu" popover><a href="#components">Edit project</a><a href="#activity">Export data</a><button type="button">Archive project</button></div></div>` },
+ tabs: { label: "Tabs", contract: "tablist + tab + tabpanel", when: "Use tabs for peer views where the user switches context without leaving the page. The optional behavior module adds arrow-key navigation.", a11y: ["Use tablist, tab, and tabpanel roles with matching IDs.", "Tab moves between the active tab and page content; arrows move within the tablist.", "Home and End move to the first and last tab."], html: `<section data-nf-tabs>...</section>`, render: () => `<section class="nf-stack" data-nf-tabs><div role="tablist" aria-label="Workspace"><button role="tab" id="demo-tab-members" aria-controls="demo-panel-members" aria-selected="true">Members</button><button role="tab" id="demo-tab-billing" aria-controls="demo-panel-billing" aria-selected="false" tabindex="-1">Billing</button></div><div id="demo-panel-members" role="tabpanel" aria-labelledby="demo-tab-members"><p>24 active members.</p></div><div id="demo-panel-billing" role="tabpanel" aria-labelledby="demo-tab-billing" hidden><p>Growth plan.</p></div></section>` },
+ drawers: { label: "Drawers", contract: "dialog + mobile-first surface", when: "Use a dialog as a drawer for filters or short tasks. CSS changes its edge while the DOM stays the same.", a11y: ["Give the drawer an accessible name.", "Keep Escape and form method=dialog available.", "Do not trap focus manually when native dialog behavior is available."], html: `<button type="button" commandfor="filters-drawer" command="show-modal">Filters</button>
+<dialog id="filters-drawer" data-nf-drawer>...</dialog>`, render: () => `<div class="nf-stack"><button type="button" commandfor="demo-drawer" command="show-modal">Open filters</button><dialog id="demo-drawer" data-nf-drawer aria-labelledby="demo-drawer-title"><form method="dialog" class="nf-stack"><h3 id="demo-drawer-title">Filter projects</h3><label><input type="checkbox" checked> Assigned to me</label><button value="done" data-variant="primary">Done</button></form></dialog></div>` },
+ feedback: { label: "Feedback", contract: "status + progress + empty", when: "Use explicit status, progress, alert, skeleton, and empty-state patterns to explain asynchronous work and next actions.", a11y: ["Announce changing status with aria-live or role=status.", "Keep progress text available as fallback content.", "Explain what the user can do next in empty states."], html: `<section class="nf-stack" aria-live="polite"><progress value="64" max="100">64%</progress><p class="nf-loading">Syncing workspace…</p><div class="nf-empty">No results.</div></section>`, render: () => `<section class="nf-stack" aria-live="polite"><progress value="64" max="100">64%</progress><p class="nf-loading">Syncing workspace…</p><aside class="nf-alert" role="status" data-tone="success">Your report is ready.</aside><div class="nf-empty"><div class="nf-stack"><strong>No matching projects</strong><span class="nf-help">Try changing the filters.</span><button type="button">Clear filters</button></div></div></section>` },
+ code: { label: "Code blocks", contract: "pre + code", when: "Use a code block for copyable or inspectable snippets. Keep the native pre/code semantics and let long lines scroll within the block.", a11y: ["Use pre and code for preserved whitespace and source text.", "Add tabindex=0 when the block may scroll horizontally.", "Keep syntax meaning in the text; color is optional."], html: `<pre  tabindex="0"><code>const ready = true;
+console.log(ready);</code></pre>`, render: () => `<pre  tabindex="0"><code>const workspace = {
+ status: "ready",
+ projects: 24
 };</code></pre>` }
-      };
-      const catalog = document.querySelector("#catalog");
-      const preview = document.querySelector("#preview");
-      const code = document.querySelector("#code code");
-      let current = "code";
-      function render(name = current) {
-        current = name;
-        const item = examples[name];
-        preview.innerHTML = item.render();
-        enhanceNativeInteractions(preview);
-        const form = preview.querySelector("form");
-        form?.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const status = form.querySelector('[role="status"]');
-          if (status) status.textContent = "Workspace created. Invite your team to get started.";
-        });
-        code.textContent = item.html;
-        document.querySelector("#example-title").textContent = item.label;
-        document.querySelector("#example-contract").textContent = item.contract;
-        document.querySelector("#example-test").textContent = item.test || "Resize it, use the keyboard, and inspect the native semantics in View HTML.";
-        document.querySelector("#when-to-use").textContent = item.when;
-        document.querySelector("#a11y-notes").innerHTML = item.a11y.map((note) => `<li>${note}</li>`).join("");
-        document.querySelectorAll("#catalog button").forEach((button) => button.setAttribute("aria-current", button.dataset.component === name ? "page" : "false"));
-      }
-      catalog.innerHTML = Object.entries(examples).map(([name, item], index) => `<button type="button" data-component="${name}"><span>${item.label}</span><small>${String(index + 1).padStart(2, "0")}</small></button>`).join("");
-      catalog.addEventListener("click", (event) => { const button = event.target.closest("[data-component]"); if (button) { render(button.dataset.component); document.querySelector("#status").textContent = `${examples[button.dataset.component].label} example selected.`; } });
-      document.querySelector("#component-search").addEventListener("input", (event) => { const query = event.target.value.toLowerCase(); document.querySelectorAll("#catalog button").forEach((button) => { button.hidden = !button.textContent.toLowerCase().includes(query); }); });
-      document.querySelector("#theme-toggle").addEventListener("click", (event) => { const dark = document.documentElement.dataset.theme === "dark"; document.documentElement.dataset.theme = dark ? "light" : "dark"; event.currentTarget.textContent = dark ? "Dark mode" : "Light mode"; });
-      document.querySelector("#copy-code").addEventListener("click", async (event) => {
-        const button = event.currentTarget;
-        const status = document.querySelector("#status");
+ };
+ const componentIndex = document.querySelector("#component-index");
+ const preview = document.querySelector("#preview");
+ const code = document.querySelector("#code code");
+ const componentNames = { "alert-dialog": "Alert Dialog", attachment: "Attachment", avatar: "Avatar", "button-group": "Button Group", "date-picker": "Date Picker", "data-table": "Data Table", "dropdown-menu": "Dropdown Menu", "hover-card": "Hover Card", "input-group": "Input Group", "input-otp": "Input OTP", "message-scroller": "Message Scroller", "native-select": "Native Select", "navigation-menu": "Navigation Menu", questionnaire: "Questionnaire", "radio-group": "Radio Group", "scroll-area": "Scroll Area", "toggle-group": "Toggle Group" };
+ let referenceExamples = {};
+ let nativeDemos = {};
+ const titleFor = (name) => componentNames[name] || name.replaceAll("-", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+ const componentDefinition = (slug) => {
+ const title = titleFor(slug);
+ const definitions = {
+ accordion: `<section class="nf-accordion" aria-label="Product information"><details class="nf-accordion-item" open><summary class="nf-accordion-trigger">Product Information</summary><div class="nf-accordion-content"><div class="nf-accordion-content-inner"><p>Our flagship product combines cutting-edge technology with sleek design. Built with premium materials, it offers unparalleled performance and reliability.</p><p>Key features include advanced processing capabilities, and an intuitive user interface designed for both beginners and experts.</p></div></div></details><details class="nf-accordion-item"><summary class="nf-accordion-trigger">Shipping Details</summary><div class="nf-accordion-content"><div class="nf-accordion-content-inner"><p>We offer worldwide shipping through trusted courier partners. Standard delivery takes 3-5 business days, while express shipping ensures delivery within 1-2 business days.</p><p>All orders are carefully packaged and fully insured. Track your shipment in real-time through our dedicated tracking portal.</p></div></div></details><details class="nf-accordion-item"><summary class="nf-accordion-trigger">Return Policy</summary><div class="nf-accordion-content"><div class="nf-accordion-content-inner"><p>We stand behind our products with a comprehensive 30-day return policy. If you&apos;re not completely satisfied, simply return the item in its original condition.</p><p>Our hassle-free return process includes free return shipping and full refunds processed within 48 hours of receiving the returned item.</p></div></div></details></section>`,
+ alert: `<div class="nf-alert-demo"><aside class="nf-alert" data-parity="shadcn" role="alert"><svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M12 3 2.6 20h18.8L12 3Zm0 5.2v5.4m0 3.2h.01" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg><strong class="nf-alert-title">Success! Your changes have been saved</strong><span class="nf-alert-description">This is an alert with icon, title and description.</span></aside><aside class="nf-alert" data-parity="shadcn" role="alert"><svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M8 21h8m-7-3h6m-8-2h10a2 2 0 0 0 1.7-3.05A7.5 7.5 0 1 0 5.3 12.95 2 2 0 0 0 7 16Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg><strong class="nf-alert-title">This Alert has a title and an icon. No description.</strong></aside><aside class="nf-alert" data-parity="shadcn" data-variant="destructive" role="alert"><svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v5m0 3h.01" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/></svg><strong class="nf-alert-title">Unable to process your payment.</strong><span class="nf-alert-description"><p>Please verify your billing information and try again.</p><ul><li>Check your card details</li><li>Ensure sufficient funds</li><li>Verify billing address</li></ul></span></aside></div>`,
+ "alert-dialog": `<div class="nf-stack"><button type="button" commandfor="component-alert-dialog" command="show-modal" data-variant="outline">Show Dialog</button><dialog id="component-alert-dialog" class=" nf-alert-dialog" aria-labelledby="component-alert-dialog-title" aria-describedby="component-alert-dialog-description"><form method="dialog" class="nf-stack"><header class="nf-alert-dialog-header"><h2 id="component-alert-dialog-title">Are you absolutely sure?</h2><p id="component-alert-dialog-description">This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p></header><footer class="nf-alert-dialog-footer"><button value="cancel" data-variant="outline">Cancel</button><button value="confirm" data-variant="primary">Continue</button></footer></form></dialog></div>`,
+ attachment: `<form class="nf-attachment-demo"><label for="attachment-file">Picture</label><input id="attachment-file" type="file" name="picture" /></form>`,
+ "aspect-ratio": `<figure class="nf-aspect-ratio" data-parity="shadcn" style="--nf-aspect-ratio: 16 / 9"><img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&amp;dpr=2&amp;q=80" alt="Photo by Drew Beamer" /></figure>`,
+ avatar: `<div class="nf-avatar-demo"><div class="nf-avatar-parity"><img src="https://github.com/shadcn.png" alt="@shadcn" /></div><div class="nf-avatar-parity nf-avatar-parity-rounded"><img src="https://github.com/evilrabbit.png" alt="@evilrabbit" /></div><div class="nf-avatar-group"><div class="nf-avatar-parity"><img src="https://github.com/shadcn.png" alt="@shadcn" /></div><div class="nf-avatar-parity"><img src="https://github.com/maxleiter.png" alt="@maxleiter" /></div><div class="nf-avatar-parity"><img src="https://github.com/evilrabbit.png" alt="@evilrabbit" /></div></div></div>`,
+ badge: `<div class="nf-badge-demo"><div><span class="nf-badge" data-parity="shadcn">Badge</span><span class="nf-badge" data-parity="shadcn" data-variant="secondary">Secondary</span><span class="nf-badge" data-parity="shadcn" data-variant="destructive">Destructive</span><span class="nf-badge" data-parity="shadcn" data-variant="outline">Outline</span></div><div><span class="nf-badge" data-parity="shadcn" data-variant="secondary"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 12 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>Verified</span><span class="nf-badge nf-badge-pill" data-parity="shadcn">8</span><span class="nf-badge nf-badge-pill" data-parity="shadcn" data-variant="destructive">99</span><span class="nf-badge nf-badge-pill" data-parity="shadcn" data-variant="outline">20+</span></div></div>`,
+ breadcrumb: `<nav class="nf-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#dashboard">Dashboard</a></li><li aria-hidden="true">/</li><li><span aria-current="page">Projects</span></li></ol></nav>`,
+ bubble: `<article class="nf-message"><div class="nf-avatar" aria-hidden="true">JL</div><div class="nf-message-body"><header><strong>Jordan Lee</strong><time class="nf-help" datetime="2026-08-09T10:00">10:00</time></header><p>Can you review the latest project update?</p></div></article>`,
+ button: `<div class="nf-cluster"><button type="button" data-variant="outline">Button</button><button type="button" data-variant="outline" aria-label="Submit">↑</button></div>`,
+ "button-group": `<div class="nf-cluster" role="group" aria-label="View mode" data-nf-single-select="true"><button type="button" aria-pressed="true">List</button><button type="button" aria-pressed="false">Board</button><button type="button" aria-pressed="false">Calendar</button></div>`,
+ calendar: `<label class="nf-field"><span>Date</span><input type="date" value="2026-08-09" /></label>`,
+ card: `<article class="nf-card nf-stack"><div class="nf-split"><div><h3>Login to your account</h3><p class="nf-help">Enter your email below to login to your account</p></div><a href="#signup" data-variant="link">Sign Up</a></div><div class="nf-stack"><label class="nf-field"><span>Email</span><input type="email" placeholder="m@example.com" required /></label><label class="nf-field"><span>Password</span><input type="password" required /></label><a href="#forgot">Forgot your password?</a></div><div class="nf-stack"><button type="submit" data-variant="primary">Login</button><button type="button" data-variant="outline">Login with Google</button></div></article>`,
+ carousel: `<section class="nf-carousel nf-stack" aria-labelledby="carousel-title"><header class="nf-split"><h3 id="carousel-title">Project highlights</h3><div class="nf-cluster"><button type="button" data-nf-carousel-prev aria-label="Previous highlight">Previous</button><button type="button" data-nf-carousel-next aria-label="Next highlight">Next</button></div></header><div class="nf-carousel-track" tabindex="0" aria-label="Project highlights"><article class="nf-card"><strong>Northstar</strong><p>Ready for review.</p></article><article class="nf-card"><strong>Beacon</strong><p>Needs an owner.</p></article><article class="nf-card"><strong>Orbit</strong><p>Shipping Friday.</p></article></div></section>`,
+ chart: `<figure class="nf-card nf-chart"><figcaption><strong>Weekly activity</strong><span class="nf-help">Last 7 days</span></figcaption><ol class="nf-chart-bars" aria-label="Activity from Monday to Sunday"><li style="--nf-bar: 42%"><span>Mon <b>42</b></span></li><li style="--nf-bar: 68%"><span>Tue <b>68</b></span></li><li style="--nf-bar: 54%"><span>Wed <b>54</b></span></li><li style="--nf-bar: 86%"><span>Thu <b>86</b></span></li><li style="--nf-bar: 64%"><span>Fri <b>64</b></span></li><li style="--nf-bar: 36%"><span>Sat <b>36</b></span></li><li style="--nf-bar: 72%"><span>Sun <b>72</b></span></li></ol></figure>`,
+ checkbox: `<label class="nf-checkbox"><input type="checkbox" checked /><span><strong>Send weekly updates</strong><small class="nf-help">A weekly summary for your workspace.</small></span></label>`,
+ collapsible: `<details><summary>Advanced settings</summary><div class="nf-stack"><label><input type="checkbox" checked /> Enable notifications</label><label><input type="checkbox" /> Require approval</label></div></details>`,
+ combobox: `<label class="nf-field"><span>Assign owner</span><input list="owner-options" data-nf-combobox placeholder="Search people" /><datalist id="owner-options"><option value="Jordan Lee"></option><option value="Samira Khan"></option><option value="Alex Morgan"></option></datalist><span class="nf-help" data-nf-combobox-status role="status"></span></label>`,
+ command: `<div class="nf-command-demo"><button type="button" commandfor="component-command-demo" command="show-modal" data-variant="primary">Open command menu <kbd>⌘ K</kbd></button><dialog id="component-command-demo" aria-labelledby="command-title"><form method="dialog" class="nf-stack" data-nf-command-palette><div class="nf-split"><div><h3 id="command-title">Command menu</h3><p class="nf-help">Search for a page or run an action.</p></div><button type="submit" data-variant="ghost">Close</button></div><input type="search" placeholder="Type a command or search…" /><div class="nf-command-options"><div data-command-group><strong>Suggestions</strong><button type="button" data-nf-command-item>Calendar <kbd>G C</kbd></button><button type="button" data-nf-command-item>Search emoji <kbd>G E</kbd></button><button type="button" data-nf-command-item>Calculator</button></div><div class="nf-demo-separator"></div><div data-command-group><strong>Settings</strong><button type="button" data-nf-command-item>Profile</button><button type="button" data-nf-command-item>Billing</button><button type="button" data-nf-command-item>Settings</button></div></div></form></dialog></div>`,
+ "context-menu": `<div class="nf-cluster"><button type="button" popovertarget="context-menu" aria-haspopup="menu">Project actions</button><div id="context-menu" class="nf-menu-popover" popover><a href="#edit" role="menuitem">Edit project</a><button type="button" role="menuitem">Archive project</button></div></div>`,
+ "data-table": `<div class="nf-card nf-table-scroll" tabindex="0" aria-label="Projects table"><table ><caption>Projects</caption><thead><tr><th scope="col">Project</th><th scope="col">Owner</th><th scope="col">Status</th></tr></thead><tbody><tr><td><a href="#northstar">Northstar</a></td><td>Jordan Lee</td><td><span class="nf-badge" data-tone="success">Ready</span></td></tr><tr><td><a href="#beacon">Beacon</a></td><td>Samira Khan</td><td><span class="nf-badge" data-tone="warning">Review</span></td></tr></tbody></table></div>`,
+ "date-picker": `<label class="nf-field"><span>Publish date</span><input type="date" value="2026-08-09" /></label>`,
+ dialog: `<div class="nf-stack"><button type="button" commandfor="component-dialog" command="show-modal">Open dialog</button><dialog id="component-dialog" ><form method="dialog" class="nf-stack"><h2>Project details</h2><p>Native dialog owns focus and Escape.</p><button value="close">Close</button></form></dialog></div>`,
+ direction: `<section dir="rtl" class="nf-card"><p>هذا نص تجريبي لاتجاه الكتابة.</p></section>`,
+ drawer: `<div class="nf-stack"><button type="button" commandfor="component-drawer" command="show-modal">Open drawer</button><dialog id="component-drawer" data-nf-drawer aria-labelledby="drawer-title"><form method="dialog" class="nf-stack"><h2 id="drawer-title">Filters</h2><label class="nf-checkbox"><input type="checkbox" checked /> Assigned to me</label><button value="done" data-variant="primary">Done</button></form></dialog></div>`,
+ "dropdown-menu": `<div class="nf-cluster"><button type="button" popovertarget="dropdown-menu" aria-haspopup="menu">Open menu</button><div id="dropdown-menu" class="nf-menu-popover" popover><a href="#edit" role="menuitem">Edit</a><a href="#duplicate" role="menuitem">Duplicate</a><button type="button" role="menuitem">Archive</button></div></div>`,
+ empty: `<div class="nf-empty"><div class="nf-stack"><strong>No projects yet</strong><span class="nf-help">Create a project to get started.</span><button type="button" data-variant="primary">Create project</button></div></div>`,
+ field: `<div class="nf-field nf-field-surface"><label for="field-name">Workspace name</label><input id="field-name" value="Northstar" aria-describedby="field-help" /><span id="field-help" class="nf-help">Visible to your team.</span></div>`,
+ "hover-card": `<div class="nf-cluster"><button type="button" popovertarget="profile-card" aria-describedby="profile-card">Jordan Lee</button><div id="profile-card" class="nf-hover-card" popover><strong>Jordan Lee</strong><p class="nf-help">Product designer</p></div></div>`,
+ input: `<label class="nf-field"><span>Project name</span><input type="text" value="Northstar" /></label>`,
+ "input-group": `<div class="nf-input-group"><label class="nf-sr-only" for="search-input">Search</label><input id="search-input" type="search" placeholder="Search projects" /><button type="button" data-variant="primary">Search</button></div>`,
+ "input-otp": `<fieldset class="nf-field"><legend>Verification code</legend><div class="nf-otp" data-nf-otp><input aria-label="Digit 1" inputmode="numeric" autocomplete="one-time-code" maxlength="1" /><input aria-label="Digit 2" inputmode="numeric" maxlength="1" /><input aria-label="Digit 3" inputmode="numeric" maxlength="1" /><input aria-label="Digit 4" inputmode="numeric" maxlength="1" /></div><span class="nf-help">Paste the code or type one digit at a time.</span></fieldset>`,
+ item: `<article class="nf-card nf-stack"><h3>Northstar</h3><p class="nf-help">Updated today by Jordan Lee.</p><a href="#project">View project</a></article>`,
+ kbd: `<div class="nf-kbd-card"><span>Open command menu</span><span class="nf-shortcut"><kbd>⌘</kbd><kbd>K</kbd></span></div>`,
+ label: `<div class="nf-field"><label for="label-input">Project name</label><input id="label-input" placeholder="Northstar" /><span class="nf-help">Use a clear, human-readable name.</span></div>`,
+ marker: `<p class="nf-mark-copy">Review the <mark>highlighted</mark> project changes before publishing.</p>`,
+ menubar: `<nav class="nf-menubar" aria-label="Application menu"><a href="#file" aria-current="page">File</a><a href="#edit">Edit</a><a href="#view">View</a></nav>`,
+ message: `<aside class="nf-alert" role="status"><strong>Message</strong><span>Your changes have been saved.</span></aside>`,
+ "message-scroller": `<div class="nf-card nf-stack nf-scroll-area" tabindex="0" aria-label="Message history"><p>Jordan: Review is ready.</p><p>Samira: I added the final notes.</p><p>Alex: Shipping this afternoon.</p></div>`,
+ "native-select": `<label class="nf-field"><span>Plan</span><select><option>Starter</option><option selected>Growth</option><option>Scale</option></select></label>`,
+ "navigation-menu": `<nav class="nf-navigation" aria-label="Project navigation"><a href="#overview" aria-current="page">Overview</a><a href="#activity">Activity</a><details><summary>Settings</summary><div class="nf-stack"><a href="#members">Members</a><a href="#billing">Billing</a></div></details></nav>`,
+ pagination: `<nav class="nf-pagination" aria-label="Project pages"><a href="#page-1" aria-current="page">1</a><a href="#page-2">2</a><a href="#page-3">3</a><a href="#page-2">Next</a></nav>`,
+ popover: `<div class="nf-cluster"><button type="button" popovertarget="component-popover">Open popover</button><div id="component-popover" popover><p>Helpful contextual information.</p></div></div>`,
+ progress: `<label class="nf-field"><span>Upload progress</span><progress value="72" max="100">72%</progress></label>`,
+ questionnaire: `<form class="nf-form"><fieldset class="nf-field"><legend>How was your experience?</legend><label><input type="radio" name="rating" /> Great</label><label><input type="radio" name="rating" /> Needs work</label></fieldset><button type="submit" data-variant="primary">Submit</button></form>`,
+ "radio-group": `<fieldset class="nf-field"><legend>Visibility</legend><label><input type="radio" name="visibility" checked /> Private</label><label><input type="radio" name="visibility" /> Public</label></fieldset>`,
+ resizable: `<section class="nf-resizable-grid" aria-label="Resizable panels"><div class="nf-card nf-resizable-panel"><h3>Panel A</h3><p>Drag the lower-right corner to resize.</p></div><div class="nf-card nf-resizable-panel"><h3>Panel B</h3><p>Each panel keeps its own native resize affordance.</p></div></section>`,
+ "scroll-area": `<div class="nf-card nf-scroll-area" style="--nf-scroll-area-height: 12rem" tabindex="0" aria-label="Scrollable project list"><p>Northstar</p><p>Beacon</p><p>Orbit</p><p>Atlas</p></div>`,
+ select: `<label class="nf-field"><span>Project status</span><select><option>Draft</option><option selected>In review</option><option>Published</option></select></label>`,
+ separator: `<div class="nf-stack"><span>Project details</span><hr /><span class="nf-help">Last updated today.</span></div>`,
+ sheet: `<div class="nf-stack"><button type="button" commandfor="component-sheet" command="show-modal">Open sheet</button><dialog id="component-sheet" data-nf-drawer><form method="dialog" class="nf-stack"><h2>Project settings</h2><button value="close">Close</button></form></dialog></div>`,
+ sidebar: `<aside class="nf-card nf-stack" aria-label="Project sidebar"><strong>Workspace</strong><a href="#projects">Projects</a><a href="#members">Members</a><a href="#settings">Settings</a></aside>`,
+ skeleton: `<div class="nf-card nf-stack" aria-label="Loading project"><span class="nf-skeleton" data-size="short"></span><span class="nf-skeleton" data-size="long"></span></div>`,
+ slider: `<label class="nf-field"><span>Volume</span><input type="range" min="0" max="100" value="64" /></label>`,
+ spinner: `<p class="nf-spinner" role="status" aria-live="polite"><progress aria-label="Loading"></progress> Loading…</p>`,
+ switch: `<label class="nf-toggle"><input type="checkbox" checked /><span class="nf-toggle-control" aria-hidden="true"></span><span>Enable notifications</span></label>`,
+ table: `<div class="nf-table-scroll" tabindex="0" aria-label="Recent orders"><table ><caption>Recent orders</caption><thead><tr><th scope="col">Order</th><th scope="col">Customer</th><th scope="col">Status</th></tr></thead><tbody><tr><td><a href="#1042">#1042</a></td><td>Alex Morgan</td><td><span class="nf-badge" data-tone="success">Paid</span></td></tr><tr><td><a href="#1041">#1041</a></td><td>Samira Khan</td><td><span class="nf-badge" data-tone="warning">Review</span></td></tr></tbody></table></div>`,
+ tabs: `<section class="nf-stack" data-nf-tabs><div role="tablist" aria-label="Project views"><button role="tab" id="component-tab-overview" aria-controls="component-panel-overview" aria-selected="true">Overview</button><button role="tab" id="component-tab-activity" aria-controls="component-panel-activity" aria-selected="false" tabindex="-1">Activity</button></div><div id="component-panel-overview" role="tabpanel" aria-labelledby="component-tab-overview"><p>Project overview.</p></div><div id="component-panel-activity" role="tabpanel" aria-labelledby="component-tab-activity" hidden><p>Recent activity.</p></div></section>`,
+ textarea: `<label class="nf-field"><span>Notes</span><textarea rows="4">Project notes</textarea></label>`,
+ toast: `<div class="nf-alert" data-nf-toast data-nf-dismiss-after="5000" role="status">Changes saved successfully.</div>`,
+ toggle: `<button type="button" aria-pressed="false">Pin project</button>`,
+ "toggle-group": `<div class="nf-toggle-group-parity" role="group" aria-label="Text formatting"><button type="button" data-variant="outline" aria-pressed="false" aria-label="Toggle bold"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 5h6a4 4 0 0 1 1 7.9A4 4 0 0 1 13 21H7V5Zm0 8h6a4 4 0 0 1 0 8H7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg><span class="nf-sr-only">Bold</span></button><button type="button" data-variant="outline" aria-pressed="false" aria-label="Toggle italic"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M10 5h9M5 19h9m1-14-5 14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/></svg><span class="nf-sr-only">Italic</span></button><button type="button" data-variant="outline" aria-pressed="false" aria-label="Toggle strikethrough"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 5h8a4 4 0 0 1 3.5 2M17 19H8a4 4 0 0 1-3.5-2M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/></svg><span class="nf-sr-only">Underline</span></button></div>`,
+ tooltip: `<span><button type="button" aria-describedby="component-tooltip">Hover or focus me</button><span id="component-tooltip" role="tooltip">This is a helpful tooltip.</span></span>`,
+ typography: `<article class="nf-stack"><h1>Project heading</h1><h2>Section heading</h2><p>Readable body copy with native typography defaults.</p><a href="#details">Read details</a></article>`
+ };
+ const markup = nativeDemos[slug] || definitions[slug];
+ if (!markup) throw new Error(`Missing workbench contract for ${slug}`);
+ const reference = referenceExamples[slug] || { example: "composition-only" };
+ return { html: markup, render: () => markup, contract: `${title} native contract · translated from ${reference.example}`, when: `Use the same content and interaction intent as shadcn’s ${reference.example} example, composed here from native HTML.`, a11y: ["Preserve the native element semantics in the copied fragment.", "Keep visible labels, focus-visible styles, and keyboard access.", "Add application state only where this pattern requires it."] };
+ };
+ let current = "code";
+ let currentComponent = "Code blocks";
+ function render(name = current, componentTitle = currentComponent, componentSlug = "") {
+ current = name;
+ currentComponent = componentTitle;
+ const item = componentSlug ? componentDefinition(componentSlug) : examples[name];
+ preview.innerHTML = `<div class="nf-demo-shell">${item.render()}</div>`;
+ enhanceNativeInteractions(preview);
+ const form = preview.querySelector("form");
+ form?.addEventListener("submit", (event) => {
+ event.preventDefault();
+ const status = form.querySelector('[role="status"]');
+ if (status) status.textContent = "Workspace created. Invite your team to get started.";
+ });
+ code.textContent = item.html;
+ document.querySelector("#example-title").textContent = componentTitle;
+ document.querySelector("#example-contract").textContent = item.contract;
+ document.querySelector("#when-to-use").textContent = item.when;
+ document.querySelector("#a11y-notes").innerHTML = item.a11y.map((note) => `<li>${note}</li>`).join("");
+ document.querySelectorAll("#component-index button").forEach((button) => button.setAttribute("aria-current", button.dataset.componentName === componentTitle ? "page" : "false"));
+ }
+ async function loadComponents() {
+ try {
+ const [catalogResponse, exampleResponse, nativeDemoResponse] = await Promise.all([fetch("../recipes/catalog.json"), fetch("../recipes/component-examples.json"), fetch("../recipes/native-demos.json")]);
+ const catalogData = await catalogResponse.json();
+ referenceExamples = await exampleResponse.json();
+ nativeDemos = await nativeDemoResponse.json();
+ const availableComponents = Object.entries(catalogData.components);
+ const markupFor = ([name, item]) => { const family = item.recipe || (item.status.includes("application") ? "surfaces" : "forms"); return `<button type="button" data-nf-command-item data-component="${family}" data-component-name="${titleFor(name)}" data-search-name="${name} ${titleFor(name)}"><span>${titleFor(name)}</span>${item.recipe ? "" : "<small>app-owned</small>"}</button>`; };
+ componentIndex.innerHTML = availableComponents.map(markupFor).join("");
+ document.querySelector("#component-command-results").innerHTML = availableComponents.map(markupFor).join("");
+ document.querySelectorAll("#component-command-results button").forEach((button) => button.setAttribute("role", "option"));
+ const requested = decodeURIComponent(location.hash.slice(1)).toLowerCase();
+ const selected = availableComponents.map(([name]) => name).find((name) => name === requested) || availableComponents[0]?.[0];
+ if (selected) { const button = componentIndex.querySelector(`[data-search-name^="${selected} "]`); render(button.dataset.component, button.dataset.componentName, selected); if (!requested) history.replaceState(null, "", `#${selected}`); }
+ } catch { componentIndex.innerHTML = `<p class="nf-help">Component index unavailable. See recipes/catalog.json.</p>`; }
+ }
+ const commandDialog = document.querySelector("#component-command");
+ const searchInput = document.querySelector("#component-search");
+ const resetCommandSearch = () => { searchInput.value = ""; filterComponents(); };
+ const selectComponent = (button) => { if (!button) return; const slug = button.dataset.searchName.split(" ")[0]; render(button.dataset.component, button.dataset.componentName, slug); history.replaceState(null, "", `#${slug}`); commandDialog.close(); window.scrollTo(0, 0); };
+ const filterComponents = () => { const query = searchInput.value.trim().toLowerCase(); const buttons = [...document.querySelectorAll("#component-index button"), ...document.querySelectorAll("#component-command-results button")]; buttons.forEach((button) => { button.hidden = query.length > 0 && !button.dataset.searchName.toLowerCase().includes(query); }); document.querySelector("#catalog-empty").hidden = [...document.querySelectorAll("#component-index button")].every((button) => button.hidden); };
+ searchInput.addEventListener("input", filterComponents);
+ document.querySelector("#component-command-results").addEventListener("click", (event) => selectComponent(event.target.closest("[data-component]")));
+ componentIndex.addEventListener("click", (event) => selectComponent(event.target.closest("[data-component]")));
+ commandDialog.addEventListener("close", resetCommandSearch);
+ document.querySelector(".nf-command-trigger").addEventListener("click", (event) => { const trigger = event.currentTarget; resetCommandSearch(); if (!("commandForElement" in trigger) && !commandDialog.open) commandDialog.showModal(); window.setTimeout(() => searchInput.focus(), 0); });
+ document.addEventListener("keydown", (event) => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); document.querySelector(".nf-command-trigger").click(); } });
+ document.querySelector("#copy-code").addEventListener("click", async (event) => {
+ const button = event.currentTarget;
+ const status = document.querySelector("#status");
 
-        try {
-          if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
-          await navigator.clipboard.writeText(code.textContent);
-          button.textContent = "Copied";
-          status.textContent = "HTML copied to your clipboard.";
-        } catch {
-          status.textContent = "Could not copy HTML. Select the markup and copy it manually.";
-        }
+ try {
+ if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
+ await navigator.clipboard.writeText(code.textContent);
+ button.textContent = "Copied";
+ status.textContent = "HTML copied to your clipboard.";
+ } catch {
+ status.textContent = "Could not copy HTML. Select the markup and copy it manually.";
+ }
 
-        window.setTimeout(() => { button.textContent = "Copy HTML"; }, 1200);
-      });
-      render();
-    </script>
-  </body>
+ window.setTimeout(() => { button.textContent = "Copy HTML"; }, 1200);
+ });
+ render();
+ loadComponents();
+ </script>
+ </body>
 </html>

@@ -1,242 +1,73 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Native-First UI: accessible interface patterns built with semantic HTML." />
-    <link rel="stylesheet" href="./native-first-ui.css" />
-    <title>Native-First UI — semantic HTML patterns</title>
-  </head>
-  <body>
-    <main class="nf-page">
-      <div class="nf-container nf-stack">
-        <header class="nf-page-header">
-          <a href="./"><strong>Native-First UI</strong></a>
-          <div class="nf-cluster">
-            <nav class="nf-navigation" aria-label="Primary navigation">
-              <a href="#components">Components</a>
-              <a href="https://github.com/IFAKA/native-first-ui">GitHub</a>
-            </nav>
-            <label class="nf-toggle">
-              <input id="site-theme-toggle" type="checkbox" aria-describedby="site-theme-status" />
-              <span class="nf-toggle-control" aria-hidden="true"></span>
-              <span>Dark mode</span>
-            </label>
-          </div>
-        </header>
+ <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Native-First UI: a small, accessible CSS contract for semantic HTML." />
+  <link rel="stylesheet" href="./native-first-ui.css" />
+  <title>Native-First UI — semantic HTML, polished defaults</title>
+ </head>
+ <body>
+  <a class="nf-skip-link" href="#showcase">Skip to showcase</a>
+  <main class="nf-page">
+   <div class="nf-container nf-stack">
+    <header class="nf-page-header">
+     <a href="./"><strong>Native-First UI</strong></a>
+     <div class="nf-cluster">
+      <nav class="nf-navigation" aria-label="Primary navigation"><a href="#showcase">Showcase</a><a href="https://github.com/IFAKA/native-first-ui">GitHub</a></nav>
+      <label class="nf-toggle"><input type="checkbox" data-nf-theme-toggle /><span class="nf-toggle-control" aria-hidden="true"></span><span>Dark mode</span></label>
+     </div>
+    </header>
 
-        <section class="nf-section nf-stack" aria-labelledby="intro-title">
-          <p class="nf-help">A tiny CSS layer for real HTML.</p>
-          <h1 id="intro-title">Write HTML. Add a small contract. Ship.</h1>
-          <p class="nf-readable">Native-First UI gives product teams the responsive layout, control states, and accessible surfaces they need—without a framework or runtime dependency.</p>
-          <div class="nf-cluster" aria-label="Library size">
-            <span class="nf-badge" data-tone="success"><strong>2.6 KB</strong>&nbsp; compressed CSS</span>
-            <span class="nf-badge">0 runtime dependencies</span>
-          </div>
-          <p class="nf-help" id="site-theme-status" role="status" aria-live="polite">Light theme is active.</p>
-          <div class="nf-cluster">
-            <a class="nf-button-primary" href="#components">Explore components</a>
-            <a class="nf-link" href="https://github.com/IFAKA/native-first-ui">Read the source</a>
-          </div>
-        </section>
+    <section class="nf-section nf-stack" aria-labelledby="intro-title">
+     <p class="nf-help">A small CSS layer for real HTML.</p>
+     <h1 id="intro-title">Write HTML. Add a small contract. Ship.</h1>
+     <p class="nf-readable">Native-First UI gives product teams responsive layout, control states, and accessible surfaces without replacing the browser or adding a runtime dependency.</p>
+     <div class="nf-cluster" aria-label="Library facts"><span class="nf-badge" data-tone="success"><strong>Native</strong> by default</span><span class="nf-badge">0 runtime dependencies</span><span class="nf-badge">1.34 KB core gzip</span><span class="nf-badge">308 B generated Brotli</span></div>
+    </section>
 
-        <section class="nf-section nf-stack" id="components" aria-labelledby="components-title">
-          <header class="nf-stack" data-gap="sm">
-            <p class="nf-help">Real markup, ready to adapt.</p>
-            <h2 id="components-title">Components in context</h2>
-            <p>These are complete product fragments, not isolated buttons. Resize the page, use the controls, and keep the HTML.</p>
-          </header>
+    <section class="nf-section nf-stack" id="inspiration" data-showcase="inspiration benchmarks references" aria-labelledby="inspiration-title">
+     <div class="nf-stack" data-gap="sm"><p class="nf-help">Built from good ideas</p><h2 id="inspiration-title">Small by default, capable when installed</h2></div>
+     <p class="nf-readable">Native-First UI combines the strongest lessons from projects that shaped the web’s practical UI layer. It is not a replacement for each one at its specialty; it brings their complementary strengths into one native-first workflow.</p>
+     <div class="nf-grid">
+      <article class="nf-card nf-stack"><h3><a href="https://lit.dev/">Lit</a> + <a href="https://mincss.com/">Min</a></h3><p>Byte discipline and a deliberately small surface area.</p></article>
+      <article class="nf-card nf-stack"><h3><a href="https://newcss.net/">New.css</a> + <a href="https://milligram.io/">Milligram</a></h3><p>Classless semantic defaults plus practical controls and forms.</p></article>
+      <article class="nf-card nf-stack"><h3><a href="https://pure-css.github.io/">Pure.css</a> + <a href="https://ui.shadcn.com/">shadcn/ui</a></h3><p>Modular CSS and local, editable recipe ownership.</p></article>
+      <article class="nf-card nf-stack"><h3><a href="https://vercel.com/design/guidelines">Vercel Guidelines</a> + <a href="https://animations.dev/">Emil Kowalski</a></h3><p>Clear states, accessible interactions, and restrained purposeful motion.</p></article>
+     </div>
+     <div class="nf-card nf-table-scroll" tabindex="0" aria-label="Current Native-First UI benchmark">
+      <table><caption>Current measured distribution</caption><thead><tr><th scope="col">Artifact</th><th scope="col">Gzip</th><th scope="col">Brotli</th><th scope="col">What it means</th></tr></thead><tbody><tr><th scope="row"><code>core.css</code></th><td>1,336 B</td><td>1,117 B</td><td>Native defaults and five layout contracts.</td></tr><tr><th scope="row"><code>generated project.css</code></th><td>396 B</td><td>308 B</td><td>Only referenced contracts after Lightning CSS.</td></tr><tr><th scope="row">Optional modules</th><td>252–339 B</td><td>200–270 B</td><td>Forms, navigation, data, overlays, and layout stay opt-in.</td></tr></tbody></table>
+     </div>
+     <aside class="nf-alert nf-stack" data-tone="info"><strong>Our advantage is the combination</strong><span>Native semantics, safe inference, tiny generated output, local recipes, and product-grade accessibility live in one workflow. Choose a reference project when its specialty is the priority; choose this when you want the strengths together without shipping every abstraction.</span></aside>
+    </section>
 
-          <div class="nf-grid">
-            <article class="nf-card nf-stack">
-              <header class="nf-stack" data-gap="sm">
-                <h3>Actions</h3>
-                <p class="nf-help">A clear hierarchy for a project toolbar.</p>
-              </header>
-              <div class="nf-cluster">
-                <button class="nf-button" type="button">Cancel</button>
-                <button class="nf-button-primary" type="button">Save changes</button>
-                <button class="nf-button-danger" type="button">Delete project</button>
-              </div>
-            </article>
+    <section class="nf-section nf-stack" id="showcase" aria-labelledby="showcase-title">
+     <div class="nf-split"><div class="nf-stack" data-gap="sm"><p class="nf-help">One page, complete coverage</p><h2 id="showcase-title">Explore the contracts</h2></div><label><span class="nf-sr-only">Filter showcase</span><input type="search" data-showcase-filter placeholder="Filter examples…" /></label></div>
+     <nav class="nf-navigation" aria-label="Showcase sections"><a href="#inspiration">Inspiration and benchmarks</a><a href="#foundations">Native foundations</a><a href="#layout">Layout and composition</a><a href="#forms">Forms and controls</a><a href="#surfaces">Surfaces and feedback</a><a href="#navigation">Navigation and menus</a><a href="#overlays">Dialogs and overlays</a><a href="#data">Data and content</a><a href="#advanced">Advanced enhancement</a></nav>
+    </section>
 
-            <article class="nf-card nf-stack">
-              <header class="nf-stack" data-gap="sm">
-                <h3>Navigation</h3>
-                <p class="nf-help">Links, current location, and a native menu.</p>
-              </header>
-              <nav class="nf-navigation" aria-label="Workspace navigation">
-                <a href="#activity">Activity</a>
-                <div data-menu>
-                  <button type="button" data-menu-trigger aria-expanded="false" aria-controls="site-projects-menu">Projects</button>
-                  <div id="site-projects-menu" data-menu-content hidden>
-                    <a href="#components" aria-current="page">Projects overview</a>
-                    <a href="#activity">Roadmap</a>
-                    <div data-menu>
-                      <button type="button" data-menu-trigger aria-expanded="false" aria-controls="site-reports-menu">Reports</button>
-                      <div id="site-reports-menu" data-menu-content hidden>
-                        <a href="#activity">Weekly report</a>
-                        <a href="#activity">Quarterly report</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div data-menu>
-                  <button type="button" data-menu-trigger aria-expanded="false" aria-controls="site-workspace-menu">Workspace</button>
-                  <div id="site-workspace-menu" data-menu-content hidden>
-                    <a href="#components">Members</a>
-                    <div data-menu>
-                      <button type="button" data-menu-trigger aria-expanded="false" aria-controls="site-settings-menu">Settings</button>
-                      <div id="site-settings-menu" data-menu-content hidden>
-                        <a href="#components">General</a>
-                        <a href="#components">Notifications</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </nav>
-            </article>
-          </div>
+    <section class="nf-section nf-grid" id="foundations" data-showcase="native foundations" aria-labelledby="foundations-title"><article class="nf-card nf-stack"><p class="nf-help">Native foundations</p><h2 id="foundations-title">The browser is the component model</h2><p>Use buttons, links, labels, headings, lists, details, dialog, popover, forms, and tables before adding a class.</p><div class="nf-cluster"><button type="button" data-variant="primary">Save changes</button><a href="#forms">Read the form contract</a></div></article><aside class="nf-alert nf-stack" data-tone="info"><strong>Inference order</strong><span>Element → native state/ARIA → parent context → sibling relationship → registered utility.</span></aside></section>
 
-          <article class="nf-card nf-stack" aria-labelledby="form-title">
-            <header class="nf-stack" data-gap="sm">
-              <h3 id="form-title">Create a workspace</h3>
-              <p>Native labels, grouped fields, help text, validation, and a live status message.</p>
-            </header>
-            <form class="nf-form" onsubmit="event.preventDefault(); document.querySelector('#workspace-status').textContent = 'Workspace created. Invite your team to get started.'">
-              <div class="nf-field">
-                <label for="workspace-name">Workspace name</label>
-                <input id="workspace-name" name="workspace-name" value="Northstar" required aria-describedby="workspace-name-help" />
-                <span class="nf-help" id="workspace-name-help">Use the name your team sees in navigation.</span>
-              </div>
-              <div class="nf-field">
-                <label for="workspace-plan">Plan</label>
-                <select id="workspace-plan" name="workspace-plan">
-                  <option>Starter</option>
-                  <option selected>Growth</option>
-                  <option>Scale</option>
-                </select>
-              </div>
-              <fieldset class="nf-field">
-                <legend>Workspace access</legend>
-                <label><input type="radio" name="access" value="private" checked /> Private to invited members</label>
-                <label><input type="radio" name="access" value="team" /> Anyone in the organisation</label>
-              </fieldset>
-              <div class="nf-field">
-                <label for="workspace-region">Primary region</label>
-                <select id="workspace-region" name="workspace-region">
-                  <option selected>Europe</option>
-                  <option>North America</option>
-                  <option>Asia Pacific</option>
-                </select>
-                <span class="nf-help">This controls where new project data is stored.</span>
-              </div>
-              <label><input type="checkbox" name="workspace-updates" checked /> Send me weekly workspace updates</label>
-              <div class="nf-cluster">
-                <button class="nf-button-primary" type="submit">Create workspace</button>
-                <button class="nf-button" type="reset">Reset</button>
-              </div>
-              <p class="nf-help" id="workspace-status" role="status" aria-live="polite">Ready to create a workspace.</p>
-            </form>
-          </article>
+    <section class="nf-section nf-stack" id="layout" data-showcase="layout composition" aria-labelledby="layout-title"><h2 id="layout-title">Layout and composition</h2><div class="nf-grid"><article class="nf-card nf-stack"><h3>Stack</h3><p>Vertical rhythm that remains readable at narrow widths.</p></article><article class="nf-card nf-stack"><h3>Cluster</h3><div class="nf-cluster"><button type="button">Cancel</button><button type="button" data-variant="primary">Continue</button></div></article><article class="nf-card nf-stack"><h3>Grid</h3><p>Intrinsic columns create space without changing the DOM.</p></article></div></section>
 
-          <article class="nf-card nf-stack" aria-labelledby="table-title" id="activity">
-            <header class="nf-split">
-              <div class="nf-stack" data-gap="sm">
-                <h3 id="table-title">Recent project activity</h3>
-                <p class="nf-help">A dense table inside a labelled, keyboard-reachable scroll region.</p>
-              </div>
-              <button class="nf-button" type="button">Export CSV</button>
-            </header>
-            <div class="nf-table-scroll" tabindex="0" aria-label="Recent project activity table">
-              <table class="nf-table">
-                <caption>Recent project activity</caption>
-                <thead>
-                  <tr><th scope="col">Project</th><th scope="col">Owner</th><th scope="col">Status</th><th scope="col">Updated</th><th scope="col">Action</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>Northstar</td><td>Samira Khan</td><td><span class="nf-badge" data-tone="success">Complete</span></td><td>2 min ago</td><td><a href="#components">View</a></td></tr>
-                  <tr><td>Atlas</td><td>Alex Morgan</td><td><span class="nf-badge" data-tone="warning">Review</span></td><td>18 min ago</td><td><a href="#components">View</a></td></tr>
-                  <tr><td>Beacon</td><td>Unassigned</td><td><span class="nf-badge" data-tone="danger">Blocked</span></td><td>1 hour ago</td><td><a href="#components">Assign</a></td></tr>
-                </tbody>
-              </table>
-            </div>
-          </article>
+    <section class="nf-section nf-grid" id="forms" data-showcase="forms controls" aria-labelledby="forms-title"><form class="nf-form nf-card nf-stack"><h2 id="forms-title">Forms and controls</h2><label class="nf-field"><span>Email</span><input type="email" required placeholder="you@example.com" aria-describedby="email-help" /><span class="nf-help" id="email-help">We use this to send the receipt.</span></label><fieldset class="nf-field"><legend>Updates</legend><label><input type="checkbox" checked /> Send weekly summary</label><label><input type="checkbox" /> Product announcements</label></fieldset><div class="nf-cluster"><button type="submit" data-variant="primary">Subscribe</button><button type="reset">Reset</button></div><p class="nf-help" role="status" aria-live="polite">Ready.</p></form><article class="nf-card nf-stack"><h3>Invalid state</h3><p>Native validation and <code>form:has(:invalid)</code> contextual styling keep errors connected to their source.</p></article></section>
 
-          <div class="nf-grid">
-            <article class="nf-card nf-stack" aria-labelledby="surface-title">
-              <header class="nf-stack" data-gap="sm">
-                <h3 id="surface-title">Workspace health</h3>
-                <p class="nf-help">A card groups context; badges make state scannable.</p>
-              </header>
-              <div class="nf-card nf-stack" data-gap="sm">
-                <div class="nf-split"><strong>All systems operational</strong><span class="nf-badge" data-tone="success">Healthy</span></div>
-                <span class="nf-help">Last checked less than a minute ago.</span>
-              </div>
-              <aside class="nf-alert" data-tone="info" role="status">Your next scheduled report is tomorrow at 09:00.</aside>
-            </article>
+    <section class="nf-section nf-grid" id="surfaces" data-showcase="surfaces feedback" aria-labelledby="surfaces-title"><article class="nf-card nf-stack"><h2 id="surfaces-title">Surfaces and feedback</h2><p>Cards group content; alerts explain status; empty states make the next action explicit.</p><aside class="nf-alert" data-tone="success" role="status">Changes saved successfully.</aside></article><div class="nf-empty"><div class="nf-stack"><strong>No archived projects</strong><span class="nf-help">Archived projects will appear here.</span><button type="button">View active projects</button></div></div></section>
 
-            <article class="nf-card nf-stack" aria-labelledby="state-title">
-              <header class="nf-stack" data-gap="sm">
-                <h3 id="state-title">Loading and empty states</h3>
-                <p class="nf-help">Every state explains what is happening and what to do next.</p>
-              </header>
-              <section class="nf-stack" aria-live="polite">
-                <span class="nf-loading">Syncing workspace</span>
-                <progress value="64" max="100">64%</progress>
-                <div class="nf-empty">
-                  <div class="nf-stack" data-gap="sm">
-                    <strong>No archived projects</strong>
-                    <span class="nf-help">Archived projects will appear here.</span>
-                    <button class="nf-button" type="button">View active projects</button>
-                  </div>
-                </div>
-                <nav class="nf-pagination" aria-label="Project pages">
-                  <a class="nf-button" href="#components" aria-current="page">1</a>
-                  <a class="nf-button" href="#components">2</a>
-                  <a class="nf-button" href="#components">Next</a>
-                </nav>
-              </section>
-            </article>
-          </div>
+    <section class="nf-section nf-stack" id="navigation" data-showcase="navigation menus" aria-labelledby="navigation-title"><h2 id="navigation-title">Navigation and menus</h2><nav class="nf-navigation" aria-label="Workspace navigation"><a href="#layout" aria-current="page">Overview</a><details><summary>Projects</summary><div class="nf-stack" data-gap="sm"><a href="#data">Roadmap</a><a href="#data">Reports</a></div></details><a href="#forms">Settings</a></nav></section>
 
-          <div class="nf-grid">
-            <article class="nf-card nf-stack" aria-labelledby="dialog-card-title">
-              <header class="nf-stack" data-gap="sm">
-                <h3 id="dialog-card-title">Delete confirmation</h3>
-                <p class="nf-help">A native dialog keeps Escape and form closing behavior.</p>
-              </header>
-              <button class="nf-button-danger" type="button" commandfor="delete-dialog" command="show-modal">Delete Beacon</button>
-              <dialog id="delete-dialog" class="nf-dialog" closedby="any" aria-labelledby="delete-dialog-title">
-                <form method="dialog" class="nf-stack">
-                  <h3 id="delete-dialog-title">Delete Beacon?</h3>
-                  <p>This removes the project and its activity history. This action cannot be undone.</p>
-                  <div class="nf-cluster">
-                    <button class="nf-button" value="cancel">Keep project</button>
-                    <button class="nf-button-danger" value="delete">Delete Beacon</button>
-                  </div>
-                </form>
-              </dialog>
-            </article>
+    <section class="nf-section nf-stack" id="overlays" data-showcase="dialogs drawers overlays" aria-labelledby="overlays-title"><h2 id="overlays-title">Dialogs, drawers, and overlays</h2><div class="nf-cluster"><button type="button" commandfor="demo-dialog" command="show-modal" data-variant="primary">Open dialog</button><button type="button" popovertarget="demo-actions">More actions</button><dialog id="demo-dialog" aria-labelledby="dialog-title"><form method="dialog" class="nf-stack"><h3 id="dialog-title">Review changes?</h3><p>Your draft is ready to share.</p><div class="nf-cluster"><button value="cancel">Cancel</button><button value="confirm" data-variant="primary">Share</button></div></form></dialog><div id="demo-actions" popover><a href="#data">Export</a><button type="button">Archive</button></div></div></section>
 
-            <article class="nf-card nf-stack" aria-labelledby="code-title">
-              <header class="nf-stack" data-gap="sm">
-                <h3 id="code-title">Readable code</h3>
-                <p class="nf-help">Long source stays inside its own labelled region.</p>
-              </header>
-              <pre class="nf-code" tabindex="0"><code>&lt;form class="nf-form"&gt;
-  &lt;label for="email"&gt;Email address&lt;/label&gt;
-  &lt;input id="email" type="email" required&gt;
-  &lt;button class="nf-button-primary"&gt;Save&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-            </article>
-          </div>
-        </section>
-      </div>
-    </main>
-    <script type="module">
-      import { enhanceNativeInteractions } from './behavior.js';
-      enhanceNativeInteractions();
-    </script>
-  </body>
+    <section class="nf-section nf-grid" id="data" data-showcase="data content" aria-labelledby="data-title"><div class="nf-card nf-table-scroll" tabindex="0" aria-label="Recent projects"><h2 id="data-title">Data and content</h2><table><caption>Recent projects</caption><thead><tr><th scope="col">Project</th><th scope="col">Owner</th><th scope="col">Status</th></tr></thead><tbody><tr><td>Northstar</td><td>Jordan Lee</td><td><span class="nf-badge" data-tone="success">Ready</span></td></tr><tr><td>Beacon</td><td>Samira Khan</td><td><span class="nf-badge" data-tone="warning">Review</span></td></tr></tbody></table></div><article class="nf-card nf-stack"><h3>Readable by default</h3><p>Long labels wrap, tables scroll in a labelled region, and content keeps its meaning at 200% zoom.</p></article></section>
+
+    <section class="nf-section nf-stack" id="advanced" data-showcase="advanced enhancement" aria-labelledby="advanced-title"><h2 id="advanced-title">Advanced progressive enhancement</h2><p>Tabs, command palettes, comboboxes, drawers, toasts, and carousels are optional behavior layered on native markup.</p><details><summary>See the rule</summary><p class="nf-help">When JavaScript is unavailable, the content and primary task still work.</p></details></section>
+    <footer class="nf-section nf-split"><span class="nf-help">Framework-agnostic CSS · optional enhancement · visible focus</span><span class="nf-help" data-nf-theme-status role="status" aria-live="polite"></span></footer>
+   </div>
+  </main>
+  <script type="module" src="./behavior.js"></script>
+  <script>
+   const filter = document.querySelector('[data-showcase-filter]');
+   filter?.addEventListener('input', () => { const query = filter.value.trim().toLowerCase(); document.querySelectorAll('[data-showcase]').forEach((section) => { section.hidden = query && !section.dataset.showcase.includes(query); }); });
+  </script>
+ </body>
 </html>

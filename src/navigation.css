@@ -1,0 +1,6 @@
+@layer navigation {
+  :where(nav > a) { display: inline-flex; min-block-size: var(--nf-control-height); align-items: center; padding-inline: var(--nf-space-2); }
+  :where(nav > a[aria-current="page"]) { color: var(--nf-color-text); text-decoration-thickness: 2px; }
+  :where([popover]) { max-inline-size: min(22rem, calc(100vw - 2rem)); padding: var(--nf-space-2); border: var(--nf-border-width) solid var(--nf-color-border); border-radius: var(--nf-radius-md); background: var(--nf-color-surface-raised); color: var(--nf-color-text); box-shadow: var(--nf-shadow-md); }
+  :where([popover]) :is(a, button) { display: flex; inline-size: 100%; justify-content: flex-start; text-align: start; }
+}

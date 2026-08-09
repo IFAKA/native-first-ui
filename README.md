@@ -3,21 +3,74 @@
 [![CI](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-An HTML-first CSS contract library for SaaS apps, ecommerce, dashboards, landing pages, and internal tools. The complete stylesheet is **just 2.6 KB compressed**, with one entry-point stylesheet and no runtime dependency.
+Native-First UI is a tiny, framework-agnostic CSS contract for real HTML. It starts with the browser’s component model—links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—then adds safe inference, responsive layout, accessible states, and locally owned recipes.
 
-Native-First UI keeps the browser's native HTML semantics intact, then adds a compact set of responsive, accessible contracts for real product surfaces.
+```text
+semantic HTML → safe inference → tiny generated CSS → local recipes
+```
 
-### Size at a glance
+The default package entry point is `core.css`. It has no runtime dependency, keeps application shells full-width, and does not require a component naming convention.
 
-The complete bundled stylesheet is **about 2.6 KB compressed**. The npm package is **about 7.3 KB** and has **0 runtime dependencies**.
+## Current status
 
-These are practical rounded sizes for the published package. Individual layer imports are available when an application needs less than the complete contract.
+The native-first refactor is implemented and validated locally. The current release surface includes:
+
+- `core.css` as the default package export;
+- optional `layout.css`, `forms.css`, `navigation.css`, `data.css`, and `overlays.css` modules;
+- the small public layout vocabulary `nf-container`, `nf-readable`, `nf-stack`, `nf-cluster`, and `nf-grid`;
+- native element and state contracts, including visible focus, 44px touch targets, 16px mobile inputs, reduced motion, dark mode, and forced colors;
+- `nfi build`, `nfi validate`, `nfi add <recipe>`, and `nfi manifest`;
+- framework-agnostic recipes for dialog, drawer, data table, menu, tabs, forms, navigation, alerts, feedback, and related patterns;
+- a single searchable GitHub Pages showcase with copyable HTML and in-page navigation.
+
+The project is young and intentionally opinionated. Browser-level interaction coverage is still expanding; the automated suite currently validates the package contract, CSS transformation, inference output, registry, and size budgets.
+
+## Benchmarks
+
+Measured from the current generated distribution on the development machine:
+
+| Artifact | Raw | Gzip | Brotli |
+| --- | ---: | ---: | ---: |
+| `core.css` | 4,282 B | 1,336 B | 1,117 B |
+| `layout.css` | 427 B | 252 B | 207 B |
+| `forms.css` | 546 B | 262 B | 200 B |
+| `navigation.css` | 618 B | 333 B | 255 B |
+| `data.css` | 600 B | 303 B | 262 B |
+| `overlays.css` | 678 B | 339 B | 270 B |
+| generated project CSS | 716 B | 396 B | 308 B |
+
+The generated project artifact is measured after combining selected contracts and transforming them through Lightning CSS. It is not calculated by adding separately compressed files. The npm package has zero runtime dependencies.
+
+The aspirational goal is a sub-1 KB gzip core. The current core is 1.34 KB gzip while retaining the complete native foundation, theme tokens, focus treatment, control sizing, and layout vocabulary. Generated project CSS is already below the 1 KB Brotli target.
+
+## Why this project exists
+
+Native-First UI combines lessons from several excellent projects instead of pretending to replace them:
+
+- [Lit](https://lit.dev/) and [Min](https://mincss.com/) inspire byte discipline and a small surface area.
+- [New.css](https://newcss.net/) inspires classless semantic defaults that make plain HTML useful immediately.
+- [Milligram](https://milligram.io/) inspires practical controls, forms, typography, and a usable baseline.
+- [Pure.css](https://pure-css.github.io/) inspires modular CSS that can be selected instead of shipped wholesale.
+- [shadcn/ui](https://ui.shadcn.com/) inspires local ownership: recipes are copied into the project, remain editable, and do not become a hidden runtime dependency.
+- [Vercel’s Web Interface Guidelines](https://vercel.com/design/guidelines) inform the interaction, content, accessibility, loading, error, and responsive quality bar.
+- [Emil Kowalski’s design engineering work](https://animations.dev/) informs restraint: motion has a purpose, press feedback is responsive, transitions are interruptible, and reduced motion is respected.
+
+The result is not “better” than every reference at its own specialty. It is better suited to the combined goal of semantic HTML, tiny defaults, modular output, local recipe ownership, and product-grade accessibility. Compared with a large component abstraction, it ships less unused CSS and preserves native behavior. Compared with a classless stylesheet, it offers an installable compiler and richer optional recipes. Compared with a component kit, it keeps the markup and behavior in the consuming project.
 
 ## Live showcase
 
-The [Native-First UI showcase](https://ifaka.github.io/native-first-ui/) is built with this library. It demonstrates native forms, buttons, navigation, responsive layouts, dense tables, alerts, loading states, disclosure, and dialogs in one working page.
+Visit the [Native-First UI GitHub Pages showcase](https://ifaka.github.io/native-first-ui/). It is one complete, categorized page—not a collection of disconnected screenshots—with:
 
-It is intentionally a real HTML page rather than a component screenshot: inspect the markup, resize the viewport, navigate by keyboard, and open the native dialog.
+- native foundations;
+- layout and composition;
+- forms and controls;
+- surfaces and feedback;
+- navigation and menus;
+- dialogs, drawers, and overlays;
+- data and content;
+- advanced progressive enhancement.
+
+Use the search field, copy the HTML, resize the viewport, test keyboard focus, and inspect the source. The same page is available locally with `npm run serve`.
 
 ## Install
 
@@ -29,130 +82,84 @@ npm install native-first-ui
 @import "native-first-ui/core.css";
 ```
 
-The package also exports `tokens.css`, `elements.css`, `patterns.css`, `components.css`, and the optional `behavior.js` enhancement module.
-
-Use `core.css` for the complete contract, or import only the layers your page needs:
+The package root exports only `core.css`. Optional contracts are available explicitly:
 
 ```css
-@import "native-first-ui/tokens.css";
-@import "native-first-ui/elements.css";
-@import "native-first-ui/components.css";
+@import "native-first-ui/layout.css";
+@import "native-first-ui/forms.css";
+@import "native-first-ui/navigation.css";
+@import "native-first-ui/data.css";
+@import "native-first-ui/overlays.css";
 ```
 
-`core.css` is the bundled one-request entry point. The individual exports are also minified and let your build include only selected CSS layers when you do not need the complete contract.
+The dependency-free `behavior.js` module is available for recipes that need progressive enhancement. Native controls remain usable without it.
 
-## Agent workflow
+## Public API
 
-Choose semantic HTML → choose the closest `nf-` contract → compose layout patterns → customize CSS variables → add custom CSS only when no library contract exists.
-
-Native HTML remains the API. Classes add layout, states, and visual consistency; they do not replace element semantics.
-
-### Integration rules
-
-The repository includes [AGENTS.md](./AGENTS.md) and [INTEGRATION-RULES.md](./INTEGRATION-RULES.md) for teams and coding agents. They are kept out of the published npm package.
-
-## Reusable contracts
-
-| Contract | Use with | Use when | Mobile behavior |
-| --- | --- | --- | --- |
-| `nf-container` | any flow element | Center page content with a readable maximum | Full width with a small gutter |
-| `nf-page`, `nf-page-header` | `main`, `header` | Establish an application page and its heading/actions | Header wraps |
-| `nf-stack` | any flow element | Vertical rhythm | One column at every width |
-| `nf-cluster` | `div`, `nav`, `footer` | Wrapping inline actions or metadata | Items wrap naturally |
-| `nf-grid` | `section`, `div` | Responsive cards or fields | Auto-fit columns collapse |
-| `nf-sidebar` | `div`, `main` | Sidebar plus content layout | Becomes one column |
-| `nf-section`, `nf-split`, `nf-center` | any flow element | Section rhythm, split headers, and centered states | Wraps or stacks naturally |
-| `nf-navigation` | `nav` | Links with native `popover` sub-navigation | Links wrap; menus stay within viewport |
-| `nf-link`, `nf-link-muted` | `<a>` | Consistent text-link emphasis | Labels wrap and remain keyboard reachable |
-| `nf-button`, `nf-button-primary`, `nf-button-danger`, `nf-button-quiet` | `<button>` or `<a>` | Default, primary, destructive, or quiet actions | At least 44px tall and labels wrap |
-| `nf-toggle` | `<label>` containing a checkbox | Immediate on/off preferences with a visible label | Keeps the native checkbox semantics and touch target |
-| `nf-card` | `article`, `section` | Bounded surface containing related content | Width is intrinsic |
-| `nf-badge` | `span` | Compact status or category label | Long values wrap |
-| `nf-alert` | `aside`, `div` | Persistent info, success, warning, or error message | Content reflows |
-| `nf-form`, `nf-field`, `nf-help`, `nf-error` | `<form>`, `<fieldset>` | Forms and validation copy | Fields remain single-column by default |
-| `nf-table-scroll`, `nf-table` | labelled `div`, `<table>` | Dense data that cannot reflow | Scrolls horizontally in its labelled region |
-| `nf-dialog` | `<dialog>` | Confirmation or focused short task | Constrained to viewport |
-| `nf-loading`, `nf-skeleton`, `nf-empty` | status region or section | Loading, placeholder, and no-result states | Preserve a useful minimum area |
-| `nf-code` | `<pre><code>` | Readable, scrollable code blocks | Scrolls inside its own region |
-| `nf-pagination` | `nav` | Paginated collections | Controls wrap without breaking the page |
-
-Common states use native attributes: `disabled`, `required`, `aria-invalid="true"`, `aria-describedby`, `aria-current="page"`, `data-tone="success|warning|danger|info"`, and `aria-live="polite"` for changing status.
-
-## Examples
+Native HTML remains the identity of the system:
 
 ```html
-<main class="nf-page">
-  <div class="nf-container">
-    <header class="nf-page-header">
-      <div class="nf-stack" data-gap="sm">
-        <p class="nf-help">Workspace</p>
-        <h1>Projects</h1>
-      </div>
-      <button class="nf-button-primary" type="button">Create project</button>
-    </header>
-    <section class="nf-grid" aria-label="Project summary">
-      <article class="nf-card"><h2>Active</h2><p>24 projects</p></article>
-      <article class="nf-card"><h2>Completed</h2><p>108 projects</p></article>
-    </section>
-  </div>
+<main class="nf-readable">
+  <form class="nf-stack">
+    <label>
+      Email
+      <input type="email" name="email" autocomplete="email" required />
+      <small>We will send the receipt here.</small>
+    </label>
+    <button type="submit" data-variant="primary">Save</button>
+  </form>
 </main>
 ```
 
-### Native dialogs
+Use native state and attributes first, then approved variants and the small layout vocabulary. There are no role-repeating public classes such as `nf-button`, `nf-input`, `nf-card`, or `nf-dialog`.
 
-Use the browser's native dialog behavior. For current browsers, a button can invoke a dialog declaratively:
+The core includes readable typography, links, buttons, form controls, labels, fieldsets, validation, lists, tables, code, media, visible `:focus-visible`, grouped `:focus-within`, 44px targets, mobile input sizing, light/dark tokens, reduced motion, and forced-colors support.
 
-```html
-<button class="nf-button-danger" commandfor="delete-dialog" command="show-modal">Delete project</button>
-<dialog id="delete-dialog" class="nf-dialog" aria-labelledby="delete-title">
-  <form method="dialog" class="nf-stack">
-    <p id="delete-title"><strong>Delete project?</strong></p>
-    <div class="nf-cluster">
-      <button class="nf-button" value="cancel">Cancel</button>
-      <button class="nf-button-danger" value="confirm">Delete</button>
-    </div>
-  </form>
-</dialog>
+## CLI and recipes
+
+```bash
+npx nfi build
+npx nfi validate
+npx nfi manifest
+npx nfi add dialog
+npx nfi add drawer
+npx nfi add data-table
+npx nfi add tabs
+npx nfi add menu
 ```
 
-### Code blocks
+`nfi build` scans HTML, JSX, Vue, Svelte, templates, and recipes; validates registered contracts; emits only referenced native/contextual rules and tokens; transforms the result with Lightning CSS; and writes raw, gzip, Brotli, and per-contract size reports.
 
-Keep code semantics native and add `nf-code` to the block-level `<pre>`:
+`nfi add` copies a framework-agnostic recipe into `.nfi/` so its HTML, CSS contract, behavior, keyboard support, and validation notes belong to the consuming project. Recipes cover forms, tables, navigation, menus, alerts, feedback, dialog, drawer, popover, tabs, pagination, and data tables.
 
-```html
-<pre class="nf-code" tabindex="0"><code>const ready = true;</code></pre>
+## Theme and application boundary
+
+Brand the system by overriding tokens in your own layer:
+
+```css
+@layer theme {
+  :root {
+    --nf-color-accent: #6d28d9;
+    --nf-color-accent-strong: #5b21b6;
+    --nf-color-accent-ink: #ffffff;
+    --nf-radius-md: 0.75rem;
+  }
+}
 ```
 
-The `tabindex` makes wide code reachable by keyboard users; long lines scroll inside the code block instead of widening the page.
+Keep product-specific composition and behavior local. Use real links for destinations, labels for controls, `aria-live="polite"` for asynchronous status, and confirmation or undo for destructive actions.
 
-For disclosure menus, use `details`/`summary` when a disclosure is sufficient. For shadcn-style site navigation, use a native button trigger with a controlled content panel and keep destinations as real links.
-
-### Optional native behavior enhancements
-
-Keep the semantic `<nav>` and real `<a>` links, then opt into the dependency-free behavior module for the small delayed hover/focus interaction contract used by the navigation examples:
-
-```js
-import { enhanceNativeInteractions } from "native-first-ui/behavior.js";
-
-enhanceNativeInteractions();
-```
-
-The module opens `data-menu-content` panels after a short hover intent delay, keeps the parent open while the pointer crosses into nested content, closes normal sibling links, and closes the deepest level on Escape. Dialogs still get backdrop dismissal as a compatibility path.
-
-## Recipes
-
-- SaaS dashboard: `.nf-page` + `.nf-page-header` + `.nf-sidebar` + `.nf-grid` + `.nf-card`.
-- Ecommerce product page: `.nf-page` + `.nf-grid` for media/details, `.nf-badge` for stock, `.nf-button-primary` for purchase, and `.nf-alert` for fulfillment notices.
-- Landing page: `.nf-container` + `.nf-stack` for the hero, `.nf-cluster` for calls to action, and `.nf-grid` for feature cards.
-- Admin panel: `.nf-sidebar` + `.nf-navigation` + `.nf-page-header` + `.nf-table-scroll`/`.nf-table`.
-- Settings form: `.nf-form` + `.nf-field`, explicit `<label>` elements, `.nf-help`, and `.nf-error` linked with `aria-describedby`.
-- Data-heavy workspace: a labelled, focusable `.nf-table-scroll` around `.nf-table`; keep filters in an `.nf-cluster` and announce async updates with `aria-live="polite"`.
-
-## Customization and conformance
-
-Override the `--nf-*` variables in your own layer for branding. The defaults include light/dark themes, forced-colors borders, visible focus, and 44px controls. The example at `examples/index.html` composes the public contracts with native HTML; it is not a separate catalog component system.
+## Development
 
 ```bash
 npm test
 npm run serve
+npm run pages:build
+npm run pack:check
 ```
+
+`npm test` builds the generated contract, compiles the package, audits the public API, validates the package, checks sizes, and audits CSS minimality. `pages:build` prepares the GitHub Pages artifact in `.pages/`.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

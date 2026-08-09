@@ -1,0 +1,15 @@
+import { readFile, writeFile } from "node:fs/promises";
+const root = new URL("..", import.meta.url);
+const files = ["src/core.css","src/tokens.css","src/elements.css","src/layout.css","src/forms.css","src/navigation.css","src/data.css","src/overlays.css","README.md","examples/index.html","site/index.html"];
+const contents = await Promise.all(files.map(async (file) => [file, await readFile(new URL(file, root), "utf8")]));
+const failures = [];
+const css = contents.filter(([file]) => file.startsWith("src/")).map(([, value]) => value).join("\n");
+const classes = [...new Set([...css.matchAll(/\.((?:nf|data-nf)-[a-z0-9-]+)/g)].map(([, name]) => name))];
+const forbidden = classes.filter((name) => /^nf-(button|input|select|textarea|table|dialog|heading|link)$/.test(name));
+if (forbidden.length) failures.push(`role-repeating selectors: ${forbidden.join(", ")}`);
+if (!css.includes("min-block-size: 44px") && !css.includes("min-block-size:44px")) failures.push("missing 44px control contract");
+if (!css.includes(":focus-visible") || !css.includes("prefers-reduced-motion")) failures.push("missing focus or reduced-motion contract");
+if (contents.some(([file, value]) => file.startsWith("src/") && /transition:\s*all/.test(value))) failures.push("transition: all is not allowed");
+await writeFile(new URL("docs/PUBLIC-API-AUDIT.md", root), `# Public API audit\n\n- Public class selectors: ${classes.length}\n- Forbidden role selectors: ${forbidden.length}\n\n${failures.length ? failures.map((failure) => `- ${failure}`).join("\n") : "No failures."}\n`);
+if (failures.length) throw new Error(`Public API audit failed:\n${failures.join("\n")}`);
+console.log(`Public API audit passed: ${classes.length} selectors.`);

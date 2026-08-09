@@ -4,7 +4,7 @@ import { stat } from "node:fs/promises";
 import { extname, join, relative, resolve } from "node:path";
 
 const root = resolve(new URL("..", import.meta.url).pathname);
-const mime = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript" };
+const mime = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".json": "application/json" };
 
 createServer(async (request, response) => {
   if (request.method !== "GET" && request.method !== "HEAD") {
@@ -14,7 +14,12 @@ createServer(async (request, response) => {
   }
 
   const requested = new URL(request.url ?? "/", "http://localhost").pathname;
-  const target = requested === "/" ? "/examples/index.html" : requested;
+  const normalized = requested === "/native-first-ui.css"
+    ? "/dist/core.css"
+    : requested === "/behavior.js"
+      ? "/dist/behavior.js"
+      : requested;
+  const target = normalized === "/" ? "/site/index.html" : normalized;
   const path = resolve(join(root, `.${target}`));
   if (relative(root, path).startsWith("..")) {
     response.writeHead(403);

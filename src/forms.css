@@ -1,0 +1,7 @@
+@layer forms {
+  :where(form > label) { display: grid; gap: var(--nf-space-2); font-weight: 650; }
+  :where(form > label > input, form > label > select, form > label > textarea) { inline-size: 100%; margin-block-start: var(--nf-space-1); }
+  :where(fieldset > legend) { padding-inline: var(--nf-space-2); font-weight: 650; }
+  :where(input + small, textarea + small, select + small) { display: block; margin-block-start: var(--nf-space-1); color: var(--nf-color-muted); font-size: var(--nf-text-sm); }
+  :where(form:has(:invalid)) :where(input:invalid, select:invalid, textarea:invalid) { border-color: var(--nf-color-danger); }
+}
