@@ -15,7 +15,7 @@
   .nf-navigation details[open] > summary::after { transform: translateY(0.12em) rotate(225deg); }
   .nf-navigation-children { display: grid; gap: var(--nf-space-1); }
   .nf-navigation > details > .nf-navigation-children { position: absolute; top: calc(100% + var(--nf-space-1)); z-index: 1; width: max-content; max-width: min(22rem, calc(100vw - 2rem)); padding: var(--nf-space-2); border: var(--nf-border-width) solid var(--nf-color-border); border-radius: var(--nf-radius-md); background: var(--nf-color-surface-raised); box-shadow: var(--nf-shadow-md); }
-  .nf-navigation-children details > .nf-navigation-children { position: absolute; inset-block-start: calc(-1 * var(--nf-space-2)); inset-inline-start: calc(100% + var(--nf-space-1)); z-index: 1; width: max-content; max-width: min(22rem, calc(100vw - 2rem)); padding: var(--nf-space-2); border: var(--nf-border-width) solid var(--nf-color-border); border-radius: var(--nf-radius-md); background: var(--nf-color-surface-raised); box-shadow: var(--nf-shadow-md); }
+  .nf-navigation-children details > .nf-navigation-children { padding-inline-start: var(--nf-space-3); border-inline-start: var(--nf-border-width) solid var(--nf-color-border); }
   .nf-navigation-children details > summary { width: 100%; justify-content: space-between; }
   .nf-navigation-children details > summary::after { transform: translateY(-0.12em) rotate(-45deg); }
   .nf-navigation-children details[open] > summary::after { transform: translateY(0.12em) rotate(135deg); }
@@ -48,6 +48,7 @@
   .nf-form > fieldset.nf-field > label { display: flex; align-items: center; gap: var(--nf-space-3); min-block-size: var(--nf-control-height); padding: var(--nf-space-2) var(--nf-space-3); border: var(--nf-border-width) solid transparent; border-radius: var(--nf-radius-sm); font-weight: 500; }
   .nf-form > fieldset.nf-field > label:hover { background: color-mix(in srgb, var(--nf-color-accent) 7%, transparent); }
   .nf-form > fieldset.nf-field input[type="radio"] { flex: 0 0 auto; inline-size: 1.25rem; block-size: 1.25rem; margin: 0; accent-color: var(--nf-color-accent); }
+  .nf-form > label { display: flex; align-items: center; gap: var(--nf-space-3); min-block-size: var(--nf-control-height); }
   .nf-help { color: var(--nf-color-muted); font-size: var(--nf-text-sm); }
   .nf-error { color: var(--nf-color-danger); font-size: var(--nf-text-sm); }
   .nf-table { width: 100%; min-width: 42rem; border-collapse: collapse; background: var(--nf-color-surface); }
