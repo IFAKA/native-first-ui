@@ -3,81 +3,118 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Native-First UI is a tiny, dependency-free CSS library for accessible, responsive interfaces built with semantic native HTML." />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="author" content="IFAKA" />
-    <meta name="theme-color" content="#101419" />
-    <link rel="canonical" href="https://ifaka.github.io/native-first-ui/" />
+    <meta name="description" content="Native-First UI component examples." />
     <link rel="stylesheet" href="./native-first-ui.css" />
-    <title>Native-First UI — accessible CSS contracts for real HTML</title>
+    <title>Native-First UI components</title>
   </head>
   <body>
-    <header class="nf-container nf-page-header">
-      <a href="./"><strong>Native-First UI</strong></a>
-      <nav class="nf-navigation" aria-label="Primary navigation">
-        <a href="#components">Components</a>
+    <main class="nf-container nf-stack">
+      <header class="nf-page-header">
+        <h1>Components</h1>
         <a href="https://github.com/IFAKA/native-first-ui">GitHub</a>
-      </nav>
-    </header>
+      </header>
 
-    <main class="nf-page">
-      <div class="nf-container nf-stack">
-        <section class="nf-grid" aria-labelledby="hero-title">
-          <div class="nf-stack">
-            <p class="nf-help">A tiny CSS layer for product teams</p>
-            <h1 id="hero-title">Ship the interface.<br /><span>Keep the HTML.</span></h1>
-            <p class="nf-readable">Accessible forms, navigation, tables, dialogs, and responsive layouts — without a framework or runtime dependency.</p>
-            <div class="nf-cluster">
-              <a class="nf-button-primary" href="#components">Browse components <span aria-hidden="true">↓</span></a>
-              <a class="nf-link" href="https://github.com/IFAKA/native-first-ui">Read the source</a>
+      <div class="nf-grid" id="components">
+        <article class="nf-card nf-stack">
+          <h2>Buttons</h2>
+          <div class="nf-cluster">
+            <button class="nf-button" type="button">Cancel</button>
+            <button class="nf-button-primary" type="button">Save</button>
+            <button class="nf-button-danger" type="button">Delete</button>
+          </div>
+          <code>.nf-button</code>
+        </article>
+
+        <article class="nf-card nf-stack">
+          <h2>Form fields</h2>
+          <form class="nf-form" onsubmit="event.preventDefault(); this.querySelector('[role=status]').textContent = 'Saved.'">
+            <div class="nf-field">
+              <label for="component-email">Email address</label>
+              <input id="component-email" type="email" placeholder="you@example.com" required />
+              <span class="nf-help">We will never share it.</span>
             </div>
-            <p class="nf-help">Works with the browser's native behavior. Add only the contracts you need.</p>
-          </div>
+            <button class="nf-button-primary" type="submit">Save settings</button>
+            <span class="nf-help" role="status" aria-live="polite">Ready.</span>
+          </form>
+          <code>.nf-form · .nf-field</code>
+        </article>
 
-          <aside class="nf-card" aria-label="Live component preview">
-            <div class="nf-split"><strong>workspace.html</strong><span class="nf-help">Live example</span></div>
-            <form class="nf-form" onsubmit="event.preventDefault(); document.querySelector('#hero-status').textContent = 'Saved. Native form behavior, styled.'">
-              <div class="nf-field"><label for="hero-name">Workspace name</label><input id="hero-name" value="Northstar" /></div>
-              <div class="nf-field"><label for="hero-plan">Plan</label><select id="hero-plan"><option>Starter</option><option selected>Growth</option><option>Scale</option></select></div>
-              <div class="nf-cluster"><button class="nf-button-primary" type="submit">Save changes</button><button class="nf-button" type="reset">Reset</button></div>
-              <p class="nf-help" id="hero-status" role="status" aria-live="polite">Ready to ship.</p>
-            </form>
+        <article class="nf-card nf-stack">
+          <h2>Navigation</h2>
+          <nav class="nf-navigation" aria-label="Component navigation">
+            <a href="#components" aria-current="page">Projects</a>
+            <a href="#components">Activity</a>
+            <details>
+              <summary>More</summary>
+              <div class="nf-navigation-children"><a href="#components">Settings</a></div>
+            </details>
+          </nav>
+          <code>.nf-navigation</code>
+        </article>
+
+        <article class="nf-card nf-stack">
+          <h2>Cards &amp; badges</h2>
+          <div class="nf-card nf-stack" data-gap="sm">
+            <strong>Workspace health</strong>
+            <span class="nf-badge" data-tone="success">Operational</span>
+            <span class="nf-help">All services are responding normally.</span>
+          </div>
+          <code>.nf-card · .nf-badge</code>
+        </article>
+
+        <article class="nf-card nf-stack">
+          <h2>Tables</h2>
+          <div class="nf-table-scroll" tabindex="0" aria-label="Recent project activity">
+            <table class="nf-table">
+              <caption>Recent activity</caption>
+              <thead><tr><th scope="col">Project</th><th scope="col">Status</th></tr></thead>
+              <tbody>
+                <tr><td>Northstar</td><td><span class="nf-badge" data-tone="success">Active</span></td></tr>
+                <tr><td>Atlas</td><td><span class="nf-badge" data-tone="warning">Review</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <code>.nf-table</code>
+        </article>
+
+        <article class="nf-card nf-stack">
+          <h2>Messages &amp; states</h2>
+          <span class="nf-badge" data-tone="success">Complete</span>
+          <aside class="nf-alert" data-tone="warning" role="status">
+            <strong>Needs attention</strong>
+            <span>One project is missing an owner.</span>
           </aside>
-        </section>
+          <code>.nf-alert · .nf-badge</code>
+        </article>
 
-        <dl class="nf-grid" aria-label="Library highlights">
-          <div><dt>2.6 KB</dt><dd>complete CSS, Brotli</dd></div>
-          <div><dt>20+</dt><dd>focused contracts</dd></div>
-          <div><dt>0</dt><dd>runtime dependencies</dd></div>
-          <div><dt>100%</dt><dd>semantic HTML</dd></div>
-        </dl>
+        <article class="nf-card nf-stack">
+          <h2>Dialogs</h2>
+          <button class="nf-button-danger" type="button" onclick="document.querySelector('#demo-dialog').showModal()">Open confirmation</button>
+          <dialog id="demo-dialog" class="nf-dialog" aria-labelledby="demo-dialog-title">
+            <form method="dialog" class="nf-stack">
+              <h2 id="demo-dialog-title">Archive this workspace?</h2>
+              <p>It will remain available in your archive.</p>
+              <div class="nf-cluster">
+                <button class="nf-button" value="cancel">Cancel</button>
+                <button class="nf-button-danger" value="archive">Archive workspace</button>
+              </div>
+            </form>
+          </dialog>
+          <code>.nf-dialog</code>
+        </article>
 
-        <section class="nf-card nf-stack" id="components" aria-labelledby="components-title">
-          <div class="nf-split">
-            <div class="nf-stack" data-gap="sm"><p class="nf-help">The useful surface</p><h2 id="components-title">Drop-in patterns for everyday UI.</h2></div>
-            <p class="nf-readable">Each example below is real HTML. Try the controls, then copy the small class contract.</p>
-          </div>
-
-          <div class="nf-grid">
-            <article class="nf-card nf-stack"><h3>Buttons</h3><p>Clear hierarchy for ordinary, important, and destructive actions.</p><div class="nf-cluster"><button class="nf-button" type="button">Cancel</button><button class="nf-button-primary" type="button">Save</button><button class="nf-button-danger" type="button">Delete</button></div><code>.nf-button-primary</code></article>
-            <article class="nf-card nf-stack"><h3>Form fields</h3><p>Labels, native controls, help text, and status in one readable flow.</p><form class="nf-form" onsubmit="event.preventDefault(); this.querySelector('[role=status]').textContent = 'Thanks — saved.'"><div class="nf-field"><label for="component-email">Email address</label><input id="component-email" type="email" placeholder="you@example.com" required /><span class="nf-help">We will never share it.</span></div><button class="nf-button-primary" type="submit">Save settings</button><span class="nf-help" role="status" aria-live="polite">Ready.</span></form><code>.nf-form · .nf-field</code></article>
-            <article class="nf-card nf-stack"><h3>Navigation</h3><p>Real links, visible current state, and native nested disclosure.</p><nav class="nf-navigation" aria-label="Component navigation"><a href="#components" aria-current="page">Projects</a><a href="#components">Activity</a><details><summary>More</summary><div class="nf-navigation-children"><a href="#components">Settings</a></div></details></nav><code>.nf-navigation</code></article>
-            <article class="nf-card nf-stack"><h3>Cards &amp; badges</h3><p>Group related information and make state obvious at a glance.</p><div class="nf-card nf-stack" data-gap="sm"><div class="nf-split"><strong>Workspace health</strong><span class="nf-badge" data-tone="success">Operational</span></div><span class="nf-help">All services are responding normally.</span></div><code>.nf-card · .nf-badge</code></article>
-            <article class="nf-card nf-stack"><h3>Tables</h3><p>Relational data stays readable inside a labelled scroll region.</p><div class="nf-table-scroll" tabindex="0" aria-label="Recent project activity"><table class="nf-table"><caption>Recent activity</caption><thead><tr><th scope="col">Project</th><th scope="col">Status</th></tr></thead><tbody><tr><td>Northstar</td><td><span class="nf-badge" data-tone="success">Active</span></td></tr><tr><td>Atlas</td><td><span class="nf-badge" data-tone="warning">Review</span></td></tr></tbody></table></div><code>.nf-table</code></article>
-            <article class="nf-card nf-stack"><h3>Messages &amp; states</h3><p>Loading, empty, and attention states are explained with text.</p><div class="nf-stack" data-gap="sm"><span class="nf-badge" data-tone="success">Complete</span><aside class="nf-alert" data-tone="warning" role="status"><strong>Needs attention</strong><span>One project is missing an owner.</span></aside></div><code>.nf-alert · .nf-badge</code></article>
-            <article class="nf-card nf-stack"><h3>Dialogs</h3><p>Native confirmation with Escape and form close behavior.</p><button class="nf-button-danger" type="button" onclick="document.querySelector('#demo-dialog').showModal()">Open confirmation</button><dialog id="demo-dialog" class="nf-dialog" aria-labelledby="demo-dialog-title"><form method="dialog" class="nf-stack"><h3 id="demo-dialog-title">Archive this workspace?</h3><p>It will remain available in your archive.</p><div class="nf-cluster"><button class="nf-button" value="cancel">Cancel</button><button class="nf-button-danger" value="archive">Archive workspace</button></div></form></dialog><code>.nf-dialog</code></article>
-            <article class="nf-card nf-stack"><h3>Async states</h3><p>Small contracts for progress, loading, and pagination.</p><div class="nf-stack" data-gap="sm"><span class="nf-loading">Syncing workspace</span><progress value="64" max="100">64%</progress><nav class="nf-pagination" aria-label="Pagination"><a class="nf-button" href="#components" aria-current="page">1</a><a class="nf-button" href="#components">2</a><a class="nf-button" href="#components">Next</a></nav></div><code>.nf-loading · progress</code></article>
-          </div>
-        </section>
-
-        <section class="nf-card nf-stack" aria-labelledby="cta-title">
-          <div class="nf-stack" data-gap="sm"><p class="nf-help">Start with the source</p><h2 id="cta-title">Use the HTML you already know.</h2><p>Import the complete layer, or choose only the contracts you need. No build step. No lock-in.</p></div>
-          <pre class="nf-code" tabindex="0"><code>@import "native-first-ui/core.css";</code></pre>
-          <div class="nf-cluster"><a class="nf-button-primary" href="https://github.com/IFAKA/native-first-ui">Read the integration rules</a><a class="nf-link" href="https://github.com/IFAKA/native-first-ui">View on GitHub</a></div>
-        </section>
+        <article class="nf-card nf-stack">
+          <h2>Async states</h2>
+          <span class="nf-loading">Syncing workspace</span>
+          <progress value="64" max="100">64%</progress>
+          <nav class="nf-pagination" aria-label="Pagination">
+            <a class="nf-button" href="#components" aria-current="page">1</a>
+            <a class="nf-button" href="#components">2</a>
+            <a class="nf-button" href="#components">Next</a>
+          </nav>
+          <code>.nf-loading · progress</code>
+        </article>
       </div>
     </main>
-
-    <footer class="nf-container nf-split"><span>Native-First UI · MIT licensed</span><span>Built with semantic HTML</span></footer>
   </body>
 </html>
