@@ -3,12 +3,12 @@
 [![CI](https://github.com/IFAKA/pith/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/pith/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Pith is a tiny, framework-agnostic CSS framework for semantic HTML, accessible UI, and responsive layouts. Build product-grade interfaces without a framework tax: generated project CSS can be as small as **396 B gzip / 308 B Brotli**, with zero runtime dependencies and optional recipes when you need more.
+Pith is a tiny, framework-agnostic CSS framework for semantic HTML, accessible UI, and responsive layouts. Build product-grade interfaces with zero runtime dependencies and optional recipes when you need more.
 
-You keep the browser’s strengths—real links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—and get the details production interfaces need: safe inference, responsive layout, visible focus, resilient control states, and locally owned recipes. The result is less shipped code, less lock-in, and a UI foundation your team can actually understand.
+You keep the browser’s strengths—real links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—and get responsive layout, visible focus, resilient control states, and locally owned recipes.
 
 ```text
-semantic HTML → safe inference → tiny generated CSS → local recipes
+semantic HTML → tiny CSS contracts → local recipes
 ```
 
 The default package entry point is `core.css`. It has no runtime dependency, keeps application shells full-width, and does not require a component naming convention.
@@ -18,14 +18,13 @@ The default package entry point is `core.css`. It has no runtime dependency, kee
 The Pith refactor is implemented and validated locally. The current release surface includes:
 
 - `core.css` as the default package export;
-- optional `layout.css`, `forms.css`, `navigation.css`, `data.css`, and `overlays.css` modules;
+- optional `layout.css`, `forms.css`, `navigation.css`, `data.css`, `overlays.css`, and `components.css` modules;
 - the small public layout vocabulary `nf-container`, `nf-readable`, `nf-stack`, `nf-cluster`, and `nf-grid`;
 - native element and state contracts, including visible focus, 44px touch targets, 16px mobile inputs, reduced motion, dark mode, and forced colors;
-- `nfi build`, `nfi validate`, `nfi add <recipe>`, and `nfi manifest`;
-- framework-agnostic recipes for dialog, drawer, data table, menu, tabs, forms, navigation, alerts, feedback, and related patterns;
+- framework-agnostic recipes for dialog, drawer, data table, menu, tabs, forms, navigation, alerts, and feedback;
 - a single interactive GitHub Pages showcase with copyable HTML and in-page navigation.
 
-The library is intentionally small and opinionated. Its automated suite validates the package contract, CSS transformation, inference output, registry, and size budgets.
+The library is intentionally small and opinionated. Its automated suite validates the package contract, CSS transformation, and size budgets.
 
 ## Benchmarks
 
@@ -33,31 +32,27 @@ Measured from the current generated distribution on the development machine:
 
 | Artifact | Raw | Gzip | Brotli |
 | --- | ---: | ---: | ---: |
-| `core.css` | 6,112 B | 1,821 B | 1,549 B |
+| `core.css` | 4,905 B | 1,470 B | 1,223 B |
 | `layout.css` | 1,283 B | 547 B | 463 B |
 | `forms.css` | 663 B | 302 B | 239 B |
 | `navigation.css` | 618 B | 333 B | 255 B |
 | `data.css` | 600 B | 303 B | 262 B |
 | `overlays.css` | 1,375 B | 515 B | 434 B |
-| generated project CSS | 716 B | 396 B | 308 B |
-
-The generated project artifact is measured after combining selected contracts and transforming them through Lightning CSS. It is not calculated by adding separately compressed files. The npm package has zero runtime dependencies.
-
-The aspirational goal is a sub-1 KB gzip core. The current core is 1.82 KB gzip while retaining the complete native foundation, explicit theme tokens, focus treatment, control sizing, mobile action layout, and layout vocabulary. Generated project CSS is already below the 1 KB Brotli target.
+The npm package has zero runtime dependencies. Optional layers are shipped separately so consumers can load only what their markup needs.
 
 ### Comparable CSS gzip sizes
 
-This comparison uses direct CSS distributions only. Pith is measured as generated project CSS; the other figures are full or default framework distributions.
+This comparison uses direct CSS distributions only. Pith is measured as its core stylesheet; the other figures are full or default framework distributions.
 
 | Project | Gzip | README |
 | --- | ---: | --- |
-| [**Pith**](https://ifaka.github.io/pith/) | **396 B** | [README](https://github.com/IFAKA/pith#readme) |
+| [**Pith**](https://ifaka.github.io/pith/) | **1.47 KB** | [README](https://github.com/IFAKA/pith#readme) |
 | [Milligram](https://milligram.io/) | ≈2 KB | [README](https://github.com/milligram/milligram#readme) |
 | [Pure.css](https://pure-css.github.io/) | ≈3.5 KB | [README](https://github.com/pure-css/pure#readme) |
 | [Bootstrap](https://getbootstrap.com/) | ≈28 KB | [README](https://github.com/twbs/bootstrap#readme) |
 | [Bulma](https://bulma.io/) | 77.8 KB | [README](https://github.com/jgthms/bulma#readme) |
 
-Pith's generated output is measured after combining only the contracts used by a project and transforming them through Lightning CSS. The Bulma figure comes from [Bundlephobia](https://bundlephobia.com/); the other comparison figures are linked from the project documentation or published size notes.
+The Bulma figure comes from [Bundlephobia](https://bundlephobia.com/); the other comparison figures are linked from the project documentation or published size notes.
 
 ## Why this project exists
 
@@ -98,7 +93,7 @@ npm install pith-css
 @import "pith-css/core.css";
 ```
 
-The package root exports only `core.css`. Optional contracts are available explicitly:
+The package root exports `core.css`. Optional contracts are available explicitly:
 
 ```css
 @import "pith-css/layout.css";
@@ -106,19 +101,10 @@ The package root exports only `core.css`. Optional contracts are available expli
 @import "pith-css/navigation.css";
 @import "pith-css/data.css";
 @import "pith-css/overlays.css";
+@import "pith-css/components.css";
 ```
 
 The dependency-free `behavior.js` module is available for recipes that need progressive enhancement. Native controls remain usable without it.
-
-## Install the project skills for Codex
-
-The repository includes its own `$pith` skill in [`.agents/skills/pith/`](.agents/skills/pith/). Install it into the current Codex skills directory with:
-
-```bash
-npm run install:skills
-```
-
-`npm run setup:skills` remains available as an alias. The command copies the repository-owned `$pith` skill into `${CODEX_HOME:-~/.codex}/skills` without replacing the original `$emil-design-eng` skill installed from `emilkowalski/skill`. Start a new agent session after installing so the skill catalog is refreshed.
 
 ## Public API
 
@@ -141,22 +127,9 @@ Use native state and attributes first, then approved variants and the small layo
 
 The core includes readable typography, links, buttons, form controls, labels, fieldsets, validation, lists, tables, code, media, visible `:focus-visible`, grouped `:focus-within`, 44px targets, mobile input sizing, light/dark tokens, reduced motion, and forced-colors support.
 
-## CLI and recipes
+## Recipes
 
-```bash
-npx nfi build
-npx nfi validate
-npx nfi manifest
-npx nfi add dialog
-npx nfi add drawer
-npx nfi add data-table
-npx nfi add tabs
-npx nfi add menu
-```
-
-`nfi build` scans HTML, JSX, Vue, Svelte, templates, and recipes; validates registered patterns; emits only referenced native/contextual rules and tokens; transforms the result with Lightning CSS; and writes raw, gzip, Brotli, and per-pattern size reports.
-
-`nfi add` copies a framework-agnostic recipe into `.nfi/` so its HTML, CSS contract, behavior, keyboard support, and validation notes belong to the consuming project. Recipes cover forms, tables, navigation, menus, alerts, feedback, dialog, drawer, popover, tabs, pagination, and data tables.
+Recipes are copyable HTML in `recipes/`. They keep product-specific markup and behavior in the consuming project while using the same native-first contracts as the library.
 
 ## Theme and application boundary
 

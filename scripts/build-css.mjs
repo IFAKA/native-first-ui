@@ -3,18 +3,18 @@ import { brotliCompressSync, gzipSync } from "node:zlib";
 import { transform } from "lightningcss";
 
 const root = new URL("..", import.meta.url);
-const layers = ["tokens", "elements", "layout", "forms", "navigation", "data", "overlays"];
+const layers = ["tokens", "elements", "layout", "forms", "navigation", "data", "overlays", "components"];
 const targets = { chrome: 110 << 16, firefox: 110 << 16, safari: 16 << 16 };
 const source = Object.fromEntries(await Promise.all(layers.map(async (name) => [name, await readFile(new URL(`src/${name}.css`, root), "utf8")] )));
 const compile = (name, css) => transform({ filename: `${name}.css`, code: Buffer.from(css), minify: true, drafts: { nesting: true }, targets }).code;
 const compressed = (bytes) => ({ raw: bytes.byteLength, gzip: gzipSync(bytes, { level: 9 }).byteLength, brotli: brotliCompressSync(bytes, { params: { [Symbol.for("BROTLI_PARAM_QUALITY")]: 11 } }).byteLength });
 
 await mkdir(new URL("dist/", root), { recursive: true });
-for (const stale of ["base.css", "tokens.css", "elements.css", "patterns.css", "components.css", "workbench.css"]) {
+for (const stale of ["base.css", "tokens.css", "elements.css", "patterns.css", "components.css", "workbench.css", "project.css", "project.css.br", "project.css.gz"]) {
   await rm(new URL(`dist/${stale}`, root), { force: true });
 }
 await writeFile(new URL("dist/behavior.js", root), await readFile(new URL("src/behavior.js", root)));
-const core = compile("core", `@layer reset,tokens,elements,layout,utilities;${source.tokens}${source.elements}${source.layout}`);
+const core = compile("core", `@layer reset,tokens,elements,layout,forms,navigation,data,overlays,components,utilities;${source.tokens}${source.elements}`);
 await writeFile(new URL("dist/core.css", root), core);
 const report = { core: compressed(core) };
 for (const name of layers.slice(2)) {

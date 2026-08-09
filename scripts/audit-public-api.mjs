@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 const root = new URL("..", import.meta.url);
-const files = ["src/core.css","src/tokens.css","src/elements.css","src/layout.css","src/forms.css","src/navigation.css","src/data.css","src/overlays.css","README.md","examples/index.html","site/index.html"];
+const files = ["src/core.css","src/tokens.css","src/elements.css","src/layout.css","src/forms.css","src/navigation.css","src/data.css","src/overlays.css","src/components.css","README.md","site/index.html"];
 const contents = await Promise.all(files.map(async (file) => [file, await readFile(new URL(file, root), "utf8")]));
 const failures = [];
 const css = contents.filter(([file]) => file.startsWith("src/")).map(([, value]) => value).join("\n");

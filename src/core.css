@@ -1,5 +1,4 @@
-@layer reset, tokens, elements, layout, forms, navigation, data, overlays, utilities;
+@layer reset, tokens, elements, layout, forms, navigation, data, overlays, components, utilities;
 
 @import "./tokens.css" layer(tokens);
 @import "./elements.css" layer(elements);
-@import "./layout.css" layer(layout);

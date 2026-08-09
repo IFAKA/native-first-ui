@@ -1,15 +1,13 @@
 import { readFile } from "node:fs/promises";
 const root = new URL("..", import.meta.url);
 const packageJson = JSON.parse(await readFile(new URL("package.json", root), "utf8"));
-const required = ["src/core.css","src/layout.css","src/forms.css","src/navigation.css","src/data.css","src/overlays.css","class-manifest.json","agent-rules.md","registry.json","examples/index.html","site/index.html"];
+const required = ["src/core.css","src/layout.css","src/forms.css","src/navigation.css","src/data.css","src/overlays.css","src/components.css","site/index.html"];
 for (const file of required) await readFile(new URL(file, root));
-for (const exportPath of [".","./core.css","./layout.css","./forms.css","./navigation.css","./data.css","./overlays.css","./behavior.js","./class-manifest.json"]) if (!packageJson.exports[exportPath]) throw new Error(`Missing public export: ${exportPath}`);
-if (Object.keys(packageJson.exports).some((key) => /patterns|components|base|tokens|elements/.test(key))) throw new Error("Package root contains legacy CSS exports");
+for (const exportPath of [".","./core.css","./layout.css","./forms.css","./navigation.css","./data.css","./overlays.css","./components.css","./behavior.js"]) if (!packageJson.exports[exportPath]) throw new Error(`Missing public export: ${exportPath}`);
 const core = await readFile(new URL("src/core.css", root), "utf8");
 const layout = await readFile(new URL("src/layout.css", root), "utf8");
 for (const name of ["nf-container","nf-readable","nf-stack","nf-cluster","nf-grid"]) if (!layout.includes(name)) throw new Error(`Missing layout contract: ${name}`);
-const html = await readFile(new URL("examples/index.html", root), "utf8");
+const html = await readFile(new URL("site/index.html", root), "utf8");
 for (const marker of ["<main","<form","<table","<dialog","aria-live"]) if (!html.includes(marker)) throw new Error(`Missing showcase marker: ${marker}`);
-if (html.includes("/components/")) throw new Error("Legacy components route remains");
 for (const recipe of ["dialog","drawer","data-table","menu","mobile-actions"]) for (const file of ["snippet.html","README.md","metadata.json"]) await readFile(new URL(`recipes/${recipe}/${file}`, root));
 console.log(`Validated Pith package (${required.length} required files)`);

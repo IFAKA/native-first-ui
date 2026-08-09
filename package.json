@@ -1,7 +1,7 @@
 {
   "name": "pith-css",
   "version": "0.1.0",
-  "description": "Tiny, framework-agnostic CSS framework for semantic HTML and accessible responsive UI, as small as 308 B Brotli with zero runtime dependencies.",
+  "description": "Tiny, framework-agnostic CSS framework for semantic HTML and accessible responsive UI with zero runtime dependencies.",
   "license": "MIT",
   "type": "module",
   "repository": {
@@ -41,26 +41,17 @@
     "./navigation.css": "./dist/navigation.css",
     "./data.css": "./dist/data.css",
     "./overlays.css": "./dist/overlays.css",
-    "./behavior.js": "./dist/behavior.js",
-    "./class-manifest.json": "./class-manifest.json"
+    "./components.css": "./dist/components.css",
+    "./behavior.js": "./dist/behavior.js"
   },
   "scripts": {
     "build:css": "node scripts/build-css.mjs",
-    "nfi": "node scripts/nfi.mjs",
-    "nfi:build": "node scripts/nfi.mjs build",
-    "nfi:validate": "node scripts/nfi.mjs validate",
-    "nfi:manifest": "node scripts/nfi.mjs manifest",
-    "nfi:add": "node scripts/nfi.mjs add",
-    "test": "npm run nfi:build && npm run build:css && node scripts/audit-public-api.mjs && node scripts/validate-package.mjs && npm run size:check && npm run css:audit",
-    "css:audit": "node scripts/audit-css-minimality.mjs",
-    "transpile:all": "node scripts/transpile-all.mjs",
+    "test": "npm run build:css && node scripts/audit-public-api.mjs && node scripts/validate-package.mjs && npm run size:check",
     "size:check": "node scripts/check-size.mjs",
     "pack:check": "npm pack --dry-run",
     "pages:build": "npm run build:css && node scripts/build-pages.mjs",
     "prepack": "npm run build:css",
-    "serve": "node scripts/serve-example.mjs",
-    "setup:skills": "node scripts/install-skills.mjs",
-    "install:skills": "node scripts/install-skills.mjs"
+    "serve": "node scripts/serve-example.mjs"
   },
   "devDependencies": {
     "lightningcss": "^1.33.0"
