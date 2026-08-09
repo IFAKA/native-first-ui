@@ -52,8 +52,8 @@ Native-First UI combines lessons from several excellent projects instead of pret
 - [Milligram](https://milligram.io/) inspires practical controls, forms, typography, and a usable baseline.
 - [Pure.css](https://pure-css.github.io/) inspires modular CSS that can be selected instead of shipped wholesale.
 - [shadcn/ui](https://ui.shadcn.com/) inspires local ownership: recipes are copied into the project, remain editable, and do not become a hidden runtime dependency.
-- [Vercel’s Web Interface Guidelines](https://vercel.com/design/guidelines) inform the interaction, content, accessibility, loading, error, and responsive quality bar.
-- [Emil Kowalski’s design engineering work](https://animations.dev/) informs restraint: motion has a purpose, press feedback is responsive, transitions are interruptible, and reduced motion is respected.
+- Product-quality interaction guidance informs the interaction, content, accessibility, loading, error, and responsive quality bar.
+- Motion stays restrained: it has a purpose, press feedback is responsive, transitions are interruptible, and reduced motion is respected.
 
 The result is not “better” than every reference at its own specialty. It is better suited to the combined goal of semantic HTML, tiny defaults, modular output, local recipe ownership, and product-grade accessibility. Compared with a large component abstraction, it ships less unused CSS and preserves native behavior. Compared with a classless stylesheet, it offers an installable compiler and richer optional recipes. Compared with a component kit, it keeps the markup and behavior in the consuming project.
 
