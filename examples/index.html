@@ -115,7 +115,7 @@
         dialogs: { label: "Dialogs", contract: "dialog + command", when: "Use a native dialog for a focused confirmation. Current browsers can open and close it declaratively.", a11y: ["Give the dialog an accessible name.", "Keep Escape closing available with the default dialog behavior.", "Use form method=dialog for a native close action."], html: `<button class="nf-button-danger" commandfor="delete-dialog" command="show-modal">Delete project</button>
 <dialog id="delete-dialog" class="nf-dialog" aria-labelledby="dialog-title">
   <form method="dialog" class="nf-stack">...</form>
-</dialog>`, render: () => `<div class="nf-stack"><button class="nf-button-danger" commandfor="demo-dialog" command="show-modal" type="button">Delete project</button><dialog id="demo-dialog" class="nf-dialog" aria-labelledby="dialog-title"><form method="dialog" class="nf-stack"><h3 id="dialog-title">Delete project?</h3><p>This action cannot be undone.</p><div class="nf-cluster"><button class="nf-button" value="cancel">Cancel</button><button class="nf-button-danger" value="confirm">Delete project</button></div></form></dialog></div>` }
+</dialog>`, render: () => `<div class="nf-stack"><button class="nf-button-danger" commandfor="demo-dialog" command="show-modal" type="button">Delete project</button><dialog id="demo-dialog" class="nf-dialog" aria-labelledby="dialog-title"><form method="dialog" class="nf-stack"><h3 id="dialog-title">Delete project?</h3><p>This action cannot be undone.</p><div class="nf-cluster"><button class="nf-button" value="cancel">Cancel</button><button class="nf-button-danger" value="confirm">Delete project</button></div></form></dialog></div>` },
         code: { label: "Code blocks", contract: "pre + code", when: "Use a code block for copyable or inspectable snippets. Keep the native pre/code semantics and let long lines scroll within the block.", a11y: ["Use pre and code for preserved whitespace and source text.", "Add tabindex=0 when the block may scroll horizontally.", "Keep syntax meaning in the text; color is optional."], html: `<pre class="nf-code" tabindex="0"><code>const ready = true;
 console.log(ready);</code></pre>`, render: () => `<pre class="nf-code" tabindex="0"><code>const workspace = {
   status: "ready",
@@ -125,7 +125,7 @@ console.log(ready);</code></pre>`, render: () => `<pre class="nf-code" tabindex=
       const catalog = document.querySelector("#catalog");
       const preview = document.querySelector("#preview");
       const code = document.querySelector("#code code");
-      let current = "actions";
+      let current = "code";
       function render(name = current) {
         current = name;
         const item = examples[name];
