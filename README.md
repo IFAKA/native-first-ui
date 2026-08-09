@@ -124,7 +124,7 @@ Keep code semantics native and add `nf-code` to the block-level `<pre>`:
 
 The `tabindex` makes wide code reachable by keyboard users; long lines scroll inside the code block instead of widening the page.
 
-For non-modal menus, hints, and anchored transient UI, use the native Popover API. Use `details`/`summary` when a disclosure is sufficient.
+For disclosure menus, use `details`/`summary` when a disclosure is sufficient. For shadcn-style site navigation, use a native button trigger with a controlled content panel and keep destinations as real links.
 
 ### Optional native behavior enhancements
 
@@ -136,7 +136,7 @@ import { enhanceNativeInteractions } from "native-first-ui/behavior.js";
 enhanceNativeInteractions();
 ```
 
-The module opens `data-menu-target` popovers after a short hover intent delay, keeps the parent open while the pointer crosses into nested content, closes normal sibling links, and closes the deepest level on Escape. Dialogs still get backdrop dismissal as a compatibility path.
+The module opens `data-menu-content` panels after a short hover intent delay, keeps the parent open while the pointer crosses into nested content, closes normal sibling links, and closes the deepest level on Escape. Dialogs still get backdrop dismissal as a compatibility path.
 
 ## Recipes
 
