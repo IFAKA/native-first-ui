@@ -191,6 +191,17 @@ function enhanceDeclarativeInvokers(root) {
   });
 }
 
+function enhanceDialogs(root) {
+  getRootElements(root, "dialog").forEach((dialog) => {
+    if (dialog.dataset.nfDialogReady) return;
+    dialog.dataset.nfDialogReady = "true";
+    dialog.setAttribute("closedby", "any");
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+}
+
 /** Optional, dependency-free progressive enhancement for explicitly marked recipes. */
 export function enhanceNativeInteractions(root = document) {
   initializedRoots.add(root);
@@ -203,6 +214,7 @@ export function enhanceNativeInteractions(root = document) {
   enhanceToasts(root);
   enhanceThemeToggle(root);
   enhanceDeclarativeInvokers(root);
+  enhanceDialogs(root);
 }
 
 if (typeof document !== "undefined") enhanceNativeInteractions();

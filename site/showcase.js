@@ -38,5 +38,5 @@ archiveButton?.addEventListener("click", () => {
   archiveButton.dataset.archived = String(!archived);
   archiveButton.textContent = archived ? "Undo archive" : "Archive draft";
   archiveButton.dataset.variant = archived ? "" : "secondary";
-  if (actionsStatus) actionsStatus.textContent = archived ? "Draft restored." : "Draft archived. Choose undo to restore it.";
+  if (actionsStatus) actionsStatus.textContent = archived ? "Draft restored to the active list." : "Draft moved to Archived. Choose Undo archive to restore it.";
 });
