@@ -77,7 +77,6 @@
 
     <script type="module">
       import { enhanceNativeInteractions } from "../dist/behavior.js";
-      enhanceNativeInteractions();
 
       const workspaceNavigationMarkup = `<nav class="nf-navigation" aria-label="Workspace navigation">
   <a href="#activity">Activity</a>
@@ -184,6 +183,7 @@ console.log(ready);</code></pre>`, render: () => `<pre class="nf-code" tabindex=
         current = name;
         const item = examples[name];
         preview.innerHTML = item.render();
+        enhanceNativeInteractions(preview);
         const form = preview.querySelector("form");
         form?.addEventListener("submit", (event) => {
           event.preventDefault();
