@@ -80,12 +80,11 @@
       enhanceNativeInteractions();
 
       const workspaceNavigationMarkup = `<nav class="nf-navigation" aria-label="Workspace navigation">
-  <a href="#projects" aria-current="page">Projects</a>
   <a href="#activity">Activity</a>
   <details>
     <summary>Projects</summary>
     <div class="nf-navigation-children">
-      <a href="#projects">All projects</a>
+      <a href="#projects" aria-current="page">Projects overview</a>
       <a href="#activity">Roadmap</a>
       <details>
         <summary>Reports</summary>
@@ -161,7 +160,7 @@
     <section class="nf-grid">...</section>
   </div>
 </main>`, render: () => `<section class="nf-stack"><header class="nf-page-header"><div class="nf-stack" data-gap="sm"><p class="nf-help">Overview</p><h3>Team workspace</h3></div><button class="nf-button-primary" type="button">Invite member</button></header><div class="nf-grid"><article class="nf-card"><h3>Active members</h3><p>24 people</p></article><article class="nf-card"><h3>Open projects</h3><p>8 projects</p></article><article class="nf-card"><h3>Storage</h3><p>64% used</p></article></div></section>` },
-        navigation: { label: "Navigation", contract: "nav + nested details + behavior", test: "Hover Projects and Workspace, then Reports or Settings. Move away to close; click outside to light-dismiss; press Escape to close the deepest branch and return focus to its trigger.", when: "Use nav with real links and details for nested routes. Import the optional behavior module when menus should open on hover, light-dismiss, and close on Escape.", a11y: ["Use a labelled nav landmark.", "Mark the current page with aria-current.", "Keep every nested route reachable by keyboard."], html: workspaceNavigationMarkup, render: () => workspaceNavigationMarkup },
+        navigation: { label: "Navigation", contract: "nav + nested details + behavior", test: "Hover Projects, move into Reports, then back to Projects without leaving the menu. Move away to close; click outside to light-dismiss; press Escape to close the deepest branch and return focus to its trigger.", when: "Use nav with real links and details for nested routes. Import the optional behavior module when menus should open on hover, light-dismiss, and close on Escape.", a11y: ["Use a labelled nav landmark.", "Mark the current page with aria-current.", "Keep every nested route reachable by keyboard."], html: workspaceNavigationMarkup, render: () => workspaceNavigationMarkup },
         states: { label: "Loading and empty states", contract: "status + progress + alert", when: "Use text, progress, alerts, and an explicit next action to make async and no-result states understandable.", a11y: ["Announce changing status with aria-live.", "Explain what the user can do next.", "Use progress for measurable work."], html: `<section class="nf-stack" aria-live="polite">
   <p class="nf-loading">Loading projects</p>
   <progress value="64" max="100">64%</progress>
