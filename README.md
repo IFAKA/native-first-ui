@@ -72,6 +72,7 @@ The repository includes [AGENTS.md](./AGENTS.md) and [INTEGRATION-RULES.md](./IN
 | `nf-table-scroll`, `nf-table` | labelled `div`, `<table>` | Dense data that cannot reflow | Scrolls horizontally in its labelled region |
 | `nf-dialog` | `<dialog>` | Confirmation or focused short task | Constrained to viewport |
 | `nf-loading`, `nf-skeleton`, `nf-empty` | status region or section | Loading, placeholder, and no-result states | Preserve a useful minimum area |
+| `nf-code` | `<pre><code>` | Readable, scrollable code blocks | Scrolls inside its own region |
 | `nf-pagination` | `nav` | Paginated collections | Controls wrap without breaking the page |
 
 Common states use native attributes: `disabled`, `required`, `aria-invalid="true"`, `aria-describedby`, `aria-current="page"`, `data-tone="success|warning|danger|info"`, and `aria-live="polite"` for changing status.
@@ -112,6 +113,16 @@ Use the browser's native dialog behavior. For current browsers, a button can inv
   </form>
 </dialog>
 ```
+
+### Code blocks
+
+Keep code semantics native and add `nf-code` to the block-level `<pre>`:
+
+```html
+<pre class="nf-code" tabindex="0"><code>const ready = true;</code></pre>
+```
+
+The `tabindex` makes wide code reachable by keyboard users; long lines scroll inside the code block instead of widening the page.
 
 For non-modal menus, hints, and anchored transient UI, use the native Popover API with `popover`, `popovertarget`, and `popovertargetaction`. Use `details`/`summary` when a disclosure is sufficient.
 

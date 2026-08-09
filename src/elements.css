@@ -23,5 +23,5 @@
   :where(input, select, textarea)::placeholder { color: var(--nf-color-muted); opacity: 0.85; }
   :where(input, select, textarea):read-only { background: color-mix(in srgb, var(--nf-color-muted) 6%, var(--nf-color-surface)); }
   ::selection { background: color-mix(in srgb, var(--nf-color-accent) 30%, transparent); }
-  @media (forced-colors: active) { :where(button, input, select, textarea, .nf-card, .nf-alert, .nf-dialog) { border: 1px solid ButtonText; } }
+  @media (forced-colors: active) { :where(button, input, select, textarea, .nf-card, .nf-alert, .nf-dialog, .nf-code) { border: 1px solid ButtonText; } }
 }

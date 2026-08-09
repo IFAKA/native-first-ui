@@ -54,4 +54,7 @@
   .nf-loading { color: var(--nf-color-muted); }
   .nf-empty { display: grid; min-height: 14rem; place-items: center; padding: var(--nf-space-8); border: var(--nf-border-width) dashed var(--nf-color-border-strong); border-radius: var(--nf-radius-md); text-align: center; }
   .nf-skeleton { display: block; min-height: 1em; border-radius: var(--nf-radius-sm); background: color-mix(in srgb, var(--nf-color-muted) 12%, transparent); }
+  .nf-code { max-width: 100%; overflow: auto; padding: var(--nf-space-4); border: var(--nf-border-width) solid var(--nf-color-border); border-radius: var(--nf-radius-md); background: var(--nf-color-surface-raised); color: var(--nf-color-text); font: var(--nf-text-sm)/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; tab-size: 2; }
+  .nf-code:focus-visible { outline: 2px solid var(--nf-color-accent); outline-offset: 3px; box-shadow: var(--nf-focus-ring); }
+  .nf-code code { padding: 0; background: transparent; font: inherit; }
 }
