@@ -3,7 +3,7 @@
 [![CI](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Native-First UI is a tiny, framework-agnostic CSS contract for real HTML. It starts with the browser’s component model—links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—then adds safe inference, responsive layout, accessible states, and locally owned recipes.
+Native-First UI is a tiny, framework-agnostic CSS layer for real HTML. It starts with the browser’s component model—links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—then adds safe inference, responsive layout, accessible states, and locally owned recipes.
 
 ```text
 semantic HTML → safe inference → tiny generated CSS → local recipes
@@ -21,7 +21,7 @@ The native-first refactor is implemented and validated locally. The current rele
 - native element and state contracts, including visible focus, 44px touch targets, 16px mobile inputs, reduced motion, dark mode, and forced colors;
 - `nfi build`, `nfi validate`, `nfi add <recipe>`, and `nfi manifest`;
 - framework-agnostic recipes for dialog, drawer, data table, menu, tabs, forms, navigation, alerts, feedback, and related patterns;
-- a single searchable GitHub Pages showcase with copyable HTML and in-page navigation.
+- a single interactive GitHub Pages showcase with copyable HTML and in-page navigation.
 
 The project is young and intentionally opinionated. Browser-level interaction coverage is still expanding; the automated suite currently validates the package contract, CSS transformation, inference output, registry, and size budgets.
 
@@ -59,18 +59,18 @@ The result is not “better” than every reference at its own specialty. It is 
 
 ## Live showcase
 
-Visit the [Native-First UI GitHub Pages showcase](https://ifaka.github.io/native-first-ui/). It is one complete, categorized page—not a collection of disconnected screenshots—with:
+Visit the [Native-First UI GitHub Pages showcase](https://ifaka.github.io/native-first-ui/). It is one complete, prioritized, interactive page—not a collection of disconnected screenshots—with:
 
-- native foundations;
-- layout and composition;
-- forms and controls;
-- surfaces and feedback;
-- navigation and menus;
-- dialogs, drawers, and overlays;
-- data and content;
-- advanced progressive enhancement.
+- foundations and native HTML;
+- buttons, forms, validation, and controls;
+- feedback, loading, and empty states;
+- layout and surfaces;
+- navigation, menus, breadcrumbs, and pagination;
+- dialogs, drawers, popovers, and tabs;
+- tables, badges, and readable data;
+- optional comboboxes and command palettes.
 
-Use the search field, copy the HTML, resize the viewport, test keyboard focus, and inspect the source. The same page is available locally with `npm run serve`.
+Click the controls, submit the form, change the range, switch tabs, open the dialog/menu/command palette, resize the viewport, test keyboard focus, and inspect the source. The same page is available locally with `npm run serve`.
 
 ## Install
 
@@ -128,7 +128,7 @@ npx nfi add tabs
 npx nfi add menu
 ```
 
-`nfi build` scans HTML, JSX, Vue, Svelte, templates, and recipes; validates registered contracts; emits only referenced native/contextual rules and tokens; transforms the result with Lightning CSS; and writes raw, gzip, Brotli, and per-contract size reports.
+`nfi build` scans HTML, JSX, Vue, Svelte, templates, and recipes; validates registered patterns; emits only referenced native/contextual rules and tokens; transforms the result with Lightning CSS; and writes raw, gzip, Brotli, and per-pattern size reports.
 
 `nfi add` copies a framework-agnostic recipe into `.nfi/` so its HTML, CSS contract, behavior, keyboard support, and validation notes belong to the consuming project. Recipes cover forms, tables, navigation, menus, alerts, feedback, dialog, drawer, popover, tabs, pagination, and data tables.
 
