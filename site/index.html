@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Native-First UI is a tiny, dependency-free CSS library for accessible native HTML interfaces." />
+    <meta name="theme-color" content="#101419" />
+    <link rel="canonical" href="https://ifaka.github.io/native-first-ui/" />
+    <meta property="og:title" content="Native-First UI — tiny CSS for real HTML" />
+    <meta property="og:description" content="A dependency-free CSS contract library for accessible, responsive native HTML interfaces." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ifaka.github.io/native-first-ui/" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Native-First UI","description":"A tiny, dependency-free CSS contract library for accessible native HTML interfaces.","codeRepository":"https://github.com/IFAKA/native-first-ui","programmingLanguage":"CSS","license":"https://opensource.org/licenses/MIT","url":"https://ifaka.github.io/native-first-ui/"}</script>
+    <link rel="stylesheet" href="./native-first-ui.css" />
+    <title>Native-First UI — tiny CSS for real HTML</title>
+  </head>
+  <body>
+    <header class="nf-container nf-page-header">
+      <div class="nf-stack" data-gap="sm"><p class="nf-help">Native-First UI</p><h1>Small CSS contracts for real HTML.</h1><p class="nf-readable">Accessible, responsive interface foundations for teams who want the browser's native behavior to remain the API.</p></div>
+      <nav class="nf-navigation" aria-label="Primary navigation"><a href="#contracts">Contracts</a><a href="#proof">Proof</a><a href="https://github.com/IFAKA/native-first-ui">GitHub</a></nav>
+    </header>
+
+    <main class="nf-page">
+      <div class="nf-container nf-stack">
+        <section class="nf-card nf-stack" aria-labelledby="hero-title">
+          <p class="nf-badge" data-tone="success">HTML first · CSS only · 0 runtime dependencies</p>
+          <h2 id="hero-title">The browser already knows how to build a good interface.</h2>
+          <p class="nf-readable">Native-First UI adds a small, serious layer of contracts around the elements you already trust: forms, dialogs, navigation, tables, and responsive layout.</p>
+          <div class="nf-cluster"><a class="nf-button-primary" href="https://www.npmjs.com/package/native-first-ui">Install from npm</a><a class="nf-button" href="https://github.com/IFAKA/native-first-ui">Read the source</a></div>
+          <div class="nf-grid">
+            <article class="nf-card"><strong>3,020 B</strong><p class="nf-help">complete bundled CSS · gzip</p></article>
+            <article class="nf-card"><strong>2,618 B</strong><p class="nf-help">complete bundled CSS · Brotli</p></article>
+            <article class="nf-card"><strong>0</strong><p class="nf-help">runtime dependencies</p></article>
+          </div>
+        </section>
+
+        <section class="nf-card nf-stack" id="proof" aria-labelledby="proof-title">
+          <p class="nf-help">Proof over promise</p><h2 id="proof-title">A useful interface is already in the markup.</h2><p>Resize this page. Tab through it. Submit the form. Open the dialog. The same DOM works at every width.</p>
+          <div class="nf-grid">
+            <article class="nf-card nf-stack">
+              <h3>Native controls, considered.</h3>
+              <form class="nf-form" onsubmit="event.preventDefault(); document.querySelector('#demo-status').textContent = 'Your preferences are saved.'">
+                <div class="nf-field"><label for="demo-name">Workspace name</label><input id="demo-name" name="name" value="Northstar" /></div>
+                <div class="nf-field"><label for="demo-plan">Plan</label><select id="demo-plan" name="plan"><option>Starter</option><option selected>Growth</option><option>Scale</option></select></div>
+                <div class="nf-cluster"><button class="nf-button-primary" type="submit">Save preferences</button><button class="nf-button" type="reset">Reset</button></div>
+                <p class="nf-help" id="demo-status" role="status" aria-live="polite">Changes are local to this demo.</p>
+              </form>
+            </article>
+            <article class="nf-card nf-stack">
+              <h3>Focused moments, no runtime.</h3><p>Use the platform's dialog, form, and command behavior. The library gives it a surface and clear hierarchy.</p>
+              <button class="nf-button-danger" commandfor="demo-dialog" command="show-modal" type="button">Open confirmation</button>
+              <dialog id="demo-dialog" class="nf-dialog" aria-labelledby="demo-dialog-title"><form method="dialog" class="nf-stack"><h3 id="demo-dialog-title">Archive this workspace?</h3><p>It will leave your active list and remain available in your archive.</p><div class="nf-cluster"><button class="nf-button" value="cancel">Cancel</button><button class="nf-button-danger" value="archive">Archive workspace</button></div></form></dialog>
+            </article>
+          </div>
+          <div class="nf-table-scroll" tabindex="0" aria-label="Recent workspace activity"><table class="nf-table"><caption>Recent workspace activity</caption><thead><tr><th scope="col">Event</th><th scope="col">Owner</th><th scope="col">Status</th><th scope="col">Updated</th></tr></thead><tbody><tr><td>Design review</td><td>Samira Khan</td><td><span class="nf-badge" data-tone="success">Complete</span></td><td>2 min ago</td></tr><tr><td>Billing settings</td><td>Alex Morgan</td><td><span class="nf-badge" data-tone="warning">Review</span></td><td>18 min ago</td></tr></tbody></table></div>
+        </section>
+
+        <section class="nf-card nf-stack" id="contracts" aria-labelledby="contracts-title">
+          <p class="nf-help">The contract set</p><h2 id="contracts-title">Small enough to understand. Complete enough to ship.</h2><p>Compose real product surfaces from semantic elements and a few predictable classes.</p>
+          <div class="nf-grid"><article class="nf-card"><h3>Layout</h3><p>Container, stack, cluster, grid, sidebar, split.</p><code>.nf-grid</code></article><article class="nf-card"><h3>Elements</h3><p>Readable defaults for controls, focus, media, and tables.</p><code>:focus-visible</code></article><article class="nf-card"><h3>States</h3><p>Alerts, badges, loading, empty, pagination, dialogs.</p><code>data-tone</code></article><article class="nf-card"><h3>Modes</h3><p>Light, dark, forced colors, narrow screens, long labels.</p><code>--nf-*</code></article></div>
+        </section>
+
+        <section class="nf-card nf-stack" aria-labelledby="install-title"><p class="nf-help">Start with one line</p><h2 id="install-title">Bring your own HTML.</h2><p>Install the package, import the complete contract, and keep your application markup semantic.</p><pre tabindex="0"><code>npm install native-first-ui
+
+/* app.css */
+@import "native-first-ui/core.css";
+
+/* Or choose only what you need. */
+@import "native-first-ui/elements.css";</code></pre><div class="nf-cluster"><a class="nf-button-primary" href="https://www.npmjs.com/package/native-first-ui">View on npm</a><a class="nf-link" href="https://github.com/IFAKA/native-first-ui/blob/main/INTEGRATION-RULES.md">Integration rules</a></div></section>
+      </div>
+    </main>
+
+    <footer class="nf-container nf-split"><span>Native-First UI · MIT licensed</span><span><a href="https://github.com/IFAKA/native-first-ui">GitHub</a> · <a href="https://www.npmjs.com/package/native-first-ui">npm</a></span></footer>
+  </body>
+</html>

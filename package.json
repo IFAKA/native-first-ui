@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/IFAKA/native-first-ui/issues"
   },
-  "homepage": "https://github.com/IFAKA/native-first-ui#readme",
+  "homepage": "https://ifaka.github.io/native-first-ui/",
   "engines": {
     "node": ">=20"
   },
@@ -39,6 +39,7 @@
     "test": "npm run build:css && node scripts/validate-package.mjs && npm run size:check",
     "size:check": "node scripts/check-size.mjs",
     "pack:check": "npm pack --dry-run",
+    "pages:build": "node scripts/build-pages.mjs",
     "prepack": "npm run build:css",
     "serve": "node scripts/serve-example.mjs",
     "setup:skills": "node scripts/install-skills.mjs"

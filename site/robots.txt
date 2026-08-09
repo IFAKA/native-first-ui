@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ifaka.github.io/native-first-ui/sitemap.xml

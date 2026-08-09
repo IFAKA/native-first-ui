@@ -11,6 +11,7 @@ and releases use semantic versioning.
 
 - Repository contribution, security, and release guidance.
 - Continuous integration for package validation and publish dry runs.
+- A GitHub Pages showcase built from the generated CSS distribution.
 
 ### Fixed
 

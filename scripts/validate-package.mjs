@@ -15,6 +15,10 @@ const requiredFiles = [
   "examples/index.html",
   ".agents/skills/native-first-ui/SKILL.md",
   ".agents/skills/emil-design-eng/SKILL.md",
+  "site/index.html",
+  "site/robots.txt",
+  "site/sitemap.xml",
+  ".github/workflows/pages.yml",
 ];
 
 for (const file of requiredFiles) {

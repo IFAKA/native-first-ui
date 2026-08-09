@@ -10,4 +10,4 @@ dist/
 # Local browser and test artifacts
 .tmp-browser-check/
 test-results/
-
+.pages/

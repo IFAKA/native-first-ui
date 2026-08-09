@@ -4,7 +4,28 @@
 [![npm](https://img.shields.io/npm/v/native-first-ui)](https://www.npmjs.com/package/native-first-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+**[Open the live showcase →](https://ifaka.github.io/native-first-ui/)**
+
 An HTML-first CSS contract library for SaaS apps, ecommerce, dashboards, landing pages, and internal tools. It has one entry-point stylesheet and no runtime dependency.
+
+Native-First UI keeps the browser's native HTML semantics intact, then adds a compact set of responsive, accessible contracts for real product surfaces.
+
+### Size at a glance
+
+| Delivery | Size |
+| --- | ---: |
+| Complete bundled CSS | **3,020 B gzip** |
+| Complete bundled CSS | **2,618 B Brotli** |
+| npm tarball | **about 7.3 KB** |
+| Runtime dependencies | **0** |
+
+These figures are measured by the repository's build and size checks. Individual layer imports are available when an application needs less than the complete contract.
+
+## Live showcase
+
+The [Native-First UI showcase](https://ifaka.github.io/native-first-ui/) is built with this library. It demonstrates native forms, buttons, navigation, responsive layouts, dense tables, alerts, loading states, disclosure, and dialogs in one working page.
+
+It is intentionally a real HTML page rather than a component screenshot: inspect the markup, resize the viewport, navigate by keyboard, and open the native dialog.
 
 ## Install
 
