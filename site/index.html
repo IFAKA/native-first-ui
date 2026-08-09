@@ -10,11 +10,20 @@
   <body>
     <main class="nf-container nf-stack">
       <header class="nf-page-header">
-        <h1>Components</h1>
+        <a href="./"><strong>Native-First UI</strong></a>
         <a href="https://github.com/IFAKA/native-first-ui">GitHub</a>
       </header>
 
-      <div class="nf-grid" id="components">
+      <section class="nf-stack" aria-labelledby="intro-title">
+        <p class="nf-help">A tiny CSS layer for real HTML.</p>
+        <h1 id="intro-title">Build accessible interfaces with the HTML you already know.</h1>
+        <p class="nf-readable">Forms, buttons, navigation, tables, dialogs, and states. No framework. No runtime dependency.</p>
+        <p><a class="nf-button-primary" href="#components">View components</a></p>
+      </section>
+
+      <section class="nf-stack" id="components" aria-labelledby="components-title">
+        <h2 id="components-title">Components</h2>
+        <div class="nf-stack">
         <article class="nf-card nf-stack">
           <h2>Buttons</h2>
           <div class="nf-cluster">
@@ -106,7 +115,8 @@
             <a class="nf-button" href="#components">Next</a>
           </nav>
         </article>
-      </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>
