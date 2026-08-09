@@ -33,7 +33,7 @@ function showMenuPopover(root, invoker) {
   const trigger = invoker.getBoundingClientRect();
   const nested = invoker.closest("[popover]");
   const menu = popover.getBoundingClientRect();
-  const gap = 8;
+  const gap = nested ? 0 : 8;
   let left = nested ? trigger.right + gap : trigger.left;
   let top = nested ? trigger.top : trigger.bottom + gap;
   left = Math.max(gap, Math.min(left, window.innerWidth - menu.width - gap));
