@@ -12,10 +12,17 @@
       <div class="nf-container nf-stack">
         <header class="nf-page-header">
           <a href="./"><strong>Native-First UI</strong></a>
-          <nav class="nf-navigation" aria-label="Primary navigation">
-            <a href="#components">Components</a>
-            <a href="https://github.com/IFAKA/native-first-ui">GitHub</a>
-          </nav>
+          <div class="nf-cluster">
+            <nav class="nf-navigation" aria-label="Primary navigation">
+              <a href="#components">Components</a>
+              <a href="https://github.com/IFAKA/native-first-ui">GitHub</a>
+            </nav>
+            <label class="nf-toggle">
+              <input id="site-theme-toggle" type="checkbox" aria-describedby="site-theme-status" />
+              <span class="nf-toggle-control" aria-hidden="true"></span>
+              <span>Dark mode</span>
+            </label>
+          </div>
         </header>
 
         <section class="nf-section nf-stack" aria-labelledby="intro-title">
@@ -26,6 +33,7 @@
             <span class="nf-badge" data-tone="success"><strong>2.6 KB</strong>&nbsp; compressed CSS</span>
             <span class="nf-badge">0 runtime dependencies</span>
           </div>
+          <p class="nf-help" id="site-theme-status" role="status" aria-live="polite">Light theme is active.</p>
           <div class="nf-cluster">
             <a class="nf-button-primary" href="#components">Explore components</a>
             <a class="nf-link" href="https://github.com/IFAKA/native-first-ui">Read the source</a>

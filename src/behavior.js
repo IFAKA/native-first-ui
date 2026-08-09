@@ -2,6 +2,16 @@ const initializedRoots = new WeakSet();
 const menuStates = new WeakMap();
 const responsiveNavigationStates = new WeakMap();
 
+function setupThemeToggle(root) {
+  const themeToggle = root.querySelector("[data-theme-toggle], #site-theme-toggle");
+  themeToggle?.addEventListener("change", (event) => {
+    const dark = event.currentTarget.checked;
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    const status = root.querySelector("#site-theme-status");
+    if (status) status.textContent = `${dark ? "Dark" : "Light"} theme is active.`;
+  });
+}
+
 function menus(root) {
   return root.querySelectorAll(".nf-navigation [data-menu-content]");
 }
@@ -82,6 +92,7 @@ export function enhanceNativeInteractions(root = document) {
   if (initializedRoots.has(root)) return;
   initializedRoots.add(root);
   enhanceResponsiveNavigation(root);
+  setupThemeToggle(root);
 
   root.addEventListener("pointerover", (event) => {
     const target = event.target instanceof Element ? event.target : null;
