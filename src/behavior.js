@@ -26,6 +26,24 @@ export function enhanceNativeInteractions(root = document) {
     if (dialog && target === dialog) dialog.close("dismiss");
   });
 
+  root.addEventListener("pointerover", (event) => {
+    if (event.pointerType && event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+    const target = event.target instanceof Element ? event.target : null;
+    const summary = target?.closest(".nf-navigation summary");
+    const menu = summary?.closest("details");
+    if (!menu) return;
+    menu.setAttribute("open", "");
+    closeOpenMenus(root, menu);
+  });
+
+  root.addEventListener("pointerout", (event) => {
+    if (event.pointerType && event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+    const target = event.target instanceof Element ? event.target : null;
+    const navigation = target?.closest(".nf-navigation");
+    const next = event.relatedTarget instanceof Node ? event.relatedTarget : null;
+    if (navigation && (!next || !navigation.contains(next))) closeOpenMenus(root);
+  });
+
   root.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
     const openMenus = [...root.querySelectorAll(".nf-navigation details[open]")];

@@ -136,7 +136,7 @@ import { enhanceNativeInteractions } from "native-first-ui/behavior.js";
 enhanceNativeInteractions();
 ```
 
-The module light-dismisses `.nf-navigation` disclosures, closes the deepest nested disclosure on Escape, and provides backdrop dismissal for `.nf-dialog`. Add `closedby="any"` to dialogs so browsers with native light-dismiss can handle it without JavaScript; the module remains the compatibility path.
+The module opens each `.nf-navigation` disclosure on mouse or pen hover, including nested disclosures, light-dismisses the navigation when the pointer leaves or the user clicks outside, closes the deepest nested disclosure on Escape, and provides backdrop dismissal for `.nf-dialog`. Touch and keyboard users keep the native click and focus behavior. Add `closedby="any"` to dialogs so browsers with native light-dismiss can handle it without JavaScript; the module remains the compatibility path.
 
 ## Recipes
 
