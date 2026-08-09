@@ -5,6 +5,6 @@
   .nf-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nf-space-3); }
   .nf-grid { display: grid; align-items: start; gap: var(--nf-space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
   .nf-mobile-actions { position: sticky; inset-block-end: 0; z-index: 10; display: flex; flex-wrap: wrap; justify-content: stretch; gap: var(--nf-space-3); margin-block-start: var(--nf-space-6); padding-block: var(--nf-space-3) max(var(--nf-space-3), env(safe-area-inset-bottom)); padding-inline: max(var(--nf-space-4), env(safe-area-inset-left)) max(var(--nf-space-4), env(safe-area-inset-right)); border-block-start: var(--nf-border-width) solid var(--nf-color-border); background: color-mix(in srgb, var(--nf-color-surface) 94%, transparent); box-shadow: 0 -8px 24px rgb(15 23 42 / .08); }
-  .nf-mobile-actions > :is(a, button) { flex: 1 1 12rem; }
-  @media (min-width: 56rem) { .nf-mobile-actions { position: static; justify-content: flex-end; margin-block-start: var(--nf-space-8); padding: 0; border-block-start: 0; background: transparent; box-shadow: none; } .nf-mobile-actions > :is(a, button) { flex: 0 0 auto; } }
+  .nf-mobile-actions > :is(a, button) { flex: 1 1 auto; inline-size: 100%; }
+  @media (min-width: 56rem) { .nf-mobile-actions { position: static; justify-content: flex-end; margin-block-start: var(--nf-space-8); padding: 0; border-block-start: 0; background: transparent; box-shadow: none; } .nf-mobile-actions > :is(a, button) { flex: 0 0 auto; inline-size: auto; } }
 }
