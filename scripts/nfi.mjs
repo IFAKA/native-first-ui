@@ -1,7 +1,6 @@
-import { readFile, mkdir, writeFile } from "node:fs/promises";
+import { readFile, mkdir, readdir, writeFile } from "node:fs/promises";
 import { brotliCompressSync, gzipSync } from "node:zlib";
-import { join, relative } from "node:path";
-import { glob } from "node:fs/promises";
+import { extname, join, relative } from "node:path";
 import { transform } from "lightningcss";
 
 const root = new URL("../", import.meta.url);
@@ -9,11 +8,25 @@ const rootPath = new URL("../", import.meta.url).pathname;
 const registry = JSON.parse(await readFile(new URL("../registry.json", import.meta.url), "utf8"));
 const roleRepeating = /^nf-(button|input|select|textarea|table|dialog|heading|link)(?:-(primary|danger|quiet))?$/;
 const allowed = new Set(registry.classes);
-const sourceGlobs = ["site/**/*.{html,js,jsx,tsx,vue,svelte}", "examples/**/*.{html,js,jsx,tsx,vue,svelte}", "recipes/**/*.{html,js,jsx,tsx,vue,svelte}", "*.{html,js,jsx,tsx,vue,svelte}"];
+const sourceDirectories = ["site", "examples", "recipes"];
+const sourceExtensions = new Set([".html", ".js", ".jsx", ".tsx", ".vue", ".svelte"]);
+const excludedDirectories = new Set(["node_modules", "dist", ".pages"]);
 
 async function files() {
   const found = new Set();
-  for (const pattern of sourceGlobs) for await (const file of glob(pattern, { cwd: rootPath, exclude: ["node_modules/**", "dist/**", ".pages/**"] })) found.add(join(rootPath, file));
+  async function visit(directory) {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const file = join(directory, entry.name);
+      if (entry.isDirectory()) {
+        if (!excludedDirectories.has(entry.name)) await visit(file);
+      } else if (entry.isFile() && sourceExtensions.has(extname(entry.name))) found.add(file);
+    }
+  }
+
+  for (const directory of sourceDirectories) await visit(join(rootPath, directory));
+  for (const entry of await readdir(rootPath, { withFileTypes: true })) {
+    if (entry.isFile() && sourceExtensions.has(extname(entry.name))) found.add(join(rootPath, entry.name));
+  }
   return [...found];
 }
 
