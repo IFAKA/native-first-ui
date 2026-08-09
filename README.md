@@ -31,9 +31,9 @@ Measured from the current generated distribution on the development machine:
 
 | Artifact | Raw | Gzip | Brotli |
 | --- | ---: | ---: | ---: |
-| `core.css` | 5,258 B | 1,598 B | 1,349 B |
-| `layout.css` | 427 B | 252 B | 207 B |
-| `forms.css` | 546 B | 262 B | 200 B |
+| `core.css` | 6,079 B | 1,815 B | 1,541 B |
+| `layout.css` | 1,250 B | 539 B | 449 B |
+| `forms.css` | 663 B | 302 B | 239 B |
 | `navigation.css` | 618 B | 333 B | 255 B |
 | `data.css` | 600 B | 303 B | 262 B |
 | `overlays.css` | 678 B | 339 B | 270 B |
@@ -41,7 +41,7 @@ Measured from the current generated distribution on the development machine:
 
 The generated project artifact is measured after combining selected contracts and transforming them through Lightning CSS. It is not calculated by adding separately compressed files. The npm package has zero runtime dependencies.
 
-The aspirational goal is a sub-1 KB gzip core. The current core is 1.60 KB gzip while retaining the complete native foundation, explicit theme tokens, focus treatment, control sizing, and layout vocabulary. Generated project CSS is already below the 1 KB Brotli target.
+The aspirational goal is a sub-1 KB gzip core. The current core is 1.82 KB gzip while retaining the complete native foundation, explicit theme tokens, focus treatment, control sizing, mobile action layout, and layout vocabulary. Generated project CSS is already below the 1 KB Brotli target.
 
 ## Why this project exists
 
