@@ -12,33 +12,32 @@
     <meta property="og:url" content="https://ifaka.github.io/native-first-ui/" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Native-First UI","description":"A tiny, dependency-free CSS contract library for accessible native HTML interfaces.","codeRepository":"https://github.com/IFAKA/native-first-ui","programmingLanguage":"CSS","license":"https://opensource.org/licenses/MIT","url":"https://ifaka.github.io/native-first-ui/"}</script>
     <link rel="stylesheet" href="./native-first-ui.css" />
+    <link rel="stylesheet" href="./showcase.css" />
     <title>Native-First UI — tiny CSS for real HTML</title>
   </head>
   <body>
-    <header class="nf-container nf-page-header">
-      <div class="nf-stack" data-gap="sm"><p class="nf-help">Native-First UI</p><h1>Small CSS contracts for real HTML.</h1><p class="nf-readable">Accessible, responsive interface foundations for teams who want the browser's native behavior to remain the API.</p></div>
-      <nav class="nf-navigation" aria-label="Primary navigation"><a href="#contracts">Contracts</a><a href="#proof">Proof</a><a href="https://github.com/IFAKA/native-first-ui">GitHub</a></nav>
+    <header class="nf-container nf-page-header showcase-header">
+      <a class="showcase-wordmark" href="./" aria-label="Native-First UI home"><span class="showcase-mark" aria-hidden="true">+</span><span>Native-First UI</span></a>
+      <nav class="nf-navigation" aria-label="Primary navigation"><a href="#proof">Proof</a><a href="#contracts">Contracts</a><a href="https://github.com/IFAKA/native-first-ui">GitHub</a></nav>
     </header>
 
     <main class="nf-page">
       <div class="nf-container nf-stack">
-        <section class="nf-card nf-stack" aria-labelledby="hero-title">
-          <p class="nf-badge" data-tone="success">HTML first · CSS only · 0 runtime dependencies</p>
-          <h2 id="hero-title">The browser already knows how to build a good interface.</h2>
-          <p class="nf-readable">Native-First UI adds a small, serious layer of contracts around the elements you already trust—so accessible forms, dialogs, navigation, tables, and responsive layouts ship with less code.</p>
-          <div class="nf-cluster"><a class="nf-button-primary" href="https://github.com/IFAKA/native-first-ui">Read the source</a><a class="nf-button" href="#proof">See it in action</a></div>
-          <div class="nf-grid" aria-label="Library at a glance">
-            <article class="nf-card"><strong>2.6 KB</strong><p class="nf-help">complete CSS · Brotli</p></article>
-            <article class="nf-card"><strong>5 contracts</strong><p class="nf-help">forms · dialogs · nav · tables · layout</p></article>
-            <article class="nf-card"><strong>0</strong><p class="nf-help">runtime dependencies</p></article>
+        <section class="showcase-hero" aria-labelledby="hero-title">
+          <div class="showcase-hero-copy nf-stack">
+            <p class="showcase-kicker">CSS contracts for real HTML</p>
+            <h1 id="hero-title">Ship accessible interfaces with less code.</h1>
+            <p class="showcase-lede">A tiny, dependency-free layer for forms, dialogs, navigation, tables, and responsive layouts. Keep the browser's native behavior as your API.</p>
+            <div class="nf-cluster"><a class="nf-button-primary" href="#proof">See the proof <span aria-hidden="true">↓</span></a><a class="nf-link" href="https://github.com/IFAKA/native-first-ui">Read the source</a></div>
+            <p class="showcase-note">HTML first <span aria-hidden="true">·</span> CSS only <span aria-hidden="true">·</span> 0 runtime dependencies</p>
           </div>
-          <p class="nf-help">Built for real product surfaces, not just screenshots.</p>
+          <aside class="showcase-hero-aside" aria-label="Library summary"><strong>2.6 KB</strong><span>complete CSS, Brotli</span><strong>5</strong><span>focused contracts</span><strong>0</strong><span>runtime dependencies</span></aside>
         </section>
 
-        <section class="nf-card nf-stack" id="proof" aria-labelledby="proof-title">
-          <p class="nf-help">Proof over promise</p><h2 id="proof-title">A useful interface is already in the markup.</h2><p>Resize this page. Tab through it. Submit the form. Open the dialog. The same DOM works at every width.</p>
+        <section class="nf-card nf-stack showcase-proof" id="proof" aria-labelledby="proof-title">
+          <div class="showcase-section-heading"><div class="nf-stack" data-gap="sm"><p class="showcase-kicker">Proof over promise</p><h2 id="proof-title">The useful interface is already in the markup.</h2></div><p>Resize the page. Tab through it. Submit the form. Open the dialog. The same DOM works at every width.</p></div>
           <div class="nf-grid">
-            <article class="nf-card nf-stack">
+            <article class="nf-card nf-stack showcase-demo-card">
               <h3>Native controls, considered.</h3>
               <form class="nf-form" onsubmit="event.preventDefault(); document.querySelector('#demo-status').textContent = 'Your preferences are saved.'">
                 <div class="nf-field"><label for="demo-name">Workspace name</label><input id="demo-name" name="name" value="Northstar" /></div>
@@ -47,7 +46,7 @@
                 <p class="nf-help" id="demo-status" role="status" aria-live="polite">Changes are local to this demo.</p>
               </form>
             </article>
-            <article class="nf-card nf-stack">
+            <article class="nf-card nf-stack showcase-demo-card showcase-dialog-card">
               <h3>Focused moments, no runtime.</h3><p>Use the platform's dialog, form, and command behavior. The library gives it a surface and clear hierarchy.</p>
               <button class="nf-button-danger" commandfor="demo-dialog" command="show-modal" type="button">Open confirmation</button>
               <dialog id="demo-dialog" class="nf-dialog" aria-labelledby="demo-dialog-title"><form method="dialog" class="nf-stack"><h3 id="demo-dialog-title">Archive this workspace?</h3><p>It will leave your active list and remain available in your archive.</p><div class="nf-cluster"><button class="nf-button" value="cancel">Cancel</button><button class="nf-button-danger" value="archive">Archive workspace</button></div></form></dialog>
@@ -56,9 +55,9 @@
           <div class="nf-table-scroll" tabindex="0" aria-label="Recent workspace activity"><table class="nf-table"><caption>Recent workspace activity</caption><thead><tr><th scope="col">Event</th><th scope="col">Owner</th><th scope="col">Status</th><th scope="col">Updated</th></tr></thead><tbody><tr><td>Design review</td><td>Samira Khan</td><td><span class="nf-badge" data-tone="success">Complete</span></td><td>2 min ago</td></tr><tr><td>Billing settings</td><td>Alex Morgan</td><td><span class="nf-badge" data-tone="warning">Review</span></td><td>18 min ago</td></tr></tbody></table></div>
         </section>
 
-        <section class="nf-card nf-stack" id="contracts" aria-labelledby="contracts-title">
-          <p class="nf-help">The contract set</p><h2 id="contracts-title">Small enough to understand. Complete enough to ship.</h2><p>Compose real product surfaces from semantic elements and a few predictable classes.</p>
-          <div class="nf-grid"><article class="nf-card"><h3>Layout</h3><p>Container, stack, cluster, grid, sidebar, split.</p><code>.nf-grid</code></article><article class="nf-card"><h3>Elements</h3><p>Readable defaults for controls, focus, media, and tables.</p><code>:focus-visible</code></article><article class="nf-card"><h3>States</h3><p>Alerts, badges, loading, empty, pagination, dialogs.</p><code>data-tone</code></article><article class="nf-card"><h3>Modes</h3><p>Light, dark, forced colors, narrow screens, long labels.</p><code>--nf-*</code></article></div>
+        <section class="nf-card nf-stack showcase-contracts" id="contracts" aria-labelledby="contracts-title">
+          <div class="showcase-section-heading"><div class="nf-stack" data-gap="sm"><p class="showcase-kicker">The contract set</p><h2 id="contracts-title">Small enough to understand. Complete enough to ship.</h2></div><p>Compose real product surfaces from semantic elements and a few predictable classes.</p></div>
+          <div class="nf-grid"><article class="nf-card"><span class="showcase-index">01</span><h3>Layout</h3><p>Container, stack, cluster, grid, sidebar, split.</p><code>.nf-grid</code></article><article class="nf-card"><span class="showcase-index">02</span><h3>Elements</h3><p>Readable defaults for controls, focus, media, and tables.</p><code>:focus-visible</code></article><article class="nf-card"><span class="showcase-index">03</span><h3>States</h3><p>Alerts, badges, loading, empty, pagination, dialogs.</p><code>data-tone</code></article><article class="nf-card"><span class="showcase-index">04</span><h3>Modes</h3><p>Light, dark, forced colors, narrow screens, long labels.</p><code>--nf-*</code></article></div>
         </section>
 
         <section class="nf-card nf-stack" aria-labelledby="source-title"><p class="nf-help">Start with the source</p><h2 id="source-title">Bring your own HTML.</h2><p>Read the contracts, copy the layer you need, and keep your application markup semantic.</p><pre tabindex="0"><code>/* app.css */
