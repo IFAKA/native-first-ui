@@ -3,7 +3,7 @@
  <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Native-First UI: a small, accessible CSS contract for semantic HTML." />
+  <meta name="description" content="Native-First UI: a small, accessible CSS layer for semantic HTML." />
   <link rel="stylesheet" href="./native-first-ui.css" />
   <title>Native-First UI — semantic HTML, polished defaults</title>
  </head>
@@ -21,9 +21,9 @@
 
     <section class="nf-section nf-stack" aria-labelledby="intro-title">
      <p class="nf-help">A small CSS layer for real HTML.</p>
-     <h1 id="intro-title">Write HTML. Add a small contract. Ship.</h1>
+     <h1 id="intro-title">Write HTML. Add a small layer. Ship.</h1>
      <p class="nf-readable">Native-First UI gives product teams responsive layout, control states, and accessible surfaces without replacing the browser or adding a runtime dependency.</p>
-     <div class="nf-cluster" aria-label="Library facts"><span class="nf-badge" data-tone="success"><strong>Native</strong> by default</span><span class="nf-badge">0 runtime dependencies</span><span class="nf-badge">1.56 KB core gzip</span><span class="nf-badge">308 B generated Brotli</span></div>
+     <div class="nf-cluster" aria-label="Library facts"><span class="nf-badge" data-tone="success"><strong>Native</strong><span>by default</span></span><span class="nf-badge">0 runtime dependencies</span><span class="nf-badge">1.60 KB core gzip</span><span class="nf-badge">308 B generated Brotli</span></div>
     </section>
 
     <section class="nf-section nf-stack" id="inspiration" data-showcase="inspiration benchmarks references" aria-labelledby="inspiration-title">
@@ -36,17 +36,17 @@
       <article class="nf-card nf-stack"><h3><a href="https://vercel.com/design/guidelines">Vercel Guidelines</a> + <a href="https://animations.dev/">Emil Kowalski</a></h3><p>Clear states, accessible interactions, and restrained purposeful motion.</p></article>
      </div>
      <div class="nf-card nf-table-scroll" tabindex="0" aria-label="Current Native-First UI benchmark">
-      <table><caption>Current measured distribution</caption><thead><tr><th scope="col">Artifact</th><th scope="col">Gzip</th><th scope="col">Brotli</th><th scope="col">What it means</th></tr></thead><tbody><tr><th scope="row"><code>core.css</code></th><td>1,559 B</td><td>1,318 B</td><td>Native defaults and five layout contracts.</td></tr><tr><th scope="row"><code>generated project.css</code></th><td>396 B</td><td>308 B</td><td>Only referenced contracts after Lightning CSS.</td></tr><tr><th scope="row">Optional modules</th><td>252–339 B</td><td>200–270 B</td><td>Forms, navigation, data, overlays, and layout stay opt-in.</td></tr></tbody></table>
+      <table><caption>Current measured distribution</caption><thead><tr><th scope="col">Artifact</th><th scope="col">Gzip</th><th scope="col">Brotli</th><th scope="col">What it means</th></tr></thead><tbody><tr><th scope="row"><code>core.css</code></th><td>1,598 B</td><td>1,349 B</td><td>Native defaults and five layout primitives.</td></tr><tr><th scope="row"><code>generated project.css</code></th><td>396 B</td><td>308 B</td><td>Only referenced patterns after Lightning CSS.</td></tr><tr><th scope="row">Optional modules</th><td>252–339 B</td><td>200–270 B</td><td>Forms, navigation, data, overlays, and layout stay opt-in.</td></tr></tbody></table>
      </div>
      <aside class="nf-alert nf-stack" data-tone="info"><strong>Our advantage is the combination</strong><span>Native semantics, safe inference, tiny generated output, local recipes, and product-grade accessibility live in one workflow. Choose a reference project when its specialty is the priority; choose this when you want the strengths together without shipping every abstraction.</span></aside>
     </section>
 
     <section class="nf-section nf-stack" id="showcase" aria-labelledby="showcase-title">
-     <div class="nf-split"><div class="nf-stack" data-gap="sm"><p class="nf-help">One page, complete coverage</p><h2 id="showcase-title">Explore the contracts</h2></div><label><span class="nf-sr-only">Filter showcase</span><input type="search" data-showcase-filter placeholder="Filter examples…" /></label></div>
+     <div class="nf-stack" data-gap="sm"><p class="nf-help">One page, complete coverage</p><h2 id="showcase-title">Explore the patterns</h2></div>
      <nav class="nf-navigation" aria-label="Showcase sections"><a href="#inspiration">Inspiration and benchmarks</a><a href="#foundations">Native foundations</a><a href="#layout">Layout and composition</a><a href="#forms">Forms and controls</a><a href="#surfaces">Surfaces and feedback</a><a href="#navigation">Navigation and menus</a><a href="#overlays">Dialogs and overlays</a><a href="#data">Data and content</a><a href="#advanced">Advanced enhancement</a></nav>
     </section>
 
-    <section class="nf-section nf-grid" id="foundations" data-showcase="native foundations" aria-labelledby="foundations-title"><article class="nf-card nf-stack"><p class="nf-help">Native foundations</p><h2 id="foundations-title">The browser is the component model</h2><p>Use buttons, links, labels, headings, lists, details, dialog, popover, forms, and tables before adding a class.</p><div class="nf-cluster"><button type="button" data-variant="primary">Save changes</button><a href="#forms">Read the form contract</a></div></article><aside class="nf-alert nf-stack" data-tone="info"><strong>Inference order</strong><span>Element → native state/ARIA → parent context → sibling relationship → registered utility.</span></aside></section>
+    <section class="nf-section nf-grid" id="foundations" data-showcase="native foundations" aria-labelledby="foundations-title"><article class="nf-card nf-stack"><p class="nf-help">Native foundations</p><h2 id="foundations-title">The browser is the component model</h2><p>Use buttons, links, labels, headings, lists, details, dialog, popover, forms, and tables before adding a class.</p><div class="nf-cluster"><button type="button" data-variant="primary">Save changes</button><a href="#forms">Read the form pattern</a></div></article><aside class="nf-alert nf-stack" data-tone="info"><strong>Inference order</strong><span>Element → native state/ARIA → parent context → sibling relationship → registered utility.</span></aside></section>
 
     <section class="nf-section nf-stack" id="layout" data-showcase="layout composition" aria-labelledby="layout-title"><h2 id="layout-title">Layout and composition</h2><div class="nf-grid"><article class="nf-card nf-stack"><h3>Stack</h3><p>Vertical rhythm that remains readable at narrow widths.</p></article><article class="nf-card nf-stack"><h3>Cluster</h3><div class="nf-cluster"><button type="button">Cancel</button><button type="button" data-variant="primary">Continue</button></div></article><article class="nf-card nf-stack"><h3>Grid</h3><p>Intrinsic columns create space without changing the DOM.</p></article></div></section>
 
@@ -65,9 +65,5 @@
    </div>
   </main>
   <script type="module" src="./behavior.js"></script>
-  <script>
-   const filter = document.querySelector('[data-showcase-filter]');
-   filter?.addEventListener('input', () => { const query = filter.value.trim().toLowerCase(); document.querySelectorAll('[data-showcase]').forEach((section) => { section.hidden = query && !section.dataset.showcase.includes(query); }); });
-  </script>
  </body>
 </html>

@@ -16,6 +16,7 @@
   :where(button)[data-variant="danger"] { border-color: var(--nf-color-danger); background: var(--nf-color-danger); color: var(--nf-color-on-danger); }
   :where(a)[data-variant] { display: inline-flex; min-block-size: 44px; align-items: center; padding: .5rem 1rem; border: 1px solid var(--nf-color-border-strong); border-radius: var(--nf-radius-sm); text-decoration: none; }
   :where(input, select, textarea) { inline-size: 100%; padding: .5rem .75rem; border: 1px solid var(--nf-color-border-strong); border-radius: var(--nf-radius-sm); background: var(--nf-color-surface); color: inherit; }
+  :where(input[type="checkbox"], input[type="radio"]) { inline-size: 1.25rem; block-size: 1.25rem; min-block-size: 1.25rem; padding: 0; }
   :where(input, select, textarea):focus-visible, :where(a, button, summary):focus-visible { outline: 2px solid var(--nf-color-accent); outline-offset: 3px; box-shadow: var(--nf-focus-ring); }
   :where(input, select, textarea)[aria-invalid="true"], :where(input, select, textarea):invalid { border-color: var(--nf-color-danger); }
   :where(input, select, textarea):disabled, :where(button):disabled { cursor: not-allowed; opacity: .6; }

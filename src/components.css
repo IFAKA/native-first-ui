@@ -27,7 +27,7 @@
   .nf-alert[data-tone="warning"] { border-color: color-mix(in srgb, var(--nf-color-warning) 40%, var(--nf-color-border)); background: color-mix(in srgb, var(--nf-color-warning) 10%, var(--nf-color-surface)); }
   .nf-alert[data-tone="danger"] { border-color: color-mix(in srgb, var(--nf-color-danger) 40%, var(--nf-color-border)); background: color-mix(in srgb, var(--nf-color-danger) 10%, var(--nf-color-surface)); }
 
-  .nf-badge { display: inline-flex; inline-size: max-content; max-inline-size: 100%; min-block-size: 1.75rem; align-items: center; padding: var(--nf-space-1) var(--nf-space-2); border-radius: var(--nf-radius-pill); background: color-mix(in srgb, var(--nf-color-accent) 14%, transparent); color: var(--nf-color-accent-strong); font-size: var(--nf-text-sm); font-weight: 650; overflow-wrap: anywhere; }
+  .nf-badge { display: inline-flex; inline-size: max-content; max-inline-size: 100%; min-block-size: 1.75rem; align-items: center; gap: var(--nf-space-1); padding: var(--nf-space-1) var(--nf-space-2); border-radius: var(--nf-radius-pill); background: color-mix(in srgb, var(--nf-color-accent) 14%, transparent); color: var(--nf-color-accent-strong); font-size: var(--nf-text-sm); font-weight: 650; overflow-wrap: anywhere; }
   .nf-badge[data-tone="success"] { background: color-mix(in srgb, var(--nf-color-success) 14%, transparent); color: var(--nf-color-success); }
   .nf-badge[data-tone="warning"] { background: color-mix(in srgb, var(--nf-color-warning) 16%, transparent); color: var(--nf-color-warning); }
   .nf-badge[data-tone="danger"] { background: color-mix(in srgb, var(--nf-color-danger) 14%, transparent); color: var(--nf-color-danger); }
