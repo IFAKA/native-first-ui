@@ -4,6 +4,11 @@ function closeOpenMenus(root, except = null) {
   root.querySelectorAll(".nf-navigation details[open]").forEach((menu) => {
     if (!except || !except.contains(menu)) menu.removeAttribute("open");
   });
+  root.querySelectorAll(".nf-navigation [popover]").forEach((menu) => {
+    if (!except || !except.contains(menu)) {
+      try { menu.hidePopover(); } catch {}
+    }
+  });
 }
 
 export function enhanceNativeInteractions(root = document) {
@@ -17,7 +22,9 @@ export function enhanceNativeInteractions(root = document) {
     const navigation = target.closest(".nf-navigation");
     if (navigation) {
       const summary = target.closest("summary");
+      const invoker = target.closest("[interestfor]");
       if (summary) closeOpenMenus(root, summary.closest("details"));
+      if (invoker) closeOpenMenus(root, invoker);
     } else {
       closeOpenMenus(root);
     }
@@ -31,9 +38,15 @@ export function enhanceNativeInteractions(root = document) {
     const target = event.target instanceof Element ? event.target : null;
     const summary = target?.closest(".nf-navigation summary");
     const menu = summary?.closest("details");
-    if (!menu) return;
-    menu.setAttribute("open", "");
-    closeOpenMenus(root, menu);
+    const invoker = target?.closest(".nf-navigation [interestfor]");
+    const popover = invoker && root.querySelector(`#${CSS.escape(invoker.getAttribute("interestfor"))}`);
+    if (menu) {
+      menu.setAttribute("open", "");
+      closeOpenMenus(root, menu);
+    } else if (popover?.showPopover) {
+      popover.showPopover({ source: invoker });
+      closeOpenMenus(root, popover);
+    }
   });
 
   root.addEventListener("pointerout", (event) => {

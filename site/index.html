@@ -58,34 +58,26 @@
                 <p class="nf-help">Links, current location, and a native menu.</p>
               </header>
               <nav class="nf-navigation" aria-label="Workspace navigation">
+                <a href="#components" aria-current="page" interestfor="site-projects-menu">Projects</a>
                 <a href="#activity">Activity</a>
-                <details>
-                  <summary>Projects</summary>
-                  <div class="nf-navigation-children">
-                    <a href="#components" aria-current="page">Projects overview</a>
-                    <a href="#activity">Roadmap</a>
-                    <details>
-                      <summary>Reports</summary>
-                      <div class="nf-navigation-children">
-                        <a href="#activity">Weekly report</a>
-                        <a href="#activity">Quarterly report</a>
-                      </div>
-                    </details>
+                <div id="site-projects-menu" popover="auto">
+                  <a href="#components">Projects overview</a>
+                  <a href="#activity">Roadmap</a>
+                  <a href="#activity" interestfor="site-reports-menu">Reports</a>
+                  <div id="site-reports-menu" popover="auto">
+                    <a href="#activity">Weekly report</a>
+                    <a href="#activity">Quarterly report</a>
                   </div>
-                </details>
-                <details>
-                  <summary>Workspace</summary>
-                  <div class="nf-navigation-children">
-                    <a href="#components">Members</a>
-                    <details>
-                      <summary>Settings</summary>
-                      <div class="nf-navigation-children">
-                        <a href="#components">General</a>
-                        <a href="#components">Notifications</a>
-                      </div>
-                    </details>
+                </div>
+                <a href="#components" interestfor="site-workspace-menu">Workspace</a>
+                <div id="site-workspace-menu" popover="auto">
+                  <a href="#components">Members</a>
+                  <a href="#components" interestfor="site-settings-menu">Settings</a>
+                  <div id="site-settings-menu" popover="auto">
+                    <a href="#components">General</a>
+                    <a href="#components">Notifications</a>
                   </div>
-                </details>
+                </div>
               </nav>
             </article>
           </div>

@@ -62,7 +62,7 @@ The repository includes [AGENTS.md](./AGENTS.md) and [INTEGRATION-RULES.md](./IN
 | `nf-grid` | `section`, `div` | Responsive cards or fields | Auto-fit columns collapse |
 | `nf-sidebar` | `div`, `main` | Sidebar plus content layout | Becomes one column |
 | `nf-section`, `nf-split`, `nf-center` | any flow element | Section rhythm, split headers, and centered states | Wraps or stacks naturally |
-| `nf-navigation` | `nav` | Links and native `details` menus | Links wrap; menus stay within viewport |
+| `nf-navigation` | `nav` | Links with native `popover` sub-navigation | Links wrap; menus stay within viewport |
 | `nf-link`, `nf-link-muted` | `<a>` | Consistent text-link emphasis | Labels wrap and remain keyboard reachable |
 | `nf-button`, `nf-button-primary`, `nf-button-danger`, `nf-button-quiet` | `<button>` or `<a>` | Default, primary, destructive, or quiet actions | At least 44px tall and labels wrap |
 | `nf-card` | `article`, `section` | Bounded surface containing related content | Width is intrinsic |
@@ -124,11 +124,11 @@ Keep code semantics native and add `nf-code` to the block-level `<pre>`:
 
 The `tabindex` makes wide code reachable by keyboard users; long lines scroll inside the code block instead of widening the page.
 
-For non-modal menus, hints, and anchored transient UI, use the native Popover API with `popover`, `popovertarget`, and `popovertargetaction`. Use `details`/`summary` when a disclosure is sufficient.
+For non-modal menus, hints, and anchored transient UI, use the native Popover API with `popover` and `interestfor`. Use `details`/`summary` when a disclosure is sufficient.
 
 ### Optional native behavior enhancements
 
-CSS cannot close a `<details>` menu on outside click or Escape. Keep the semantic `<nav>` and `<details>` markup, then opt into the dependency-free behavior module when that contract is needed:
+Native `popover="auto"` handles light-dismiss and Escape, while `interestfor` opens a route's submenu on hover or focus. Keep the semantic `<nav>` and real `<a>` links, then opt into the dependency-free behavior module when a compatibility fallback is needed:
 
 ```js
 import { enhanceNativeInteractions } from "native-first-ui/behavior.js";
@@ -136,7 +136,7 @@ import { enhanceNativeInteractions } from "native-first-ui/behavior.js";
 enhanceNativeInteractions();
 ```
 
-The module opens each `.nf-navigation` disclosure on mouse or pen hover, including nested disclosures, light-dismisses the navigation when the pointer leaves or the user clicks outside, closes the deepest nested disclosure on Escape, and provides backdrop dismissal for `.nf-dialog`. Touch and keyboard users keep the native click and focus behavior. Add `closedby="any"` to dialogs so browsers with native light-dismiss can handle it without JavaScript; the module remains the compatibility path.
+The module keeps older `details` navigation behavior working and can show `interestfor` targets through `showPopover()` where available. Dialogs still get backdrop dismissal as a compatibility path. Current browsers should use the native Popover API directly.
 
 ## Recipes
 
