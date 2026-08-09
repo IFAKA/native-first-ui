@@ -43,6 +43,20 @@ The generated project artifact is measured after combining selected contracts an
 
 The aspirational goal is a sub-1 KB gzip core. The current core is 1.82 KB gzip while retaining the complete native foundation, explicit theme tokens, focus treatment, control sizing, mobile action layout, and layout vocabulary. Generated project CSS is already below the 1 KB Brotli target.
 
+### Comparable CSS gzip sizes
+
+This comparison uses direct CSS distributions only. Native-First UI is measured as generated project CSS; the other figures are full or default framework distributions.
+
+| Project | Gzip | README |
+| --- | ---: | --- |
+| [**Native-First UI**](https://ifaka.github.io/native-first-ui/) | **396 B** | [README](https://github.com/IFAKA/native-first-ui#readme) |
+| [Milligram](https://milligram.io/) | ≈2 KB | [README](https://github.com/milligram/milligram#readme) |
+| [Pure.css](https://pure-css.github.io/) | ≈3.5 KB | [README](https://github.com/pure-css/pure#readme) |
+| [Bootstrap](https://getbootstrap.com/) | ≈28 KB | [README](https://github.com/twbs/bootstrap#readme) |
+| [Bulma](https://bulma.io/) | 77.8 KB | [README](https://github.com/jgthms/bulma#readme) |
+
+Native-First UI's generated output is measured after combining only the contracts used by a project and transforming them through Lightning CSS. The Bulma figure comes from [Bundlephobia](https://bundlephobia.com/); the other comparison figures are linked from the project documentation or published size notes.
+
 ## Why this project exists
 
 Native-First UI combines lessons from several excellent projects instead of pretending to replace them:

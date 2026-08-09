@@ -1,7 +1,7 @@
 {
   "name": "native-first-ui",
   "version": "0.1.0",
-  "description": "Native-first, framework-agnostic CSS layer with generated project CSS as small as 396 B gzip, zero runtime dependencies, and optional recipes for accessible responsive HTML.",
+  "description": "Native-first, framework-agnostic CSS layer with generated project CSS as small as 308 B Brotli, zero runtime dependencies, and optional recipes for accessible responsive HTML.",
   "license": "MIT",
   "type": "module",
   "repository": {
