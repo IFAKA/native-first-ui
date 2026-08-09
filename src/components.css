@@ -56,9 +56,6 @@
   [data-nf-tabs] [role="tab"] { border: 0; border-block-end: 2px solid transparent; border-radius: 0; background: transparent; color: var(--nf-color-muted); }
   [data-nf-tabs] [role="tab"][aria-selected="true"] { border-block-end-color: var(--nf-color-accent); color: var(--nf-color-text); }
   [data-nf-tabs] [role="tabpanel"] { padding-block: var(--nf-space-4); }
-  [data-nf-drawer] { inset: auto 0 0; inline-size: 100%; margin: 0; border-radius: var(--nf-radius-lg) var(--nf-radius-lg) 0 0; }
-  @media (min-width: 40rem) { [data-nf-drawer] { inset: 0 auto 0 0; inline-size: min(24rem, calc(100% - 2rem)); border-radius: 0 var(--nf-radius-lg) var(--nf-radius-lg) 0; } }
-
   @media (forced-colors: active) { .nf-toggle-control { border: 1px solid ButtonText; background: Canvas; } .nf-toggle-control::before { background: ButtonText; } .nf-toggle input:checked + .nf-toggle-control { background: Highlight; } }
   @media (prefers-reduced-motion: reduce) { .nf-toggle-control::before { transition-duration: 0ms; } }
 }
