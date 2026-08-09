@@ -1,5 +1,9 @@
 # Native-First UI
 
+[![CI](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/native-first-ui)](https://www.npmjs.com/package/native-first-ui)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 An HTML-first CSS component library for SaaS apps, ecommerce, dashboards, landing pages, and internal tools. It has one entry-point stylesheet, no runtime dependency, and a small optional behavior module.
 
 ## Install

@@ -4,6 +4,14 @@
   "description": "Accessible, framework-agnostic CSS contracts for native-first web interfaces.",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IFAKA/native-first-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IFAKA/native-first-ui/issues"
+  },
+  "homepage": "https://github.com/IFAKA/native-first-ui#readme",
   "engines": {
     "node": ">=20"
   },
