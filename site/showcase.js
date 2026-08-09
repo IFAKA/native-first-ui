@@ -36,7 +36,7 @@ const actionsStatus = document.querySelector("[data-demo-actions-status]");
 archiveButton?.addEventListener("click", () => {
   const archived = archiveButton.dataset.archived === "true";
   archiveButton.dataset.archived = String(!archived);
-  archiveButton.textContent = archived ? "Archive draft" : "Archived — undo";
+  archiveButton.textContent = archived ? "Undo archive" : "Archive draft";
   archiveButton.dataset.variant = archived ? "" : "secondary";
   if (actionsStatus) actionsStatus.textContent = archived ? "Draft restored." : "Draft archived. Choose undo to restore it.";
 });
