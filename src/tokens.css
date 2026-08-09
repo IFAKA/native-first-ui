@@ -2,9 +2,12 @@
   :root {
     --nf-color-background: #f7f8fa; --nf-color-surface: #fff; --nf-color-text: #17202b; --nf-color-muted: #5f6b78;
     --nf-color-border: #d8dee6; --nf-color-border-strong: #aeb8c5; --nf-color-accent: #2457d6; --nf-color-accent-ink: #fff;
-    --nf-color-danger: #b3261e; --nf-readable-width: 68ch; --nf-content-width: 72rem; --nf-radius-sm: .375rem; --nf-radius-md: .625rem; --nf-radius-lg: .875rem;
-    --nf-space-1: .25rem; --nf-space-2: .5rem; --nf-space-3: .75rem; --nf-space-4: 1rem; --nf-space-6: 1.5rem;
+    --nf-color-danger: #b3261e; --nf-color-on-danger: #fff; --nf-color-info: #2457d6; --nf-color-success: #16794c; --nf-color-warning: #8a5a00; --nf-color-accent-strong: #1742aa;
+    --nf-color-surface-raised: #fff; --nf-readable-width: 68ch; --nf-content-width: 72rem; --nf-radius-sm: .375rem; --nf-radius-md: .625rem; --nf-radius-lg: .875rem; --nf-radius-pill: 999px;
+    --nf-border-width: 1px; --nf-control-height: 44px; --nf-focus-ring: 0 0 0 4px color-mix(in srgb, var(--nf-color-accent) 22%, transparent); --nf-shadow-sm: 0 1px 2px rgb(15 23 42 / .06); --nf-shadow-md: 0 18px 50px rgb(15 23 42 / .16);
+    --nf-space-1: .25rem; --nf-space-2: .5rem; --nf-space-3: .75rem; --nf-space-4: 1rem; --nf-space-5: 1.25rem; --nf-space-6: 1.5rem; --nf-space-8: 2rem; --nf-space-10: 2.5rem;
+    --nf-text-sm: .875rem; --nf-scroll-area-height: 14rem;
   }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --nf-color-background:#101419;--nf-color-surface:#171c23;--nf-color-text:#eef2f6;--nf-color-muted:#aab4c0;--nf-color-border:#343e4a;--nf-color-border-strong:#536171;--nf-color-accent:#9eb9ff;--nf-color-accent-ink:#132552;--nf-color-danger:#ffaaa5; } }
-  :root[data-theme="dark"] { color-scheme: dark; --nf-color-background:#101419;--nf-color-surface:#171c23;--nf-color-text:#eef2f6;--nf-color-muted:#aab4c0;--nf-color-border:#343e4a;--nf-color-border-strong:#536171;--nf-color-accent:#9eb9ff;--nf-color-accent-ink:#132552;--nf-color-danger:#ffaaa5; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --nf-color-background:#101419;--nf-color-surface:#171c23;--nf-color-surface-raised:#202732;--nf-color-text:#eef2f6;--nf-color-muted:#aab4c0;--nf-color-border:#343e4a;--nf-color-border-strong:#536171;--nf-color-accent:#9eb9ff;--nf-color-accent-strong:#c7d6ff;--nf-color-accent-ink:#132552;--nf-color-danger:#ffaaa5;--nf-color-on-danger:#32100e;--nf-color-info:#9eb9ff;--nf-color-success:#79d7a8;--nf-color-warning:#f4c66d; } }
+  :root[data-theme="dark"] { color-scheme: dark; --nf-color-background:#101419;--nf-color-surface:#171c23;--nf-color-surface-raised:#202732;--nf-color-text:#eef2f6;--nf-color-muted:#aab4c0;--nf-color-border:#343e4a;--nf-color-border-strong:#536171;--nf-color-accent:#9eb9ff;--nf-color-accent-strong:#c7d6ff;--nf-color-accent-ink:#132552;--nf-color-danger:#ffaaa5;--nf-color-on-danger:#32100e;--nf-color-info:#9eb9ff;--nf-color-success:#79d7a8;--nf-color-warning:#f4c66d; }
 }
