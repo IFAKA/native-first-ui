@@ -10,7 +10,7 @@
   .nf-navigation :where(a, summary):hover { background: color-mix(in srgb, var(--nf-color-accent) 10%, transparent); }
   .nf-navigation [popover] { gap: var(--nf-space-1); position: absolute; inset: auto; z-index: 1; width: max-content; max-width: min(22rem, calc(100vw - 2rem)); margin: var(--nf-space-1) 0 0; padding: var(--nf-space-2); border: var(--nf-border-width) solid var(--nf-color-border); border-radius: var(--nf-radius-md); background: var(--nf-color-surface-raised); color: var(--nf-color-text); box-shadow: var(--nf-shadow-md); }
   .nf-navigation [popover]:popover-open { display: grid; }
-  .nf-navigation a[interestfor]::after { display: inline-block; width: 0.45em; height: 0.45em; margin-inline-start: var(--nf-space-2); border-inline-end: 0.1em solid currentColor; border-block-end: 0.1em solid currentColor; content: ""; transform: translateY(-0.12em) rotate(45deg); }
+  .nf-navigation a[data-menu-target]::after { display: inline-block; width: 0.45em; height: 0.45em; margin-inline-start: var(--nf-space-2); border-inline-end: 0.1em solid currentColor; border-block-end: 0.1em solid currentColor; content: ""; transform: translateY(-0.12em) rotate(45deg); }
 
   .nf-link, .nf-table a { font-weight: 650; text-underline-offset: 0.18em; }
   .nf-link-muted { color: var(--nf-color-muted); }

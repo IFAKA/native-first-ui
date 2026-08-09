@@ -1,4 +1,5 @@
 const initializedRoots = new WeakSet();
+const menuStates = new WeakMap();
 
 function closeOpenMenus(root, except = null) {
   root.querySelectorAll(".nf-navigation details[open]").forEach((menu) => {
@@ -14,14 +15,14 @@ function closeOpenMenus(root, except = null) {
   });
 }
 
-function getInterestPopover(root, invoker) {
-  const id = invoker.getAttribute("interestfor");
+function getMenuPopover(root, invoker) {
+  const id = invoker.getAttribute("data-menu-target");
   if (!id) return null;
   return root.querySelector(`#${CSS.escape(id)}`);
 }
 
-function showInterestPopover(root, invoker) {
-  const popover = getInterestPopover(root, invoker);
+function showMenuPopover(root, invoker) {
+  const popover = getMenuPopover(root, invoker);
   if (!popover?.showPopover) return null;
   try {
     if (!popover.matches(":popover-open")) popover.showPopover({ source: invoker });
@@ -43,6 +44,34 @@ function showInterestPopover(root, invoker) {
   return popover;
 }
 
+function clearMenuTimers(root) {
+  const state = menuStates.get(root);
+  if (!state) return;
+  clearTimeout(state.open);
+  clearTimeout(state.close);
+  state.open = null;
+  state.close = null;
+}
+
+function openMenuSoon(root, invoker) {
+  const state = menuStates.get(root) ?? { open: null, close: null };
+  menuStates.set(root, state);
+  clearTimeout(state.open);
+  clearTimeout(state.close);
+  state.open = setTimeout(() => {
+    const popover = showMenuPopover(root, invoker);
+    if (popover) closeOpenMenus(root, popover);
+  }, 120);
+}
+
+function closeMenusSoon(root) {
+  const state = menuStates.get(root) ?? { open: null, close: null };
+  menuStates.set(root, state);
+  clearTimeout(state.open);
+  clearTimeout(state.close);
+  state.close = setTimeout(() => closeOpenMenus(root), 180);
+}
+
 export function enhanceNativeInteractions(root = document) {
   if (initializedRoots.has(root)) return;
   initializedRoots.add(root);
@@ -54,7 +83,7 @@ export function enhanceNativeInteractions(root = document) {
     const navigation = target.closest(".nf-navigation");
     if (navigation) {
       const summary = target.closest("summary");
-      const invoker = target.closest("[interestfor]");
+      const invoker = target.closest("[data-menu-target]");
       if (summary) closeOpenMenus(root, summary.closest("details"));
       if (invoker) closeOpenMenus(root, invoker);
       if (!summary && !invoker && !target.closest("[popover]")) closeOpenMenus(root);
@@ -71,14 +100,12 @@ export function enhanceNativeInteractions(root = document) {
     const target = event.target instanceof Element ? event.target : null;
     const summary = target?.closest(".nf-navigation summary");
     const menu = summary?.closest("details");
-    const invoker = target?.closest(".nf-navigation [interestfor]");
+    const invoker = target?.closest(".nf-navigation [data-menu-target]");
     if (menu) {
       menu.setAttribute("open", "");
       closeOpenMenus(root, menu);
     } else if (invoker) {
-      const popover = showInterestPopover(root, invoker);
-      if (!popover) return;
-      closeOpenMenus(root, popover);
+      openMenuSoon(root, invoker);
     } else if (!target?.closest("[popover]")) {
       closeOpenMenus(root);
     }
@@ -86,9 +113,10 @@ export function enhanceNativeInteractions(root = document) {
 
   root.addEventListener("focusin", (event) => {
     const target = event.target instanceof Element ? event.target : null;
-    const invoker = target?.closest(".nf-navigation [interestfor]");
+    const invoker = target?.closest(".nf-navigation [data-menu-target]");
     if (invoker) {
-      const popover = showInterestPopover(root, invoker);
+      clearMenuTimers(root);
+      const popover = showMenuPopover(root, invoker);
       if (popover) closeOpenMenus(root, popover);
     } else if (!target?.closest("[popover]")) {
       closeOpenMenus(root);
@@ -101,16 +129,27 @@ export function enhanceNativeInteractions(root = document) {
     const navigation = target?.closest(".nf-navigation");
     const next = event.relatedTarget instanceof Node ? event.relatedTarget : null;
     const insidePopover = next && [...navigation?.querySelectorAll("[popover]") ?? []].some((popover) => popover.contains(next));
-    if (navigation && (!next || (!navigation.contains(next) && !insidePopover))) closeOpenMenus(root);
+    if (navigation && (!next || (!navigation.contains(next) && !insidePopover))) closeMenusSoon(root);
+    else clearMenuTimers(root);
   });
 
   root.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
+    clearMenuTimers(root);
     const openMenus = [...root.querySelectorAll(".nf-navigation details[open]")];
-    const menu = openMenus.at(-1);
+    const openPopovers = [...root.querySelectorAll(".nf-navigation [popover]")].filter((popover) => {
+      try { return popover.matches(":popover-open"); } catch { return false; }
+    });
+    const menu = openMenus.at(-1) ?? openPopovers.at(-1);
     if (!menu) return;
     event.preventDefault();
-    menu.removeAttribute("open");
-    menu.querySelector("summary")?.focus();
+    if (menu.matches("details")) {
+      menu.removeAttribute("open");
+      menu.querySelector("summary")?.focus();
+    } else {
+      const trigger = root.querySelector(`[data-menu-target="${CSS.escape(menu.id)}"]`);
+      menu.hidePopover();
+      trigger?.focus();
+    }
   });
 }

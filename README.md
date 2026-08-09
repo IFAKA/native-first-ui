@@ -124,11 +124,11 @@ Keep code semantics native and add `nf-code` to the block-level `<pre>`:
 
 The `tabindex` makes wide code reachable by keyboard users; long lines scroll inside the code block instead of widening the page.
 
-For non-modal menus, hints, and anchored transient UI, use the native Popover API with `popover` and `interestfor`. Use `details`/`summary` when a disclosure is sufficient.
+For non-modal menus, hints, and anchored transient UI, use the native Popover API. Use `details`/`summary` when a disclosure is sufficient.
 
 ### Optional native behavior enhancements
 
-Native `popover="auto"` handles light-dismiss and Escape, while `interestfor` opens a route's submenu on hover or focus. Keep the semantic `<nav>` and real `<a>` links, then opt into the dependency-free behavior module when a compatibility fallback is needed:
+Keep the semantic `<nav>` and real `<a>` links, then opt into the dependency-free behavior module for the small delayed hover/focus interaction contract used by the navigation examples:
 
 ```js
 import { enhanceNativeInteractions } from "native-first-ui/behavior.js";
@@ -136,7 +136,7 @@ import { enhanceNativeInteractions } from "native-first-ui/behavior.js";
 enhanceNativeInteractions();
 ```
 
-The module keeps older `details` navigation behavior working and can show `interestfor` targets through `showPopover()` where available. Dialogs still get backdrop dismissal as a compatibility path. Current browsers should use the native Popover API directly.
+The module opens `data-menu-target` popovers after a short hover intent delay, keeps the parent open while the pointer crosses into nested content, closes normal sibling links, and closes the deepest level on Escape. Dialogs still get backdrop dismissal as a compatibility path.
 
 ## Recipes
 
