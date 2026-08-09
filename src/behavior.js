@@ -7,8 +7,40 @@ function closeOpenMenus(root, except = null) {
   root.querySelectorAll(".nf-navigation [popover]").forEach((menu) => {
     if (!except || !except.contains(menu)) {
       try { menu.hidePopover(); } catch {}
+      menu.style.removeProperty("top");
+      menu.style.removeProperty("left");
+      menu.style.removeProperty("position");
     }
   });
+}
+
+function getInterestPopover(root, invoker) {
+  const id = invoker.getAttribute("interestfor");
+  if (!id) return null;
+  return root.querySelector(`#${CSS.escape(id)}`);
+}
+
+function showInterestPopover(root, invoker) {
+  const popover = getInterestPopover(root, invoker);
+  if (!popover?.showPopover) return null;
+  try {
+    if (!popover.matches(":popover-open")) popover.showPopover({ source: invoker });
+  } catch {
+    try { popover.showPopover(); } catch { return null; }
+  }
+
+  const trigger = invoker.getBoundingClientRect();
+  const nested = invoker.closest("[popover]");
+  const menu = popover.getBoundingClientRect();
+  const gap = 8;
+  let left = nested ? trigger.right + gap : trigger.left;
+  let top = nested ? trigger.top : trigger.bottom + gap;
+  left = Math.max(gap, Math.min(left, window.innerWidth - menu.width - gap));
+  top = Math.max(gap, Math.min(top, window.innerHeight - menu.height - gap));
+  popover.style.position = "fixed";
+  popover.style.left = `${left}px`;
+  popover.style.top = `${top}px`;
+  return popover;
 }
 
 export function enhanceNativeInteractions(root = document) {
@@ -39,14 +71,22 @@ export function enhanceNativeInteractions(root = document) {
     const summary = target?.closest(".nf-navigation summary");
     const menu = summary?.closest("details");
     const invoker = target?.closest(".nf-navigation [interestfor]");
-    const popover = invoker && root.querySelector(`#${CSS.escape(invoker.getAttribute("interestfor"))}`);
     if (menu) {
       menu.setAttribute("open", "");
       closeOpenMenus(root, menu);
-    } else if (popover?.showPopover) {
-      popover.showPopover({ source: invoker });
+    } else if (invoker) {
+      const popover = showInterestPopover(root, invoker);
+      if (!popover) return;
       closeOpenMenus(root, popover);
     }
+  });
+
+  root.addEventListener("focusin", (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    const invoker = target?.closest(".nf-navigation [interestfor]");
+    if (!invoker) return;
+    const popover = showInterestPopover(root, invoker);
+    if (popover) closeOpenMenus(root, popover);
   });
 
   root.addEventListener("pointerout", (event) => {
@@ -54,7 +94,8 @@ export function enhanceNativeInteractions(root = document) {
     const target = event.target instanceof Element ? event.target : null;
     const navigation = target?.closest(".nf-navigation");
     const next = event.relatedTarget instanceof Node ? event.relatedTarget : null;
-    if (navigation && (!next || !navigation.contains(next))) closeOpenMenus(root);
+    const insidePopover = next && navigation?.querySelector("[popover]")?.contains(next);
+    if (navigation && (!next || (!navigation.contains(next) && !insidePopover))) closeOpenMenus(root);
   });
 
   root.addEventListener("keydown", (event) => {
