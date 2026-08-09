@@ -19,6 +19,7 @@
   .nf-split { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--nf-space-4); }
   .nf-split > :first-child { min-width: min(100%, 16rem); }
   .nf-table-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; }
+  .nf-table-scroll > table { min-width: 36rem; }
   .nf-table-scroll:focus-visible { outline: 2px solid var(--nf-color-accent); outline-offset: 3px; }
   .nf-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
   .nf-skip-link { position: absolute; inset-block-start: var(--nf-space-3); inset-inline-start: var(--nf-space-3); z-index: 20; transform: translateY(-200%); }
