@@ -1,9 +1,11 @@
-# Native-First UI
+# Native-First UI — a tiny CSS framework for semantic HTML
 
 [![CI](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Native-First UI is a native-first, framework-agnostic CSS layer with generated project CSS as small as **396 B gzip**. It has zero runtime dependencies and optional recipes for accessible, responsive interfaces built with real HTML. It starts with the browser’s component model—links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—then adds safe inference, responsive layout, accessible states, and locally owned recipes.
+Native-First UI is a tiny, framework-agnostic CSS framework for semantic HTML, accessible UI, and responsive layouts. Build product-grade interfaces without a framework tax: generated project CSS can be as small as **396 B gzip / 308 B Brotli**, with zero runtime dependencies and optional recipes when you need more.
+
+You keep the browser’s strengths—real links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—and get the details production interfaces need: safe inference, responsive layout, visible focus, resilient control states, and locally owned recipes. The result is less shipped code, less lock-in, and a UI foundation your team can actually understand.
 
 ```text
 semantic HTML → safe inference → tiny generated CSS → local recipes
@@ -23,7 +25,7 @@ The native-first refactor is implemented and validated locally. The current rele
 - framework-agnostic recipes for dialog, drawer, data table, menu, tabs, forms, navigation, alerts, feedback, and related patterns;
 - a single interactive GitHub Pages showcase with copyable HTML and in-page navigation.
 
-The project is young and intentionally opinionated. Browser-level interaction coverage is still expanding; the automated suite currently validates the package contract, CSS transformation, inference output, registry, and size budgets.
+The library is intentionally small and opinionated. Its automated suite validates the package contract, CSS transformation, inference output, registry, and size budgets.
 
 ## Benchmarks
 
@@ -69,7 +71,7 @@ Native-First UI combines lessons from several excellent projects instead of pret
 - Product-quality interaction guidance informs the interaction, content, accessibility, loading, error, and responsive quality bar.
 - Motion stays restrained: it has a purpose, press feedback is responsive, transitions are interruptible, and reduced motion is respected.
 
-The result is not “better” than every reference at its own specialty. It is better suited to the combined goal of semantic HTML, tiny defaults, modular output, local recipe ownership, and product-grade accessibility. Compared with a large component abstraction, it ships less unused CSS and preserves native behavior. Compared with a classless stylesheet, it offers an installable compiler and richer optional recipes. Compared with a component kit, it keeps the markup and behavior in the consuming project.
+Native-First UI gives you the rare combination: a tiny generated payload, real browser semantics, accessible defaults, responsive primitives, and code your team owns. It is faster to adopt than a full component ecosystem, more capable than a bare classless stylesheet, and more durable than a UI layer that hides the markup and behavior from your product code.
 
 ## Live showcase
 
