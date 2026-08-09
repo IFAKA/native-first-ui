@@ -40,6 +40,7 @@
     "label": { "status": "native", "recipe": "forms" },
     "marker": { "status": "native-pattern", "recipe": "alerts" },
     "menubar": { "status": "native-enhanced", "recipe": "navigation" },
+    "mobile-actions": { "status": "recipe", "recipe": "mobile-actions" },
     "message": { "status": "recipe", "recipe": "feedback" },
     "message-scroller": { "status": "application-integration" },
     "native-select": { "status": "native", "recipe": "forms" },
