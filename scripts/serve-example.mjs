@@ -14,7 +14,7 @@ createServer(async (request, response) => {
   }
 
   const requested = new URL(request.url ?? "/", "http://localhost").pathname;
-  const normalized = requested === "/native-first-ui.css"
+  const normalized = requested === "/pith.css"
     ? "/dist/core.css"
     : requested === "/behavior.js"
       ? "/dist/behavior.js"
@@ -41,4 +41,4 @@ createServer(async (request, response) => {
     response.writeHead(404);
     response.end("Not found");
   }
-}).listen(4173, () => console.log("Native-First UI lab: http://localhost:4173"));
+}).listen(4173, () => console.log("Pith lab: http://localhost:4173"));

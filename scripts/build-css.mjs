@@ -23,4 +23,4 @@ for (const name of layers.slice(2)) {
   report[name] = compressed(bytes);
 }
 await writeFile(new URL("dist/size-report.json", root), `${JSON.stringify(report, null, 2)}\n`);
-console.log(`Built native-first-ui CSS: core ${report.core.gzip} B gzip / ${report.core.brotli} B Brotli`);
+console.log(`Built Pith CSS: core ${report.core.gzip} B gzip / ${report.core.brotli} B Brotli`);

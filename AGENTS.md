@@ -1,6 +1,6 @@
-# Native-First UI Project Rules
+# Pith Project Rules
 
-Use `$native-first-ui` for all interface work. Use `$emil-design-eng` for visual polish, interaction details, and motion decisions.
+Use `$pith` for all interface work. Use `$emil-design-eng` for visual polish, interaction details, and motion decisions.
 
 - Prefer semantic native HTML before custom components or ARIA.
 - Keep the DOM and data model the same on mobile and desktop.

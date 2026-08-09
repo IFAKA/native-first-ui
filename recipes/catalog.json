@@ -1,6 +1,6 @@
 {
   "source": "https://ui.shadcn.com/docs/components",
-  "project": "native-first-ui",
+  "project": "pith-css",
   "policy": "Native HTML equivalents are copyable recipes; application-specific behavior stays with the consuming app.",
   "components": {
     "accordion": { "status": "recipe", "recipe": "navigation" },

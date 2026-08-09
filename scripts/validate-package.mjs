@@ -12,4 +12,4 @@ const html = await readFile(new URL("examples/index.html", root), "utf8");
 for (const marker of ["<main","<form","<table","<dialog","aria-live"]) if (!html.includes(marker)) throw new Error(`Missing showcase marker: ${marker}`);
 if (html.includes("/components/")) throw new Error("Legacy components route remains");
 for (const recipe of ["dialog","drawer","data-table","menu","mobile-actions"]) for (const file of ["snippet.html","README.md","metadata.json"]) await readFile(new URL(`recipes/${recipe}/${file}`, root));
-console.log(`Validated native-first-ui package (${required.length} required files)`);
+console.log(`Validated Pith package (${required.length} required files)`);

@@ -2,7 +2,7 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Turn the example page into a single-file, Storybook-like workbench for exercising native-first UI patterns under realistic scale and accessibility stress.
+**Goal:** Turn the example page into a single-file, Storybook-like workbench for exercising Pith patterns under realistic scale and accessibility stress.
 
 **Architecture:** Keep the product dependency-free and framework-agnostic. Use semantic HTML for the workbench shell and controls, a small page-local CSS layer for the dark inspection UI, and a compact data-driven script for navigation, search, viewport toggles, state presets, and component rendering.
 

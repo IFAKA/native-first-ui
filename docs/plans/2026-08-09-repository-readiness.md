@@ -2,7 +2,7 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Establish a professional baseline for publishing and maintaining Native-First UI as a small, accessible, dependency-free package.
+**Goal:** Establish a professional baseline for publishing and maintaining Pith as a small, accessible, dependency-free package.
 
 **Architecture:** Keep the package runtime-free and framework-agnostic. Add repository governance and CI around the existing validator, and harden only the local example tooling needed for safe development.
 
@@ -33,4 +33,3 @@ Prevent path traversal in the example server and validate package metadata plus 
 **Commands:** `npm test`, `npm run pack:check`, `npm pack --dry-run`
 
 Confirm the repository is internally consistent and the package can be inspected before publishing.
-

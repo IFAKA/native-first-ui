@@ -1,17 +1,17 @@
 {
-  "name": "native-first-ui",
+  "name": "pith-css",
   "version": "0.1.0",
   "description": "Tiny, framework-agnostic CSS framework for semantic HTML and accessible responsive UI, as small as 308 B Brotli with zero runtime dependencies.",
   "license": "MIT",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/IFAKA/native-first-ui.git"
+    "url": "https://github.com/IFAKA/pith.git"
   },
   "bugs": {
-    "url": "https://github.com/IFAKA/native-first-ui/issues"
+    "url": "https://github.com/IFAKA/pith/issues"
   },
-  "homepage": "https://ifaka.github.io/native-first-ui/",
+  "homepage": "https://ifaka.github.io/pith/",
   "engines": {
     "node": ">=20"
   },

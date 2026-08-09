@@ -1,9 +1,9 @@
 ---
-name: native-first-ui
-description: Build, refactor, and review Native-First UI interfaces with semantic HTML, small framework-agnostic CSS layers, accessible interaction contracts, mobile-first responsive structure, progressive enhancement, and restrained visual polish. Use for UI architecture, components, recipes, forms, navigation, tables, dashboards, and responsive web interfaces.
+name: pith
+description: Build, refactor, and review Pith interfaces with semantic HTML, small framework-agnostic CSS layers, accessible interaction contracts, mobile-first responsive structure, progressive enhancement, and restrained visual polish. Use for UI architecture, components, recipes, forms, navigation, tables, dashboards, and responsive web interfaces.
 ---
 
-# Native-First UI
+# Pith
 
 Build interfaces that feel inevitable: the browser should provide the semantics and behavior, the CSS should add a small amount of clear structure, and polish should make the result feel calm, responsive, and cared for.
 

@@ -1,9 +1,9 @@
-# Native-First UI — a tiny CSS framework for semantic HTML
+# Pith — a tiny CSS framework for semantic HTML
 
-[![CI](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml)
+[![CI](https://github.com/IFAKA/pith/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/pith/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Native-First UI is a tiny, framework-agnostic CSS framework for semantic HTML, accessible UI, and responsive layouts. Build product-grade interfaces without a framework tax: generated project CSS can be as small as **396 B gzip / 308 B Brotli**, with zero runtime dependencies and optional recipes when you need more.
+Pith is a tiny, framework-agnostic CSS framework for semantic HTML, accessible UI, and responsive layouts. Build product-grade interfaces without a framework tax: generated project CSS can be as small as **396 B gzip / 308 B Brotli**, with zero runtime dependencies and optional recipes when you need more.
 
 You keep the browser’s strengths—real links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—and get the details production interfaces need: safe inference, responsive layout, visible focus, resilient control states, and locally owned recipes. The result is less shipped code, less lock-in, and a UI foundation your team can actually understand.
 
@@ -15,7 +15,7 @@ The default package entry point is `core.css`. It has no runtime dependency, kee
 
 ## Current status
 
-The native-first refactor is implemented and validated locally. The current release surface includes:
+The Pith refactor is implemented and validated locally. The current release surface includes:
 
 - `core.css` as the default package export;
 - optional `layout.css`, `forms.css`, `navigation.css`, `data.css`, and `overlays.css` modules;
@@ -47,21 +47,21 @@ The aspirational goal is a sub-1 KB gzip core. The current core is 1.82 KB gzip 
 
 ### Comparable CSS gzip sizes
 
-This comparison uses direct CSS distributions only. Native-First UI is measured as generated project CSS; the other figures are full or default framework distributions.
+This comparison uses direct CSS distributions only. Pith is measured as generated project CSS; the other figures are full or default framework distributions.
 
 | Project | Gzip | README |
 | --- | ---: | --- |
-| [**Native-First UI**](https://ifaka.github.io/native-first-ui/) | **396 B** | [README](https://github.com/IFAKA/native-first-ui#readme) |
+| [**Pith**](https://ifaka.github.io/pith/) | **396 B** | [README](https://github.com/IFAKA/pith#readme) |
 | [Milligram](https://milligram.io/) | ≈2 KB | [README](https://github.com/milligram/milligram#readme) |
 | [Pure.css](https://pure-css.github.io/) | ≈3.5 KB | [README](https://github.com/pure-css/pure#readme) |
 | [Bootstrap](https://getbootstrap.com/) | ≈28 KB | [README](https://github.com/twbs/bootstrap#readme) |
 | [Bulma](https://bulma.io/) | 77.8 KB | [README](https://github.com/jgthms/bulma#readme) |
 
-Native-First UI's generated output is measured after combining only the contracts used by a project and transforming them through Lightning CSS. The Bulma figure comes from [Bundlephobia](https://bundlephobia.com/); the other comparison figures are linked from the project documentation or published size notes.
+Pith's generated output is measured after combining only the contracts used by a project and transforming them through Lightning CSS. The Bulma figure comes from [Bundlephobia](https://bundlephobia.com/); the other comparison figures are linked from the project documentation or published size notes.
 
 ## Why this project exists
 
-Native-First UI combines lessons from several excellent projects instead of pretending to replace them:
+Pith combines lessons from several excellent projects instead of pretending to replace them:
 
 - [Lit](https://lit.dev/) and [Min](https://mincss.com/) inspire byte discipline and a small surface area.
 - [New.css](https://newcss.net/) inspires classless semantic defaults that make plain HTML useful immediately.
@@ -71,11 +71,11 @@ Native-First UI combines lessons from several excellent projects instead of pret
 - Product-quality interaction guidance informs the interaction, content, accessibility, loading, error, and responsive quality bar.
 - Motion stays restrained: it has a purpose, press feedback is responsive, transitions are interruptible, and reduced motion is respected.
 
-Native-First UI gives you the rare combination: a tiny generated payload, real browser semantics, accessible defaults, responsive primitives, and code your team owns. It is faster to adopt than a full component ecosystem, more capable than a bare classless stylesheet, and more durable than a UI layer that hides the markup and behavior from your product code.
+Pith gives you the rare combination: a tiny generated payload, real browser semantics, accessible defaults, responsive primitives, and code your team owns. It is faster to adopt than a full component ecosystem, more capable than a bare classless stylesheet, and more durable than a UI layer that hides the markup and behavior from your product code.
 
 ## Live showcase
 
-Visit the [Native-First UI GitHub Pages showcase](https://ifaka.github.io/native-first-ui/). It is one complete, prioritized, interactive page—not a collection of disconnected screenshots—with:
+Visit the [Pith GitHub Pages showcase](https://ifaka.github.io/pith/). It is one complete, prioritized, interactive page—not a collection of disconnected screenshots—with:
 
 - foundations and native HTML;
 - buttons, forms, validation, and controls;
@@ -91,34 +91,34 @@ Click the controls, submit the form, change the range, switch tabs, open the dia
 ## Install
 
 ```bash
-npm install native-first-ui
+npm install pith-css
 ```
 
 ```css
-@import "native-first-ui/core.css";
+@import "pith-css/core.css";
 ```
 
 The package root exports only `core.css`. Optional contracts are available explicitly:
 
 ```css
-@import "native-first-ui/layout.css";
-@import "native-first-ui/forms.css";
-@import "native-first-ui/navigation.css";
-@import "native-first-ui/data.css";
-@import "native-first-ui/overlays.css";
+@import "pith-css/layout.css";
+@import "pith-css/forms.css";
+@import "pith-css/navigation.css";
+@import "pith-css/data.css";
+@import "pith-css/overlays.css";
 ```
 
 The dependency-free `behavior.js` module is available for recipes that need progressive enhancement. Native controls remain usable without it.
 
 ## Install the project skills for Codex
 
-The repository includes its own `$native-first-ui` skill in [`.agents/skills/native-first-ui/`](.agents/skills/native-first-ui/). Install it into the current Codex skills directory with:
+The repository includes its own `$pith` skill in [`.agents/skills/pith/`](.agents/skills/pith/). Install it into the current Codex skills directory with:
 
 ```bash
 npm run install:skills
 ```
 
-`npm run setup:skills` remains available as an alias. The command copies the repository-owned `$native-first-ui` skill into `${CODEX_HOME:-~/.codex}/skills` without replacing the original `$emil-design-eng` skill installed from `emilkowalski/skill`. Start a new agent session after installing so the skill catalog is refreshed.
+`npm run setup:skills` remains available as an alias. The command copies the repository-owned `$pith` skill into `${CODEX_HOME:-~/.codex}/skills` without replacing the original `$emil-design-eng` skill installed from `emilkowalski/skill`. Start a new agent session after installing so the skill catalog is refreshed.
 
 ## Public API
 
@@ -174,6 +174,12 @@ Brand the system by overriding tokens in your own layer:
 ```
 
 Keep product-specific composition and behavior local. Use real links for destinations, labels for controls, `aria-live="polite"` for asynchronous status, and confirmation or undo for destructive actions.
+
+The Pith brand is new, but the `nf-*` CSS contract remains stable and will not change until a future major release.
+
+### Follow-up: migrate the CSS contract
+
+In a future major release, evaluate renaming the `nf-*` selectors and `--nf-*` tokens to Pith-prefixed names. Treat this as a separate breaking-change task with a migration guide, compatibility period, codemod or equivalent upgrade aid, updated recipes, and a fresh public API audit. Keep `nf-*` unchanged until that work is explicitly planned and released.
 
 ## Development
 

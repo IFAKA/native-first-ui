@@ -9,4 +9,4 @@ await run("node", ["scripts/convert-shadcn.mjs"]);
 await run("node", ["scripts/generate-component-css.mjs", "all"]);
 await run("node", ["scripts/audit-css-minimality.mjs"]);
 await run("node", ["scripts/validate-package.mjs"]);
-console.log("Transpiled and validated all 64 Native-First component demos.");
+console.log("Transpiled and validated all 64 Pith component demos.");

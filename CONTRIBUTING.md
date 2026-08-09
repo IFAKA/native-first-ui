@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping make Native-First UI a dependable foundation for accessible web interfaces.
+Thanks for helping make Pith a dependable foundation for accessible web interfaces.
 
 ## Before opening a pull request
 
@@ -17,4 +17,3 @@ Use a focused title such as `feat: add a disclosure pattern` or `fix: preserve f
 Describe the user-facing behavior, accessibility implications, browser considerations, and verification performed.
 
 Small, focused pull requests are easier to review and safer to release.
-

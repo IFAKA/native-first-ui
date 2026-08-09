@@ -1,13 +1,13 @@
-# Native-First UI Integration Rules
+# Pith Integration Rules
 
-Use these rules when adding interface code to a project that uses Native-First UI.
+Use these rules when adding interface code to a project that uses Pith.
 
 ## Required
 
 - Use semantic native HTML before custom components or ARIA.
 - Use the existing `nf-*` contract before writing a new UI rule.
 - Prefer plain native elements and use `data-variant="primary|danger|quiet"` for action variants. Role-named classes are not part of the public API.
-- Import `native-first-ui/core.css` once, unless using the individual layer exports intentionally.
+- Import `pith-css/core.css` once, unless using the individual layer exports intentionally.
 - Keep the DOM and data model the same on mobile and desktop.
 - Start mobile-first and preserve visible `:focus-visible` styles.
 - Keep interactive controls at least 44px tall.
@@ -29,12 +29,12 @@ Use these rules when adding interface code to a project that uses Native-First U
 
 ## Custom CSS boundary
 
-Application-specific CSS is allowed when no existing contract fits. Keep it in an application layer after the library layers and use a product-specific prefix. Do not modify files inside `node_modules/native-first-ui`.
+Application-specific CSS is allowed when no existing contract fits. Keep it in an application layer after the library layers and use a product-specific prefix. Do not modify files inside `node_modules/pith-css`.
 
 ```css
 @layer reset, tokens, elements, patterns, components, app;
 
-@import "native-first-ui/core.css";
+@import "pith-css/core.css";
 
 @layer app {
   .app-project-hero { /* product-specific composition */ }

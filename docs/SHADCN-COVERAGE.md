@@ -1,6 +1,6 @@
 # Component coverage
 
-Native-First UI is not a React port of shadcn/ui. It provides copyable HTML recipes with native browser behavior and optional enhancement. This matrix keeps the comparison explicit. The names below are the current components listed in the [official shadcn/ui catalog](https://ui.shadcn.com/docs/components).
+Pith is not a React port of shadcn/ui. It provides copyable HTML recipes with native browser behavior and optional enhancement. This matrix keeps the comparison explicit. The names below are the current components listed in the [official shadcn/ui catalog](https://ui.shadcn.com/docs/components).
 
 ## Coverage is tracked as data
 

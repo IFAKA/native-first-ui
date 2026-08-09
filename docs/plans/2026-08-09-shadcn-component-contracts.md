@@ -2,7 +2,7 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Make the generic Native-First UI workbench expose exactly the requested shadcn-style component names and provide a concrete native HTML contract for every one.
+**Goal:** Make the generic Pith workbench expose exactly the requested shadcn-style component names and provide a concrete native HTML contract for every one.
 
 **Architecture:** Keep the existing catalog as the single public inventory. The workbench will render every catalog slug, including native equivalents and application-owned patterns, while the validator checks that each slug has a concrete definition rather than a fallback placeholder. Recipe family names remain internal organization only.
 

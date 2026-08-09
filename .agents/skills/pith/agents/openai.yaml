@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pith"
+  short_description: "Build scalable native HTML UIs"
+  default_prompt: "Use $pith to build this interface with semantic HTML, minimal CSS, mobile-first layout, and Emil-style polish."

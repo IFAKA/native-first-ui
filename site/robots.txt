@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ifaka.github.io/native-first-ui/sitemap.xml
+Sitemap: https://ifaka.github.io/pith/sitemap.xml

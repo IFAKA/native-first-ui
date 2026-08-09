@@ -6,7 +6,7 @@
 
 **Architecture:** Extend the core layout layer with a semantic footer pattern that is sticky on narrow screens and returns to normal document flow on larger screens. Provide a copyable recipe and showcase example so consuming apps can use the same DOM across viewports.
 
-**Tech Stack:** Framework-agnostic CSS, semantic HTML, existing native-first-ui registry/build scripts.
+**Tech Stack:** Framework-agnostic CSS, semantic HTML, existing Pith registry/build scripts.
 
 ---
 

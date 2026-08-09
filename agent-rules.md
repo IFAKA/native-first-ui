@@ -1,4 +1,4 @@
-# Native-First UI agent rules
+# Pith agent rules
 
 Use semantic HTML first: element → native state/ARIA → parent context → sibling relationship → registered utility → component contract.
 

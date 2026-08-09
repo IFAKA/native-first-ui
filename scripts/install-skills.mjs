@@ -6,7 +6,7 @@ const projectRoot = process.cwd();
 const sourceRoot = join(projectRoot, ".agents", "skills");
 const codexRoot = process.env.CODEX_HOME ?? join(homedir(), ".codex");
 const targetRoot = join(codexRoot, "skills");
-const skills = ["native-first-ui"];
+const skills = ["pith"];
 
 await mkdir(targetRoot, { recursive: true });
 
@@ -22,4 +22,4 @@ for (const skill of skills) {
   }
 }
 
-console.log("Native-First UI skills are ready for the next agent session.");
+console.log("Pith skills are ready for the next agent session.");
