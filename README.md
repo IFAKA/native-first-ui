@@ -3,7 +3,7 @@
 [![CI](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Native-First UI is a tiny, framework-agnostic CSS layer for real HTML. It starts with the browser’s component model—links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—then adds safe inference, responsive layout, accessible states, and locally owned recipes.
+Native-First UI is a native-first, framework-agnostic CSS layer for accessible, responsive interfaces built with real HTML, zero runtime dependencies, and optional recipes. It starts with the browser’s component model—links, buttons, forms, tables, lists, `dialog`, `details`, and `popover`—then adds safe inference, responsive layout, accessible states, and locally owned recipes.
 
 ```text
 semantic HTML → safe inference → tiny generated CSS → local recipes
@@ -31,12 +31,12 @@ Measured from the current generated distribution on the development machine:
 
 | Artifact | Raw | Gzip | Brotli |
 | --- | ---: | ---: | ---: |
-| `core.css` | 6,079 B | 1,815 B | 1,541 B |
-| `layout.css` | 1,250 B | 539 B | 449 B |
+| `core.css` | 6,112 B | 1,821 B | 1,549 B |
+| `layout.css` | 1,283 B | 547 B | 463 B |
 | `forms.css` | 663 B | 302 B | 239 B |
 | `navigation.css` | 618 B | 333 B | 255 B |
 | `data.css` | 600 B | 303 B | 262 B |
-| `overlays.css` | 678 B | 339 B | 270 B |
+| `overlays.css` | 1,375 B | 515 B | 434 B |
 | generated project CSS | 716 B | 396 B | 308 B |
 
 The generated project artifact is measured after combining selected contracts and transforming them through Lightning CSS. It is not calculated by adding separately compressed files. The npm package has zero runtime dependencies.

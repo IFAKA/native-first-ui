@@ -1,7 +1,7 @@
 {
   "name": "native-first-ui",
   "version": "0.1.0",
-  "description": "Accessible, framework-agnostic CSS contracts for native-first web interfaces.",
+  "description": "Native-first, framework-agnostic CSS layer for accessible, responsive interfaces built with real HTML, zero runtime dependencies, and optional recipes.",
   "license": "MIT",
   "type": "module",
   "repository": {
