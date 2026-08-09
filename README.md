@@ -9,14 +9,9 @@ Native-First UI keeps the browser's native HTML semantics intact, then adds a co
 
 ### Size at a glance
 
-| Delivery | Size |
-| --- | ---: |
-| Complete bundled CSS | **3,020 B gzip** |
-| Complete bundled CSS | **2,618 B Brotli** |
-| npm tarball | **about 7.3 KB** |
-| Runtime dependencies | **0** |
+The complete bundled stylesheet is **about 2.6 KB compressed**. The npm package is **about 7.3 KB** and has **0 runtime dependencies**.
 
-These figures are measured by the repository's build and size checks. Individual layer imports are available when an application needs less than the complete contract.
+These are practical rounded sizes for the published package. Individual layer imports are available when an application needs less than the complete contract.
 
 ## Live showcase
 
