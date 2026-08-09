@@ -3,7 +3,7 @@
 [![CI](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/IFAKA/native-first-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-An HTML-first CSS contract library for SaaS apps, ecommerce, dashboards, landing pages, and internal tools. It has one entry-point stylesheet and no runtime dependency.
+An HTML-first CSS contract library for SaaS apps, ecommerce, dashboards, landing pages, and internal tools. The complete stylesheet is **just 2.6 KB compressed**, with one entry-point stylesheet and no runtime dependency.
 
 Native-First UI keeps the browser's native HTML semantics intact, then adds a compact set of responsive, accessible contracts for real product surfaces.
 
