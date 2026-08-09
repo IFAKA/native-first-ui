@@ -33,7 +33,7 @@
           </div>
           <dl class="showcase-stats" aria-label="Library summary">
             <div><dt>2.6 KB</dt><dd>complete CSS, Brotli</dd></div>
-            <div><dt>5</dt><dd>focused contracts</dd></div>
+            <div><dt>20+</dt><dd>focused contracts</dd></div>
             <div><dt>0</dt><dd>runtime dependencies</dd></div>
           </dl>
         </section>
@@ -62,16 +62,16 @@
         <section class="nf-card nf-stack" id="contracts" aria-labelledby="contracts-title">
           <div class="nf-stack" data-gap="sm"><p class="nf-help">The complete surface</p><h2 id="contracts-title">Every contract, in one place.</h2><p>One small layer for the layouts, controls, states, and data surfaces product interfaces need.</p></div>
           <div class="showcase-component-grid">
-            <article class="nf-card"><h3>Layout</h3><p>Container, stack, cluster, grid, sidebar, split, page.</p><code>.nf-container</code></article>
-            <article class="nf-card"><h3>Navigation</h3><p>Links, nested menus, page headers, and current states.</p><code>.nf-navigation</code></article>
-            <article class="nf-card"><h3>Actions</h3><p>Default, primary, destructive, and quiet buttons.</p><code>.nf-button-primary</code></article>
-            <article class="nf-card"><h3>Surfaces</h3><p>Cards, readable content, media, and consistent depth.</p><code>.nf-card</code></article>
-            <article class="nf-card"><h3>Forms</h3><p>Forms, fields, labels, help, and validation messages.</p><code>.nf-form</code></article>
-            <article class="nf-card"><h3>Tables</h3><p>Captions, dense data, and labelled scroll regions.</p><code>.nf-table</code></article>
-            <article class="nf-card"><h3>Messages</h3><p>Alerts, badges, and tones that explain state in text.</p><code>.nf-alert</code></article>
-            <article class="nf-card"><h3>Async states</h3><p>Loading, skeleton, empty, and pagination patterns.</p><code>.nf-empty</code></article>
-            <article class="nf-card"><h3>Dialogs</h3><p>Native confirmation and focused task surfaces.</p><code>.nf-dialog</code></article>
-            <article class="nf-card"><h3>Modes</h3><p>Light, dark, forced colors, narrow screens, long labels.</p><code>--nf-*</code></article>
+            <article class="nf-card showcase-demo"><h3>Layout</h3><p>Responsive structure from native flow primitives.</p><div class="nf-stack" data-gap="sm"><div class="nf-cluster"><span class="nf-badge">Overview</span><span class="nf-help">Workspace</span></div><div class="nf-grid"><div class="nf-card"><strong>24</strong><span class="nf-help">Projects</span></div><div class="nf-card"><strong>8</strong><span class="nf-help">Members</span></div></div></div><code>.nf-stack · .nf-cluster · .nf-grid</code></article>
+            <article class="nf-card showcase-demo"><h3>Navigation</h3><p>Real links and native nested disclosure.</p><nav class="nf-navigation" aria-label="Demo navigation"><a href="#contracts" aria-current="page">Projects</a><a href="#proof">Activity</a><details><summary>More</summary><div class="nf-navigation-children"><a href="#source-title">Settings</a></div></details></nav><code>.nf-navigation</code></article>
+            <article class="nf-card showcase-demo"><h3>Actions</h3><p>Visible labels and clear action hierarchy.</p><div class="nf-cluster"><button class="nf-button" type="button">Cancel</button><button class="nf-button-primary" type="button">Save</button><button class="nf-button-danger" type="button">Delete</button></div><code>.nf-button-primary</code></article>
+            <article class="nf-card showcase-demo"><h3>Surfaces</h3><p>Cards and badges group related information.</p><div class="nf-card"><div class="nf-split"><strong>Workspace health</strong><span class="nf-badge" data-tone="success">Operational</span></div><span class="nf-help">All services are responding normally.</span></div><code>.nf-card · .nf-badge</code></article>
+            <article class="nf-card showcase-demo"><h3>Forms</h3><p>Labels, native controls, help, and status.</p><form class="nf-form" onsubmit="event.preventDefault(); this.querySelector('[role=status]').textContent = 'Saved.'"><div class="nf-field"><label for="contract-email">Email address</label><input id="contract-email" type="email" placeholder="you@example.com" required /><span class="nf-help">We will never share it.</span></div><button class="nf-button-primary" type="submit">Save settings</button><span class="nf-help" role="status" aria-live="polite">Ready.</span></form><code>.nf-form · .nf-field</code></article>
+            <article class="nf-card showcase-demo"><h3>Tables</h3><p>Relational data inside a labelled scroll region.</p><div class="nf-table-scroll" tabindex="0" aria-label="Demo project table"><table class="nf-table"><caption>Projects</caption><thead><tr><th scope="col">Name</th><th scope="col">Owner</th><th scope="col">Status</th></tr></thead><tbody><tr><td>Northstar</td><td>Samira</td><td><span class="nf-badge" data-tone="success">Active</span></td></tr><tr><td>Atlas</td><td>Alex</td><td><span class="nf-badge" data-tone="warning">Review</span></td></tr></tbody></table></div><code>.nf-table</code></article>
+            <article class="nf-card showcase-demo"><h3>Messages</h3><p>State is explained with text, not color alone.</p><div class="nf-stack" data-gap="sm"><span class="nf-badge" data-tone="success">Complete</span><aside class="nf-alert" data-tone="warning" role="status"><strong>Needs attention</strong><span>One project is missing an owner.</span></aside></div><code>.nf-alert · .nf-badge</code></article>
+            <article class="nf-card showcase-demo"><h3>Async states</h3><p>Loading, progress, empty, and pagination states.</p><div class="nf-stack" data-gap="sm"><span class="nf-loading">Syncing workspace</span><progress value="64" max="100">64%</progress><div class="nf-empty"><span class="nf-help">No archived projects</span></div><nav class="nf-pagination" aria-label="Demo pagination"><a class="nf-button" href="#contracts" aria-current="page">1</a><a class="nf-button" href="#contracts">2</a><a class="nf-button" href="#contracts">Next</a></nav></div><code>.nf-loading · .nf-empty</code></article>
+            <article class="nf-card showcase-demo"><h3>Dialogs</h3><p>Native confirmation with Escape and form close.</p><button class="nf-button-danger" commandfor="contract-dialog" command="show-modal" type="button">Open dialog</button><dialog id="contract-dialog" class="nf-dialog" aria-labelledby="contract-dialog-title"><form method="dialog" class="nf-stack"><h3 id="contract-dialog-title">Remove member?</h3><p>This can be restored later.</p><div class="nf-cluster"><button class="nf-button" value="cancel">Cancel</button><button class="nf-button-danger" value="remove">Remove</button></div></form></dialog><code>.nf-dialog</code></article>
+            <article class="nf-card showcase-demo"><h3>Code blocks</h3><p>Readable source that scrolls without widening the page.</p><pre class="nf-code" tabindex="0"><code>const ready = true;</code></pre><code>.nf-code</code></article>
           </div>
         </section>
 
