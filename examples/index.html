@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Interactive catalog for the Native-First UI HTML component library." />
+    <title>Native-First UI — HTML component catalog</title>
+    <link rel="stylesheet" href="../src/core.css" />
+    <script type="module" src="../src/behavior.js"></script>
+    <style>
+      @layer workbench {
+        :root { --lab-ink: #18212b; --lab-muted: #657281; --lab-line: #d9e0e8; --lab-soft: #eef2f6; --lab-accent: #2457d6; --lab-canvas: #f4f6f8; --lab-max: 76rem; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--lab-canvas); color: var(--lab-ink); }
+        .lab-header { border-block-end: 1px solid var(--lab-line); background: color-mix(in srgb, var(--nf-color-surface) 92%, transparent); }
+        .lab-header-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; }
+        .lab-brand { display: flex; align-items: center; gap: .75rem; color: inherit; text-decoration: none; }
+        .lab-mark { display: grid; width: 2rem; height: 2rem; place-items: center; border-radius: .65rem; background: var(--nf-color-accent); color: var(--nf-color-accent-ink); font-weight: 800; }
+        .lab-brand small { display: block; color: var(--lab-muted); font-size: .75rem; }
+        .lab-header-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+        .lab-header-actions input { width: min(16rem, 48vw); min-height: 2.5rem; }
+        .lab-layout { display: grid; grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); padding-block: 2rem 4rem; }
+        .lab-sidebar { position: sticky; top: 1.25rem; align-self: start; }
+        .lab-sidebar h2 { margin-block-end: .75rem; color: var(--lab-muted); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+        .lab-catalog { display: grid; gap: .2rem; }
+        .lab-catalog button { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; width: 100%; min-height: 2.75rem; padding: .6rem .7rem; border: 0; border-radius: .45rem; background: transparent; color: var(--lab-muted); text-align: start; cursor: pointer; }
+        .lab-catalog button:hover, .lab-catalog button[aria-current="page"] { background: var(--nf-color-surface); color: var(--lab-ink); box-shadow: var(--nf-shadow-sm); }
+        .lab-catalog button[aria-current="page"] { font-weight: 700; }
+        .lab-catalog small { color: var(--lab-muted); font-size: .7rem; }
+        .lab-main { min-width: 0; }
+        .lab-kicker { margin-block-end: .75rem; color: var(--nf-color-accent); font-size: .75rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+        .lab-title { max-width: 18ch; font-size: clamp(2.25rem, 6vw, 4.75rem); letter-spacing: -.065em; }
+        .lab-lede { max-width: 58ch; margin-block-start: 1rem; color: var(--lab-muted); font-size: 1.05rem; }
+        .lab-intro { padding-block-end: 2.5rem; }
+        .lab-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-block-start: 1.25rem; color: var(--lab-muted); font-size: .8rem; }
+        .lab-meta span { padding: .35rem .65rem; border: 1px solid var(--lab-line); border-radius: 999px; background: var(--nf-color-surface); }
+        .lab-example { overflow: clip; border: 1px solid var(--lab-line); border-radius: .85rem; background: var(--nf-color-surface); box-shadow: 0 1rem 3rem rgb(25 39 56 / .07); }
+        .lab-example-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; padding: .75rem 1rem; border-block-end: 1px solid var(--lab-line); color: var(--lab-muted); font-size: .75rem; }
+        .lab-example-bar strong { color: var(--lab-ink); }
+        .lab-preview { display: grid; gap: 1.25rem; min-height: 20rem; padding: clamp(1.25rem, 4vw, 2.5rem); background: var(--nf-color-background); }
+        .lab-preview > * { min-width: 0; }
+        .lab-preview .nf-form { width: min(100%, 38rem); }
+        .lab-preview .nf-table-scroll { width: 100%; }
+        .lab-code-wrap { border-block-start: 1px solid var(--lab-line); background: #151a21; color: #d9e3ef; }
+        .lab-code-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem 1rem; border-block-end: 1px solid #303b48; color: #9eacbc; font-size: .75rem; }
+        .lab-code { max-width: 100%; margin: 0; overflow: auto; padding: 1rem; font: .8rem/1.65 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+        .lab-notes { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(15rem, .8fr); gap: 1rem; margin-block-start: 1rem; }
+        .lab-note { padding: 1.1rem; border: 1px solid var(--lab-line); border-radius: .7rem; background: var(--nf-color-surface); }
+        .lab-note h2 { margin-block-end: .5rem; font-size: 1rem; }
+        .lab-note p, .lab-note li { color: var(--lab-muted); font-size: .9rem; }
+        .lab-note ul { display: grid; gap: .35rem; padding-inline-start: 1.2rem; }
+        .lab-status { min-height: 1.5rem; margin-block-start: 1rem; color: var(--lab-muted); font-size: .8rem; }
+        .lab-dialog-actions { display: flex; flex-wrap: wrap; justify-content: end; gap: .5rem; }
+        .lab-empty-space { min-height: 6rem; }
+        @media (max-width: 48rem) { .lab-layout { grid-template-columns: 1fr; padding-block-start: 1rem; } .lab-sidebar { position: static; } .lab-catalog { display: flex; overflow-x: auto; padding-block-end: .4rem; } .lab-catalog button { width: auto; flex: 0 0 auto; white-space: nowrap; } .lab-title { max-width: 12ch; } .lab-notes { grid-template-columns: 1fr; } }
+        @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --lab-ink: #eef2f6; --lab-muted: #aab4c0; --lab-line: #343e4a; --lab-canvas: #101419; } }
+        :root[data-theme="dark"] { --lab-ink: #eef2f6; --lab-muted: #aab4c0; --lab-line: #343e4a; --lab-canvas: #101419; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="lab-header">
+      <div class="nf-container lab-header-inner">
+        <a class="lab-brand" href="./index.html"><span class="lab-mark" aria-hidden="true">N</span><span><strong>Native-First UI</strong><small>HTML component catalog</small></span></a>
+        <div class="lab-header-actions"><label class="nf-sr-only" for="component-search">Filter components</label><input id="component-search" type="search" placeholder="Filter components…" autocomplete="off" /><button class="nf-button" id="theme-toggle" type="button">Dark mode</button></div>
+      </div>
+    </header>
+
+    <div class="nf-container lab-layout">
+      <aside class="lab-sidebar" aria-label="Component catalog">
+        <h2>Browse contracts</h2>
+        <nav class="lab-catalog" id="catalog"></nav>
+      </aside>
+
+      <main class="lab-main" id="content">
+        <section class="lab-intro" aria-labelledby="page-title"><p class="lab-kicker">Framework-free UI primitives</p><h1 class="lab-title" id="page-title">HTML that does the heavy lifting.</h1><p class="lab-lede">Choose a semantic element, add the smallest useful `nf-` contract, and ship a resilient interface. Every example below is live, copyable, and designed for real application pressure.</p><div class="lab-meta"><span>6 contracts</span><span>Native HTML API</span><span>No build step</span></div><details class="nf-card" style="margin-block-start:1.5rem"><summary>What does native-first mean?</summary><p style="margin-block-start:.75rem">Use the browser’s real elements and behavior first. The library adds consistent layout, states, focus, and responsive rules around them.</p></details></section>
+        <section aria-labelledby="example-title"><div class="lab-example"><div class="lab-example-bar"><strong id="example-title">Buttons and states</strong><span id="example-tag">components.css</span></div><div class="lab-preview" id="preview"></div><div class="lab-code-wrap"><div class="lab-code-head"><span>Copyable HTML</span><button class="nf-button" id="copy-code" type="button">Copy</button></div><pre class="lab-code" id="code" tabindex="0"></pre></div></div><div class="lab-notes"><article class="lab-note"><h2>When to use it</h2><p id="when-to-use"></p></article><article class="lab-note"><h2>Accessibility contract</h2><ul id="a11y-notes"></ul></article></div><p class="lab-status" id="status" role="status" aria-live="polite">Ready. Select a contract to inspect it.</p></section>
+      </main>
+    </div>
+
+    <script>
+      const examples = {
+        actions: { label: "Actions", tag: "components.css", when: "Use native buttons for actions and links for navigation. Add a variant only when the action has a clear priority or risk.", a11y: ["Use a visible text label.", "Keep disabled buttons explainable with nearby help text.", "Do not use an icon as the only label."], html: `<div class="nf-cluster">\n  <button class="nf-button" type="button">Cancel</button>\n  <button class="nf-button-primary" type="button">Save changes</button>\n  <button class="nf-button-danger" type="button">Delete</button>\n</div>`, render: () => `<div class="nf-stack"><div class="nf-cluster"><button class="nf-button" type="button">Cancel</button><button class="nf-button-primary" type="button">Save changes</button><button class="nf-button-danger" type="button">Delete</button></div><div class="nf-cluster"><span class="nf-badge">Draft</span><span class="nf-badge" data-tone="success">Published</span><span class="nf-badge" data-tone="danger">Blocked</span></div></div>` },
+        surfaces: { label: "Cards and alerts", tag: "components.css", when: "Use cards to group related content and alerts for a persistent message that needs to remain visible in the reading flow.", a11y: ["Use a heading inside each meaningful card.", "Use role=status or aria-live for changing async messages.", "Use data-tone for meaning, never color alone."], html: `<div class="nf-stack">\n  <article class="nf-card">\n    <h2>Workspace health</h2>\n    <p>All systems are operational.</p>\n  </article>\n  <div class="nf-alert" data-tone="success" role="status">\n    Changes saved successfully.\n  </div>\n</div>`, render: () => `<div class="nf-stack"><article class="nf-card"><h2>Workspace health</h2><p>All systems are operational.</p></article><div class="nf-alert" data-tone="success" role="status"><strong>Changes saved</strong><span>Your workspace is ready to share.</span></div></div>` },
+        forms: { label: "Forms", tag: "components.css + elements.css", when: "Use explicit labels and native controls. Keep help and error copy adjacent, then connect it with aria-describedby.", a11y: ["Every control has an explicit label.", "Invalid fields expose aria-invalid and linked error text.", "Native validation remains available."], html: `<form class="nf-form">\n  <div class="nf-field">\n    <label for="email">Email address</label>\n    <input id="email" type="email" aria-describedby="email-help" required />\n    <span class="nf-help" id="email-help">We will never share it.</span>\n  </div>\n</form>`, render: () => `<form class="nf-form" onsubmit="event.preventDefault()"><div class="nf-field"><label for="demo-email">Email address</label><input id="demo-email" type="email" placeholder="you@example.com" aria-describedby="demo-email-help" required><span class="nf-help" id="demo-email-help">We will never share it.</span></div><div class="nf-field"><label for="demo-notes">Notes</label><textarea id="demo-notes" placeholder="Add context"></textarea></div><div class="nf-cluster"><button class="nf-button-primary" type="submit">Save settings</button><button class="nf-button" type="reset">Reset</button></div></form>` },
+        tables: { label: "Tables", tag: "components.css", when: "Use a table for relational data. Put wide tables inside a labelled, focusable scroll region instead of breaking the page.", a11y: ["Use a caption, th elements, and scope attributes.", "Give the scroll wrapper an accessible label and tabindex.", "Keep columns readable at 200% zoom."], html: `<div class="nf-table-scroll" tabindex="0" aria-label="Recent orders">\n  <table class="nf-table">\n    <caption>Recent orders</caption>\n    ...\n  </table>\n</div>`, render: () => `<div class="nf-table-scroll" tabindex="0" aria-label="Recent orders"><table class="nf-table"><caption>Recent orders</caption><thead><tr><th scope="col">Order</th><th scope="col">Customer</th><th scope="col">Status</th><th scope="col">Total</th></tr></thead><tbody><tr><td>#1042</td><td>Alex Morgan</td><td><span class="nf-badge" data-tone="success">Paid</span></td><td>$128.00</td></tr><tr><td>#1041</td><td>Samira Khan</td><td><span class="nf-badge" data-tone="warning">Review</span></td><td>$84.50</td></tr><tr><td>#1040</td><td>Jordan Lee</td><td><span class="nf-badge">Shipped</span></td><td>$42.00</td></tr></tbody></table></div>` },
+        layouts: { label: "Layouts", tag: "patterns.css", when: "Compose page structure from container, stack, cluster, grid, sidebar, and page-header. Keep the DOM the same on mobile.", a11y: ["Use landmarks for page regions.", "Keep heading order meaningful.", "Let layout wrap before introducing horizontal scrolling."], html: `<main class="nf-page">\n  <div class="nf-container nf-stack">\n    <header class="nf-page-header">...</header>\n    <section class="nf-grid">...</section>\n  </div>\n</main>`, render: () => `<section class="nf-stack"><header class="nf-page-header"><div><p class="nf-help">Overview</p><h2>Team workspace</h2></div><button class="nf-button-primary" type="button">Invite member</button></header><div class="nf-grid"><article class="nf-card"><h3>Active members</h3><p>24 people</p></article><article class="nf-card"><h3>Open projects</h3><p>8 projects</p></article><article class="nf-card"><h3>Storage</h3><p>64% used</p></article></div></section>` },
+        dialogs: { label: "Dialogs", tag: "behavior.js + components.css", when: "Use a native dialog for a focused confirmation or short task. Import behavior.js when a declarative opener and focus restoration are useful.", a11y: ["Give the dialog an accessible name.", "Keep Escape-to-close available.", "Restore focus to the opener after closing."], html: `<button class="nf-button-danger" data-nf-dialog-open="demo-dialog">Delete project</button>\n<dialog id="demo-dialog" class="nf-dialog" aria-labelledby="dialog-title">\n  <form method="dialog" class="nf-stack">...</form>\n</dialog>`, render: () => `<div class="nf-stack"><button class="nf-button-danger" data-nf-dialog-open="demo-dialog" type="button">Delete project</button><dialog id="demo-dialog" class="nf-dialog" aria-labelledby="dialog-title"><form method="dialog" class="nf-stack"><h2 id="dialog-title">Delete project?</h2><p>This action cannot be undone.</p><p class="nf-help" data-nf-dialog-status aria-live="polite"></p><div class="lab-dialog-actions"><button class="nf-button" value="cancel">Cancel</button><button class="nf-button-danger" value="confirm">Delete project</button></div></form></dialog></div>` }
+      };
+      const catalog = document.querySelector("#catalog");
+      const preview = document.querySelector("#preview");
+      const code = document.querySelector("#code");
+      let current = "actions";
+      function render(name = current) {
+        current = name;
+        const item = examples[name];
+        preview.innerHTML = item.render();
+        code.textContent = item.html;
+        document.querySelector("#example-title").textContent = item.label;
+        document.querySelector("#example-tag").textContent = item.tag;
+        document.querySelector("#when-to-use").textContent = item.when;
+        document.querySelector("#a11y-notes").innerHTML = item.a11y.map((note) => `<li>${note}</li>`).join("");
+        document.querySelectorAll("#catalog button").forEach((button) => button.setAttribute("aria-current", button.dataset.component === name ? "page" : "false"));
+      }
+      catalog.innerHTML = Object.entries(examples).map(([name, item], index) => `<button type="button" data-component="${name}"><span>${item.label}</span><small>${String(index + 1).padStart(2, "0")}</small></button>`).join("");
+      catalog.addEventListener("click", (event) => { const button = event.target.closest("[data-component]"); if (button) { render(button.dataset.component); document.querySelector("#status").textContent = `${examples[button.dataset.component].label} example selected.`; } });
+      document.querySelector("#component-search").addEventListener("input", (event) => { const query = event.target.value.toLowerCase(); document.querySelectorAll("#catalog button").forEach((button) => { button.hidden = !button.textContent.toLowerCase().includes(query); }); });
+      document.querySelector("#theme-toggle").addEventListener("click", (event) => { const dark = document.documentElement.dataset.theme === "dark"; document.documentElement.dataset.theme = dark ? "light" : "dark"; event.currentTarget.textContent = dark ? "Dark mode" : "Light mode"; });
+      document.querySelector("#copy-code").addEventListener("click", async (event) => { await navigator.clipboard?.writeText(code.textContent); event.currentTarget.textContent = "Copied"; setTimeout(() => { event.currentTarget.textContent = "Copy"; }, 1200); });
+      render();
+    </script>
+  </body>
+</html>

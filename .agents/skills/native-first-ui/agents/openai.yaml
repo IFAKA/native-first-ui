@@ -1,0 +1,4 @@
+interface:
+  display_name: "Native-First UI"
+  short_description: "Build scalable native HTML UIs"
+  default_prompt: "Use $native-first-ui to build this interface with semantic HTML, minimal CSS, mobile-first layout, and Emil-style polish."

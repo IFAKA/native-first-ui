@@ -1,0 +1,36 @@
+{
+  "name": "native-first-ui",
+  "version": "0.1.0",
+  "description": "Accessible, framework-agnostic CSS contracts for native-first web interfaces.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "css",
+    "accessibility",
+    "a11y",
+    "html",
+    "design-system",
+    "ui",
+    "framework-agnostic",
+    "native-first"
+  ],
+  "files": ["src", "README.md", "LICENSE"],
+  "exports": {
+    ".": "./src/core.css",
+    "./core.css": "./src/core.css",
+    "./tokens.css": "./src/tokens.css",
+    "./elements.css": "./src/elements.css",
+    "./patterns.css": "./src/patterns.css",
+    "./components.css": "./src/components.css",
+    "./behavior.js": "./src/behavior.js"
+  },
+  "scripts": {
+    "test": "node scripts/validate-package.mjs",
+    "pack:check": "npm pack --dry-run",
+    "serve": "node scripts/serve-example.mjs",
+    "setup:skills": "node scripts/install-skills.mjs"
+  }
+}
